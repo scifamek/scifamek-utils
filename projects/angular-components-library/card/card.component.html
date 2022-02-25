@@ -1,0 +1,13 @@
+<div class="card" >
+  <img *ngIf="img" src="{{ img }}" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title" *ngIf="title">{{ title }}</h5>
+    <p class="card-text" *ngIf="subtitle">
+      {{ subtitle }}
+    </p>
+    <ng-content></ng-content>
+    <button class="btn btn-primary" (click)="execute()" *ngIf="buttonText">
+      {{ buttonText }}
+    </button>
+  </div>
+</div>

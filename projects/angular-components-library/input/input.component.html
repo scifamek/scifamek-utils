@@ -1,0 +1,30 @@
+<!-- <mat-form-field [appearance]="appearance"> -->
+<!-- <mat-label>{{label}}</mat-label> -->
+<!-- <input *ngIf="type == 'input'" #input (input)="onInput($event.target.value)" [placeholder]="placeholder"> -->
+
+<!-- <mat-hint>{{hint}}</mat-hint> -->
+<!-- </mat-form-field> -->
+<article>
+  <label for="cpf-id3">{{ label }}</label>
+  <section>
+    <input
+      class="danger"
+      *ngIf="type == 'input'"
+      #input
+      [placeholder]="placeholder"
+      [formControl]="formControl"
+    />
+    <textarea
+      class="danger"
+      *ngIf="type == 'text-area'"
+      #textarea
+      [placeholder]="placeholder"
+    ></textarea>
+    <mat-icon>{{ icon }}</mat-icon>
+  </section>
+  <!-- <div class="mt-1">
+    <span class="feedback danger" role="alert">
+    </span>
+  </div> -->
+  <span class="text-base">{{ hint }}</span>
+</article>

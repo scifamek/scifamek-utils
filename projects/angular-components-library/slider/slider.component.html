@@ -1,0 +1,28 @@
+<label>{{ label }}</label>
+
+<mat-slider
+*ngIf="thumbLabel == null || thumbLabel == undefined"
+[disabled]="disabled"
+  [invert]="invert"
+  [max]="max"
+  [min]="min"
+  [step]="step"
+  [tickInterval]="getSliderTickInterval()"
+  [vertical]="vertical"
+  [formControl]="formControl"
+>
+</mat-slider>
+<mat-slider
+  *ngIf="thumbLabel != null && thumbLabel != undefined"
+  thumbLabel
+  [displayWith]="formatLabel"
+  [disabled]="disabled"
+  [invert]="invert"
+  [max]="max"
+  [min]="min"
+  [step]="step"
+  [tickInterval]="getSliderTickInterval()"
+  [vertical]="vertical"
+  [formControl]="formControl"
+>
+</mat-slider>

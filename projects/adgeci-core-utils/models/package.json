@@ -1,0 +1,10 @@
+{
+    "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+    "description": "A secondary entry point for (models) ",
+    "private": true,
+    "ngPackage": {
+        "lib": {
+            "entryFile": "public-api.ts"
+        }
+    }
+}
