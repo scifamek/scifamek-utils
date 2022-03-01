@@ -1,1 +1,12 @@
-<p>component-list works!</p>
+<div class="container">
+  <div class="row d-flex">
+    <ng-container *ngFor="let component of components; let i = index">
+      <acl-button size="small" kind="outline" (click)="loadComponent(i)">{{
+        component.name
+      }}</acl-button>
+    </ng-container>
+  </div>
+  <div class="row">
+    <ng-template appAdHost></ng-template>
+  </div>
+</div>
