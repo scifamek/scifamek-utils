@@ -1,14 +1,27 @@
+import { ControlValueAccessor } from '@angular/forms';
+
 export enum STATES {
   ERROR_STATE = 'error',
   VALID_STATE = 'valid',
   DEFAULT_STATE = 'default',
 }
-export class GeneralInputComponent {
+export class GeneralInputComponent implements ControlValueAccessor {
   private _status: STATES = STATES.DEFAULT_STATE;
-  private _disabled!: boolean;
+  private _disabled!: boolean | string;
   private _touched: boolean = false;
+  private _onChange!: (value: any) => {};
+  private _onTouched: any;
 
+  constructor(){
+    this.onChangeElement = (event: any) => {};
+  }
   value: any;
+  registerOnChange(onChange: any): void {
+    this.onChangeElement = onChange;
+  }
+  registerOnTouched(onTouched: any): void {
+    this.onTouched = onTouched;
+  }
   public onSetValue!: (value: any) => void;
   private validators!: any[];
 
@@ -59,11 +72,11 @@ export class GeneralInputComponent {
   }
   onValidate(status: STATES) {}
 
-  public get disabled(): boolean {
+  public get disabled(): boolean | string {
     return this._disabled;
   }
 
-  public set disabled(value: boolean) {
+  public set disabled(value: boolean | string) {
     this._disabled = value;
   }
 
@@ -85,5 +98,19 @@ export class GeneralInputComponent {
     if (value) {
       this._status = value;
     }
+  }
+
+  public get onTouched(): any {
+    return this._onTouched;
+  }
+  public set onTouched(value: any) {
+    this._onTouched = value;
+  }
+
+  public get onChangeElement(): any {
+    return this._onChange;
+  }
+  public set onChangeElement(value: any) {
+    this._onChange = value;
   }
 }

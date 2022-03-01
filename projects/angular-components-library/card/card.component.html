@@ -6,8 +6,8 @@
       {{ subtitle }}
     </p>
     <ng-content></ng-content>
-    <button class="btn btn-primary" (click)="execute()" *ngIf="buttonText">
+    <acl-button kind="outline" (click)="execute()" *ngIf="buttonText">
       {{ buttonText }}
-    </button>
+    </acl-button>
   </div>
 </div>

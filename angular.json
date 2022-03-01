@@ -24,11 +24,12 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/showcase",
+            "preserveSymlinks": true,
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -132,7 +133,7 @@
     "angular-components-library": {
       "projectType": "library",
       "root": "projects/angular-components-library",
-      "sourceRoot": "projects/angular-components-library/src",
+      "sourceRoot": "projects/angular-components-library",
       "prefix": "acl",
       "architect": {
         "build": {
@@ -140,6 +141,19 @@
           "options": {
             "tsConfig": "projects/angular-components-library/tsconfig.lib.json",
             "project": "projects/angular-components-library/ng-package.json"
+          },
+          "extractCss": true,
+          "styles": [
+            {
+              "input": "projects/angular-components-library/scss-core",
+              "bundleName": "scss-core"
+            }
+          ],
+          "stylePreprocessorOptions": {
+            "includePaths": [
+              "styles"
+            ],
+            "inlineCritical": true
           },
           "configurations": {
             "production": {
@@ -150,7 +164,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/angular-components-library/src/test.ts",
+            "main": "projects/angular-components-library/test.ts",
             "tsConfig": "projects/angular-components-library/tsconfig.spec.json",
             "karmaConfig": "projects/angular-components-library/karma.conf.js"
           }

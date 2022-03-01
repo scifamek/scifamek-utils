@@ -1,0 +1,47 @@
+<section class="container">
+  <h1>Buttons</h1>
+  <h2>Default</h2>
+  <acl-button> Bichota </acl-button>
+  <div [class]="'row d-flex my-5 bg-' + background">
+    <ng-container *ngFor="let size of sizes">
+      <div class="col-4 border border-dark">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center text-uppercase my-3">{{ size }}</h2>
+          </div>
+          <ng-container *ngFor="let kind of kinds">
+            <div
+              class="col-6 d-flex flex-column justify-content-center align-items-center"
+            >
+              <h3 class="text-center">{{ kind }}</h3>
+              <ng-container *ngFor="let color of colors">
+                <div class="my-2">
+                  <acl-button
+                    (click)="changeBg()"
+                    [size]="size"
+                    [color]="color"
+                    [kind]="kind"
+                  >
+                    Yo soy un perro
+                  </acl-button>
+
+                  <acl-button
+                    (click)="changeBg()"
+                    [size]="size"
+                    [color]="color"
+                    [kind]="kind"
+                    disabled
+                  >
+                    Pero de raza
+                  </acl-button>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>
+
+
