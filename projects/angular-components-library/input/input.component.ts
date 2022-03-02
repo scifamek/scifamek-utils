@@ -39,7 +39,6 @@ export class AclInputComponent
   @Input('right-icon') rightIcon!: string;
   @Input() type!: string;
   @Input() color!: string;
-  @Input() error!: boolean | string;
 
   @ViewChild('input', { static: false }) input!: HTMLInputElement;
   @ViewChild('textarea', { static: false }) textarea!: ElementRef;
@@ -52,30 +51,37 @@ export class AclInputComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.disabled && !changes.disabled.isFirstChange()) {
-      this.updateNativeProperty('disabled', this.disabled);
-    }
-    if (changes.error && !changes.error.isFirstChange()) {
-      this.updateNativeProperty('error', this.error);
+    if (
+      (changes.disabled && !changes.disabled.isFirstChange()) ||
+      (changes.error && !changes.error.isFirstChange())
+    ) {
+      this.togglePropertyByStatus(this.status, this.input);
     }
   }
 
-  updateNativeProperty(name: string, value: any) {
-    const element = this.elementRef.nativeElement;
-    if (element) {
-      if (value == false || (value as unknown as string) == '') {
-        element.setAttribute(name, '');
-      } else {
-        element.removeAttribute(name);
-      }
+  updateNativeProperty(
+    name: string,
+    value: any,
+    elementRef?: HTMLElement
+  ): void {
+    let element;
+    if (elementRef) {
+      element = elementRef;
+    } else {
+      element = this.elementRef.nativeElement;
+    }
+    if (value == false || (value as unknown as string) == '') {
+      element.setAttribute(name, '');
+    } else {
+      element.removeAttribute(name);
     }
   }
 
   ngAfterViewInit(): void {
     this.input = this.elementRef.nativeElement.querySelector('input');
+
     this.configListeners();
-    this.updateNativeProperty('disabled', this.disabled);
-    this.updateNativeProperty('error', this.error);
+    this.togglePropertyByStatus(this.status, this.input);
 
     if (this.data) {
       this.writeValue(this.data[ITEM_VALUE]);
@@ -103,10 +109,10 @@ export class AclInputComponent
   writeValue(value: any): void {
     super.writeValue(value);
 
-    if (this.status == STATES.ERROR_STATE) {
+    if (this.status == 'error') {
     }
     if (value) {
-      console.log(value)
+      console.log(value);
       if (this.input) {
         this.input.value = value;
       } else if (this.textarea) {

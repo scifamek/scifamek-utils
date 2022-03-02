@@ -16,13 +16,14 @@ $input-main-section-width: calc(
 :host {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   &[focus] {
     > section {
       border: $input-border-size solid nth($main-color-1-scale, 3);
     }
   }
-  &[error] {
+  &[status='error'] {
     > section {
       border: $input-border-size solid
         map-get(map-get($color-map, "danger"), "base");
@@ -39,7 +40,7 @@ $input-main-section-width: calc(
     align-items: center;
     display: flex;
     justify-content: space-between;
-
+    width: 100%;
     padding: $input-section-padding-y 0;
     border-radius: $input-border-radius;
 

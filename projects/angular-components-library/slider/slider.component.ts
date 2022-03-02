@@ -75,11 +75,6 @@ export class AclSliderComponent
 
   writeValue(value: any): void {
     super.writeValue(value);
-
-    if (this.status == STATES.ERROR_STATE) {
-      ('Hay hpta, lo voy a poner rojo');
-    }
-
     this.formControl.setValue(value);
   }
 
