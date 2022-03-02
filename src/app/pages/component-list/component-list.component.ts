@@ -16,15 +16,21 @@ import { AdHostDirective } from 'src/app/components/ad-host.directive';
   styleUrls: ['./component-list.component.scss'],
 })
 export class ComponentListComponent implements OnInit {
-  components = [
+  components: {
+    name: string;
+    component: any;
+    factory: any;
+  }[] = [
     {
       name: 'Button',
       component: ButtonExampleComponent,
+      factory: undefined,
     },
 
     {
       name: 'Input',
       component: InputExampleComponent,
+      factory: undefined,
     },
   ];
 
@@ -39,14 +45,19 @@ export class ComponentListComponent implements OnInit {
 
   loadComponent(index: number) {
     const adItem = this.components[index];
-
-    const componentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(adItem.component);
+    let factory;
+    if (adItem['factory']) {
+      factory = adItem['factory'];
+    } else {
+      factory = this.componentFactoryResolver.resolveComponentFactory(
+        adItem.component
+      );
+      adItem['factory'] = factory;
+    }
 
     const viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
 
-    const componentRef =
-      viewContainerRef.createComponent<AdComponent>(componentFactory);
+    const componentRef = viewContainerRef.createComponent<AdComponent>(factory);
   }
 }

@@ -102,10 +102,6 @@ export class AclSelectComponent
 
   writeValue(value: any): void {
     super.writeValue(value);
-
-    if (this.status == STATES.ERROR_STATE) {
-    }
-
     if (this.select) {
       this.select.writeValue(value);
     }

@@ -1,19 +1,25 @@
+import { Input, Component } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
-export enum STATES {
-  ERROR_STATE = 'error',
-  VALID_STATE = 'valid',
-  DEFAULT_STATE = 'default',
-}
+export type STATES = 'error' | 'valid' | 'default' | 'disabled';
+@Component({
+  template: ''
+})
 export class GeneralInputComponent implements ControlValueAccessor {
-  private _status: STATES = STATES.DEFAULT_STATE;
+  @Input() status: STATES = 'default';
   private _disabled!: boolean | string;
   private _touched: boolean = false;
   private _onChange!: (value: any) => {};
   private _onTouched: any;
 
-  constructor(){
+  constructor() {
     this.onChangeElement = (event: any) => {};
+  }
+
+  togglePropertyByStatus(status: STATES, elementRef: HTMLElement): void {
+    if (elementRef) {
+      elementRef.toggleAttribute(status);
+    }
   }
   value: any;
   registerOnChange(onChange: any): void {
@@ -40,9 +46,9 @@ export class GeneralInputComponent implements ControlValueAccessor {
         } else if (typeValidator == 'function') {
           const validatorResponse = validator(this.value);
           if (validatorResponse) {
-            this.status = STATES.VALID_STATE;
+            this.status = 'valid';
           } else {
-            this.status = STATES.ERROR_STATE;
+            this.status = 'error';
           }
         }
       }
@@ -90,15 +96,7 @@ export class GeneralInputComponent implements ControlValueAccessor {
     }
   }
 
-  public get status(): STATES {
-    return this._status;
-  }
-
-  public set status(value: STATES) {
-    if (value) {
-      this._status = value;
-    }
-  }
+  
 
   public get onTouched(): any {
     return this._onTouched;

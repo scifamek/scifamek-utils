@@ -1,22 +1,13 @@
 <section>
   <mat-icon *ngIf="leftIcon">{{ leftIcon }}</mat-icon>
-
   <section>
     <label for="cpf-id3">{{ label }}</label>
     <input
       [attr.color]="color"
-      *ngIf="type == 'input'"
+      [attr.status]="status"
       [placeholder]="placeholder"
-    />
-    <!-- [formControl]="formControl" -->
-    <textarea
-      class="danger"
-      *ngIf="type == 'text-area'"
-      #textarea
-      [placeholder]="placeholder"
-    ></textarea>
+      />
   </section>
   <mat-icon *ngIf="rightIcon">{{ rightIcon }}</mat-icon>
-  <!-- <mat-icon >{{ icon }}</mat-icon> -->
 </section>
-<span class="text-base">{{ hint }}</span>
+<span *ngIf="hint" class="text-base">{{ hint }}</span>
