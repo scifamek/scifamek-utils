@@ -1,13 +1,13 @@
 <div class="row">
   <div *ngFor="let item of actions">
     <div *ngIf="!item.icon">
-      <button mat-raised-button (click)="execute(item)">
+      <button  (click)="execute(item)">
        {{item.display}}
       </button>
     </div>
     <div *ngIf="item.icon">
-      <button mat-icon-button (click)="execute(item)">
-        <mat-icon>{{item.icon}}</mat-icon> {{item.display}}
+      <button  (click)="execute(item)">
+        <span>{{item.icon}}</span> {{item.display}}
       </button>
     </div>
   </div>

@@ -7,3 +7,4 @@ export { ITEM_VALUE } from './components.constants';
 export { IGeneralComponent } from './general-component';
 export { GeneralInputComponent, STATES } from './general-input-component';
 export { AclCoreModule } from './core.module';
+export { BaseBehavior } from './behaviors/base.behavior';

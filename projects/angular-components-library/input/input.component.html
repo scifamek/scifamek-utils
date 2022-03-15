@@ -1,5 +1,5 @@
 <section>
-  <mat-icon *ngIf="leftIcon">{{ leftIcon }}</mat-icon>
+  <span *ngIf="leftIcon">{{ leftIcon }}</span>
   <section>
     <label for="cpf-id3">{{ label }}</label>
     <input
@@ -8,6 +8,6 @@
       [placeholder]="placeholder"
       />
   </section>
-  <mat-icon *ngIf="rightIcon">{{ rightIcon }}</mat-icon>
+  <span *ngIf="rightIcon">{{ rightIcon }}</span>
 </section>
 <span *ngIf="hint" class="text-base">{{ hint }}</span>

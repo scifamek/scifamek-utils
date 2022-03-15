@@ -15,6 +15,8 @@ import {
   GeneralInputComponent,
   STATES,
 } from 'angular-components-library/core';
+import { InputBehavior } from './input.behavior';
+import { INPUT_IDENTIFIER } from './input.constants';
 @Component({
   selector: 'acl-input',
   templateUrl: './input.component.html',
@@ -40,14 +42,13 @@ export class AclInputComponent
   @Input() type!: string;
   @Input() color!: string;
 
-  @ViewChild('input', { static: false }) input!: HTMLInputElement;
-  @ViewChild('textarea', { static: false }) textarea!: ElementRef;
-
   data: any;
   formControl!: FormControl;
+  behavior!: InputBehavior;
 
   constructor(private elementRef: ElementRef) {
     super();
+    this.behavior = new InputBehavior();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -55,33 +56,16 @@ export class AclInputComponent
       (changes.disabled && !changes.disabled.isFirstChange()) ||
       (changes.error && !changes.error.isFirstChange())
     ) {
-      this.togglePropertyByStatus(this.status, this.input);
-    }
-  }
-
-  updateNativeProperty(
-    name: string,
-    value: any,
-    elementRef?: HTMLElement
-  ): void {
-    let element;
-    if (elementRef) {
-      element = elementRef;
-    } else {
-      element = this.elementRef.nativeElement;
-    }
-    if (value == false || (value as unknown as string) == '') {
-      element.setAttribute(name, '');
-    } else {
-      element.removeAttribute(name);
+      this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
     }
   }
 
   ngAfterViewInit(): void {
-    this.input = this.elementRef.nativeElement.querySelector('input');
-
+    this.behavior.setRoot(this.elementRef.nativeElement);
     this.configListeners();
-    this.togglePropertyByStatus(this.status, this.input);
+    this.behavior.init();
+
+    this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
 
     if (this.data) {
       this.writeValue(this.data[ITEM_VALUE]);
@@ -90,33 +74,26 @@ export class AclInputComponent
     }
   }
   configListeners() {
-    this.input.addEventListener('keyup', (event) => {
-      this.value = this.input.value;
-      this.onChangeElement(this.value);
-      if (this.formControl) {
-        this.formControl.setValue(this.value);
-      }
-    });
-    this.input.addEventListener('blur', (event) => {
-      this.validate();
-      this.elementRef.nativeElement.removeAttribute('focus');
-    });
-    this.input.addEventListener('focus', (event) => {
-      this.elementRef.nativeElement.setAttribute('focus', '');
-    });
+    this.behavior.addSubscriber(
+      ['keyup'],
+      (event) => {
+        this.value = this.behavior.getValue();
+        this.onChangeElement(this.value);
+        if (this.formControl) {
+          this.formControl.setValue(this.value);
+        }
+      },
+      INPUT_IDENTIFIER
+    );
   }
 
   writeValue(value: any): void {
     super.writeValue(value);
-
     if (this.status == 'error') {
     }
     if (value) {
-      console.log(value);
-      if (this.input) {
-        this.input.value = value;
-      } else if (this.textarea) {
-        this.textarea.nativeElement.value = value;
+      if (this.behavior) {
+        this.behavior.setValue(value);
       }
     }
   }

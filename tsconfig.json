@@ -2,12 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "paths": {
-      "adgeci-core-utils": [
-        "dist/adgeci-core-utils/adgeci-core-utils",
-        "dist/adgeci-core-utils"
-      ]
-    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

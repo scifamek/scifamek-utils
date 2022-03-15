@@ -23,7 +23,6 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3",
-    "@angular/material": "^11.2.13",
     "@angular/cdk": "^11.2.3"
   },
   "devDependencies": {

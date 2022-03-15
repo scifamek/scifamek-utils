@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AclButtonColors, AclButtonComponent } from './button.component';
 
-fdescribe('AclButtonComponent', () => {
+describe('AclButtonComponent', () => {
   let component: AclButtonComponent;
   let fixture: ComponentFixture<AclButtonComponent>;
 

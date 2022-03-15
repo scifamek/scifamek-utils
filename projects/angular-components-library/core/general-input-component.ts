@@ -2,9 +2,8 @@ import { Input, Component } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 export type STATES = 'error' | 'valid' | 'default' | 'disabled';
-@Component({
-  template: ''
-})
+
+
 export class GeneralInputComponent implements ControlValueAccessor {
   @Input() status: STATES = 'default';
   private _disabled!: boolean | string;
@@ -16,11 +15,8 @@ export class GeneralInputComponent implements ControlValueAccessor {
     this.onChangeElement = (event: any) => {};
   }
 
-  togglePropertyByStatus(status: STATES, elementRef: HTMLElement): void {
-    if (elementRef) {
-      elementRef.toggleAttribute(status);
-    }
-  }
+
+  
   value: any;
   registerOnChange(onChange: any): void {
     this.onChangeElement = onChange;

@@ -10,7 +10,6 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatSelect } from '@angular/material/select';
 import {
   IGeneralComponent,
   ITEM_VALUE,
@@ -44,7 +43,6 @@ export class AclSelectComponent
   @Input() relativeProperty!: any;
   @Output() onChange = new EventEmitter();
 
-  @ViewChild(MatSelect) select!: MatSelect;
 
   formControl: any;
   items = of([]);
@@ -79,31 +77,31 @@ export class AclSelectComponent
 
   ngAfterViewInit(): void {
     this.writeValue(this.data[ITEM_VALUE]);
-    this.select.valueChange.subscribe(async (value: any[]) => {
-      let data: any = (await this.items.toPromise())
-        .filter((item: any) => value.includes(item.value))
-        .reduce(
-          (acc, curr, indx, arr) => {
-            acc['text'] = [...acc['text'], curr['text']];
-            acc['value'] = [...acc['value'], curr['value']];
-            return acc;
-          },
-          {
-            text: [],
-            value: [],
-          }
-        );
-      this.onChange.emit({
-        relativeProperty: this.relativeProperty,
-        ...data,
-      });
-    });
+    // this.select.valueChange.subscribe(async (value: any[]) => {
+    //   let data: any = (await this.items.toPromise())
+    //     .filter((item: any) => value.includes(item.value))
+    //     .reduce(
+    //       (acc, curr, indx, arr) => {
+    //         acc['text'] = [...acc['text'], curr['text']];
+    //         acc['value'] = [...acc['value'], curr['value']];
+    //         return acc;
+    //       },
+    //       {
+    //         text: [],
+    //         value: [],
+    //       }
+    //     );
+    //   this.onChange.emit({
+    //     relativeProperty: this.relativeProperty,
+    //     ...data,
+    //   });
+    // });
   }
 
   writeValue(value: any): void {
     super.writeValue(value);
-    if (this.select) {
-      this.select.writeValue(value);
-    }
+    // if (this.select) {
+    //   this.select.writeValue(value);
+    // }
   }
 }
