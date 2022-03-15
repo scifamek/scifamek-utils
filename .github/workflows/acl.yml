@@ -4,8 +4,8 @@
 name: angular-components-library CI/CD
 
 on:
-  release:
-    types: [created]
+  branch:
+    - main
 
 jobs:
   build:
