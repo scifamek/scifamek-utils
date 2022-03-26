@@ -4,9 +4,7 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 
 export type AclButtonColors =

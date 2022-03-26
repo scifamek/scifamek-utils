@@ -1,14 +1,12 @@
-<div class="row">
-  <div *ngFor="let item of actions">
-    <div *ngIf="!item.icon">
-      <button  (click)="execute(item)">
-       {{item.display}}
-      </button>
-    </div>
-    <div *ngIf="item.icon">
-      <button  (click)="execute(item)">
-        <span>{{item.icon}}</span> {{item.display}}
-      </button>
-    </div>
-  </div>
-</div>
+<ng-container *ngFor="let item of actions">
+  <ng-container *ngIf="!item.icon">
+    <acl-button kind="outline" (click)="execute(item)">
+      {{ item.display }}
+    </acl-button>
+  </ng-container>
+  <ng-container *ngIf="item.icon">
+    <acl-button (click)="execute(item)">
+      <span>{{ item.icon }}</span> {{ item.display }}
+    </acl-button>
+  </ng-container>
+</ng-container>

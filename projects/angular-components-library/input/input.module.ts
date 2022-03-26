@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AclInputComponent } from './input.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +7,5 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [AclInputComponent],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [AclInputComponent],
-  schemas: [],
 })
 export class AclInputModule {}

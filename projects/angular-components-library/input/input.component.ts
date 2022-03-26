@@ -11,7 +11,7 @@ import {
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ITEM_VALUE } from 'angular-components-library/core';
 import {
-  IGeneralComponent,
+  RenderedGeneralComponent,
   GeneralInputComponent,
   STATES,
 } from 'angular-components-library/core';
@@ -31,12 +31,12 @@ import { INPUT_IDENTIFIER } from './input.constants';
 })
 export class AclInputComponent
   extends GeneralInputComponent
-  implements OnInit, IGeneralComponent, AfterViewInit
+  implements OnInit, AfterViewInit
 {
   @Input() appearance: 'legacy' | 'standard' | 'fill' | 'outline' = 'standard';
   @Input() label!: string;
   @Input() hint!: string;
-  @Input() placeholder: string = '';
+  @Input() placeholder!: string;
   @Input('left-icon') leftIcon!: string;
   @Input('right-icon') rightIcon!: string;
   @Input() type!: string;
@@ -99,14 +99,6 @@ export class AclInputComponent
   }
 
   ngOnInit(): void {
-    if (this.data) {
-      this.formControl = this.data.formControl;
-      this.label = this.data['configuration']['label'];
-      this.hint = this.data['configuration']['hint'];
-      this.placeholder = this.data['configuration']['placeholder'];
-      this.rightIcon = this.data['configuration']['right-icon'];
-      this.leftIcon = this.data['configuration']['left-icon'];
-      this.type = this.data['configuration']['type'];
-    }
+    this.updateInputs();
   }
 }

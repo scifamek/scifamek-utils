@@ -8,7 +8,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   GeneralInputComponent,
-  IGeneralComponent,
+  RenderedGeneralComponent,
 } from 'angular-components-library/core';
 
 @Component({
@@ -25,7 +25,7 @@ import {
 })
 export class AclLabelComponent
   extends GeneralInputComponent
-  implements OnInit, IGeneralComponent
+  implements OnInit
 {
   @Input() appearance: 'legacy' | 'standard' | 'fill' | 'outline' = 'standard';
   @Input() label!: string;

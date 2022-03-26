@@ -28,7 +28,7 @@ $input-main-section-width: calc(
       border: $input-border-size solid
         map-get(map-get($color-map, "danger"), "base");
 
-      mat-icon {
+      span.material-icons {
         color: map-get(map-get($color-map, "danger"), "base");
       }
     }
@@ -46,15 +46,15 @@ $input-main-section-width: calc(
 
     border: $input-border-size solid nth($main-color-8-scale, 12);
 
-    mat-icon {
+    span.material-icons {
       width: $input-icon-width;
       font-size: 2.8rem;
     }
-    mat-icon:first-child {
+    span.material-icons:first-child {
       margin-left: $input-icons-margin-x;
     }
 
-    mat-icon:last-child {
+    span.material-icons:last-child {
       margin-right: $input-icons-margin-x;
     }
     > section {

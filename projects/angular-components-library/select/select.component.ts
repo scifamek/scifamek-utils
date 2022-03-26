@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
-  IGeneralComponent,
+  RenderedGeneralComponent,
   ITEM_VALUE,
   GeneralInputComponent,
   STATES,
@@ -32,7 +32,7 @@ import { Observable, of } from 'rxjs';
 })
 export class AclSelectComponent
   extends GeneralInputComponent
-  implements OnInit, IGeneralComponent, AfterViewInit
+  implements OnInit, AfterViewInit
 {
   @Input() label!: string;
   @Input() hint!: string;
@@ -42,7 +42,6 @@ export class AclSelectComponent
 
   @Input() relativeProperty!: any;
   @Output() onChange = new EventEmitter();
-
 
   formControl: any;
   items = of([]);
@@ -76,7 +75,9 @@ export class AclSelectComponent
   markItems() {}
 
   ngAfterViewInit(): void {
-    this.writeValue(this.data[ITEM_VALUE]);
+    if (this.data) {
+      this.writeValue(this.data[ITEM_VALUE]);
+    }
     // this.select.valueChange.subscribe(async (value: any[]) => {
     //   let data: any = (await this.items.toPromise())
     //     .filter((item: any) => value.includes(item.value))

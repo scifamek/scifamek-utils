@@ -1,5 +1,6 @@
 import { Input, Component } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { applyMixins, RenderedGeneralComponent } from './general-component';
 
 export type STATES = 'error' | 'valid' | 'default' | 'disabled';
 
@@ -108,3 +109,7 @@ export class GeneralInputComponent implements ControlValueAccessor {
     this._onChange = value;
   }
 }
+
+
+export interface GeneralInputComponent extends RenderedGeneralComponent {}
+applyMixins(GeneralInputComponent, [RenderedGeneralComponent]);
