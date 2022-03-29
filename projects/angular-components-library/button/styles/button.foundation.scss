@@ -1,0 +1,9 @@
+@use "../../scss-core/protons/sizing.scss" as *;
+@use "../../scss-core/foundations/category-colors.foundation.scss" as *;
+@use "../../scss-core/protons/themes/base.scss" as *;
+
+$medium-x-padding: 0.8 * $size-proton;
+$medium-y-padding: 0.8 * $size-proton;
+
+$button-default-color: $main-color-9-proton;
+$category-colors : $category-color-map;

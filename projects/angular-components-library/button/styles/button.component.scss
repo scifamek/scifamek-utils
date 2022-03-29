@@ -1,0 +1,74 @@
+@use "sass:color";
+
+@use "./button.foundation.scss" as *;
+
+%medium {
+  padding: $medium-y-padding $medium-x-padding;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@mixin outline-button-style($name) {
+  &[kind="outline"] {
+    background-color: white;
+    border: 1px solid map-get(map-get($category-colors, $name), "base");
+    color: map-get(map-get($category-colors, $name), "base");
+
+    &:hover {
+      border: 1px solid map-get(map-get($category-colors, $name), "hover");
+    }
+
+    &[disabled] {
+      border: 1px solid map-get(map-get($category-colors, $name), "disabled");
+      color: map-get(map-get($category-colors, $name), "disabled");
+    }
+  }
+}
+@mixin button-component {
+  button {
+    @extend %medium;
+
+    &[size="large"] {
+      padding: 8px 16px;
+      font-size: 16px;
+    }
+    &[size="medium"] {
+      @extend %medium;
+    }
+    &[size="small"] {
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    color: $button-default-color;
+    border: 1px solid map-get(map-get($category-colors, "primary"), "base");
+    background-color: map-get(map-get($category-colors, "primary"), "base");
+
+    @include outline-button-style("primary");
+
+    @each $name, $color-obj in $category-colors {
+      &[color="#{$name}"] {
+        border: 1px solid map-get(map-get($category-colors, $name), "base");
+        background-color: map-get(map-get($category-colors, $name), "base");
+        &:hover {
+          border: 1px solid map-get(map-get($category-colors, $name), "hover");
+          background-color: map-get(map-get($category-colors, $name), "hover");
+        }
+        &[disabled] {
+          border: 1px
+            solid
+            map-get(map-get($category-colors, $name), "disabled");
+          background-color: map-get(
+            map-get($category-colors, $name),
+            "disabled"
+          );
+        }
+
+        @include outline-button-style($name);
+      }
+    }
+  }
+}
+
+@include button-component()

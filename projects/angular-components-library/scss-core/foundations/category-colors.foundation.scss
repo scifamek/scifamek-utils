@@ -1,0 +1,48 @@
+@use "../protons/themes/base.scss" as *;
+
+$base-index: 3;
+$hover-index: 6;
+$disabled-index: 8;
+
+$category-color-map: (
+  "primary": (
+    "base": nth($main-color-1-scale-proton, $base-index),
+    "hover": nth($main-color-1-scale-proton, $hover-index),
+    "disabled": nth($main-color-1-scale-proton, $disabled-index),
+  ),
+  "secondary": (
+    "base": nth($main-color-2-scale-proton, $base-index),
+    "hover": nth($main-color-2-scale-proton, $hover-index),
+    "disabled": nth($main-color-2-scale-proton, $disabled-index),
+  ),
+  "tertiary": (
+    "base": nth($main-color-3-scale-proton, $base-index),
+    "hover": nth($main-color-3-scale-proton, $hover-index),
+    "disabled": nth($main-color-3-scale-proton, $disabled-index),
+  ),
+  "warning": (
+    "base": nth($main-color-4-scale-proton, $base-index),
+    "hover": nth($main-color-4-scale-proton, $hover-index),
+    "disabled": nth($main-color-4-scale-proton, $disabled-index),
+  ),
+  "alert": (
+    "base": nth($main-color-5-scale-proton, $base-index),
+    "hover": nth($main-color-5-scale-proton, $hover-index),
+    "disabled": nth($main-color-5-scale-proton, $disabled-index),
+  ),
+  "danger": (
+    "base": nth($main-color-6-scale-proton, $base-index),
+    "hover": nth($main-color-6-scale-proton, $hover-index),
+    "disabled": nth($main-color-6-scale-proton, $disabled-index),
+  ),
+  "info": (
+    "base": nth($main-color-7-scale-proton, $base-index),
+    "hover": nth($main-color-7-scale-proton, $hover-index),
+    "disabled": nth($main-color-7-scale-proton, $disabled-index),
+  ),
+  "notification": (
+    "base": nth($main-color-8-scale-proton, $base-index),
+    "hover": nth($main-color-8-scale-proton, $hover-index),
+    "disabled": nth($main-color-8-scale-proton, $disabled-index),
+  ),
+);

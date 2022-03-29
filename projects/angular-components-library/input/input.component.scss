@@ -1,12 +1,13 @@
-@use "../scss-core/themes/base.scss" as *;
-@use "../scss-core/sizing.scss" as *;
+@use "../scss-core/protons/themes/base.scss" as *;
+@use "../scss-core/foundations/category-colors.foundation.scss" as *;
+@use "../scss-core/protons/sizing.scss" as *;
 
-$input-border-size: 0.1 * $size-token;
-$input-border-radius: 1.8 * $size-token;
-$input-icons-margin-x: 1.6 * $size-token;
-$input-font-size: 1.4 * $rem-size-token;
-$input-span-font-size: 1.2 * $rem-size-token;
-$input-section-padding-y: 0.5 * $size-token;
+$input-border-size: 0.1 * $size-proton;
+$input-border-radius: 1.8 * $size-proton;
+$input-icons-margin-x: 1.6 * $size-proton;
+$input-font-size: 1.4 * $rem-size-proton;
+$input-span-font-size: 1.2 * $rem-size-proton;
+$input-section-padding-y: 0.5 * $size-proton;
 
 $input-icon-width: calc(30px - #{(0 * $input-icons-margin-x)});
 $input-main-section-width: calc(
@@ -20,20 +21,20 @@ $input-main-section-width: calc(
 
   &[focus] {
     > section {
-      border: $input-border-size solid nth($main-color-1-scale, 3);
+      border: $input-border-size solid nth($main-color-1-scale-proton, 3);
     }
   }
   &[status='error'] {
     > section {
       border: $input-border-size solid
-        map-get(map-get($color-map, "danger"), "base");
+        map-get(map-get($category-color-map, "danger"), "base");
 
       span.material-icons {
-        color: map-get(map-get($color-map, "danger"), "base");
+        color: map-get(map-get($category-color-map, "danger"), "base");
       }
     }
     span {
-      color: map-get(map-get($color-map, "danger"), "base");
+      color: map-get(map-get($category-color-map, "danger"), "base");
     }
   }
   > section {
@@ -44,7 +45,7 @@ $input-main-section-width: calc(
     padding: $input-section-padding-y 0;
     border-radius: $input-border-radius;
 
-    border: $input-border-size solid nth($main-color-8-scale, 12);
+    border: $input-border-size solid nth($main-color-8-scale-proton, 12);
 
     span.material-icons {
       width: $input-icon-width;
@@ -66,9 +67,9 @@ $input-main-section-width: calc(
       label {
         font-size: $input-font-size;
         margin: 0;
-        color: nth($main-color-8-scale, 5);
+        color: nth($main-color-8-scale-proton, 5);
         // border: $input-border-size solid
-        //   map-get(map-get($color-map, "danger"), "base");
+        //   map-get(map-get($category-color-map, "danger"), "base");
         width: 100%;
       }
 
@@ -77,7 +78,7 @@ $input-main-section-width: calc(
         width: 100%;
         border: 0;
         // border: $input-border-size solid
-        //   map-get(map-get($color-map, "danger"), "base");
+        //   map-get(map-get($category-color-map, "danger"), "base");
         // border-radius: 0 0 $input-border-radius $input-border-radius;
         font-size: $input-font-size;
         outline: none;
@@ -90,7 +91,7 @@ $input-main-section-width: calc(
   }
 }
 
-// @each $name, $color-obj in $color-map {
+// @each $name, $color-obj in $category-color-map {
 //   &[color="#{$name}"] {
 //     border: 1px solid map-get($color-obj, "base");
 //   }

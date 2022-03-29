@@ -5,10 +5,10 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { ButtonExampleComponent } from 'src/app/component-examples/button-example/button-example.component';
-import { InputExampleComponent } from 'src/app/component-examples/input-example/input-example.component';
-import { AdComponent } from 'src/app/components/ad-component';
-import { AdHostDirective } from 'src/app/components/ad-host.directive';
+import { ButtonExampleComponent } from '../../component-examples/button-example/button-example.component';
+import { InputExampleComponent } from '../../component-examples/input-example/input-example.component';
+import { AdComponent } from '../../components/ad-component';
+import { AdHostDirective } from '../../components/ad-host.directive';
 
 @Component({
   selector: 'app-component-list',

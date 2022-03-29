@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdComponent } from 'src/app/components/ad-component';
+import { AdComponent } from '../../components/ad-component';
 
 @Component({
   selector: 'app-button-example',
