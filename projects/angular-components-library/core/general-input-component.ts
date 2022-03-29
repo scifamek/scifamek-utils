@@ -1,10 +1,10 @@
-import { Input, Component } from '@angular/core';
+import { Input, Component, Injectable } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { applyMixins, RenderedGeneralComponent } from './general-component';
 
 export type STATES = 'error' | 'valid' | 'default' | 'disabled';
 
-
+@Injectable()
 export class GeneralInputComponent implements ControlValueAccessor {
   @Input() status: STATES = 'default';
   private _disabled!: boolean | string;

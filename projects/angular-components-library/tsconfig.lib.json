@@ -22,7 +22,7 @@
     "strictMetadataEmit": true,
     "strictTemplates": true,
 
-    "enableIvy": false
+    "enableIvy": true
   },
   "exclude": [
     "test.ts",

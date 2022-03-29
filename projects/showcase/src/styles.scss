@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css');
+
+//Font size
+$base-font-size: 62.5%;
+
+
+
+html{
+    font-size: $base-font-size !important;
+}
