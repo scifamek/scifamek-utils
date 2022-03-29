@@ -9,7 +9,7 @@
 
 @mixin outline-button-style($name) {
   &[kind="outline"] {
-    background-color: $button-default-color;
+    background-color: $button-default-background-color;
     border: $button-border-width solid
       map-get(map-get($category-colors, $name), "base");
     color: map-get(map-get($category-colors, $name), "base");
