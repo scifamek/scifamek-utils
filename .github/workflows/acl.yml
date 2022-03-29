@@ -4,8 +4,8 @@
 name: angular-components-library CI/CD
 
 on:
-  release:
-    types: [created]
+  branch:
+    - main
 
 jobs:
   build:
@@ -16,7 +16,10 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
-      - run: npm test
+      - run: ng build angular-components-library 
+      - run: cd dist/angular-components-library && npm link 
+      - run: npm link angular-components-library 
+      - run: ng test angular-components-library 
 
   publish-npm:
     needs: build

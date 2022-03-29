@@ -7,13 +7,16 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { AdDirective } from 'angular-components-library/core';
+import { AdDirective, RenderedGeneralComponent } from 'angular-components-library/core';
 const SIZES_WITH_PREFIX = ['sm', 'lg', 'md', 'xl'];
 @Component({
   selector: 'acl-card',
   templateUrl: './card.component.html',
 })
-export class AclCardComponent implements OnInit {
+export class AclCardComponent
+  extends RenderedGeneralComponent
+  implements OnInit
+{
   data: any;
 
   @Input() title!: string;
@@ -26,7 +29,9 @@ export class AclCardComponent implements OnInit {
 
   @Input('button-action') buttonAction!: () => {};
 
-  constructor() {}
+  constructor() {
+    super();
+  }
   /**
    * This method is encharged of executing a custom action for the button.
    *
@@ -40,12 +45,8 @@ export class AclCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.data) {
-      this.title = this.data['configuration']['title'];
-      this.img = this.data['configuration']['img'];
-      this.subtitle = this.data['configuration']['subtitle'];
-      this.buttonText = this.data['configuration']['buttonText'];
-      this.buttonAction = this.data['configuration']['buttonAction'];
-    }
+    this.updateInputs();
+
+    
   }
 }

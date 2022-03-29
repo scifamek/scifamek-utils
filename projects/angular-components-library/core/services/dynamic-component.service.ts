@@ -4,7 +4,7 @@ import {
   Injectable,
   ViewContainerRef,
 } from '@angular/core';
-import { AdComponent } from '../models/ad-component-model';
+import { AdComponent } from '../models/ad-component.model';
 @Injectable({
   providedIn: 'root',
 })

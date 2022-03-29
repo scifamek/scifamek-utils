@@ -39,7 +39,7 @@ export class AclSliderComponent
 
   @Input() icon!: string;
 
-  @Input() invert: boolean = false;
+  @Input() invert = false;
 
   @Input() max!: number;
 
@@ -70,7 +70,9 @@ export class AclSliderComponent
     super();
   }
   ngAfterViewInit(): void {
-    this.writeValue(this.data[ITEM_VALUE]);
+    if (this.data) {
+      this.writeValue(this.data[ITEM_VALUE]);
+    }
   }
 
   writeValue(value: any): void {

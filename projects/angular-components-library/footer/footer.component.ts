@@ -17,7 +17,6 @@ export class AclFooterComponent implements OnChanges {
 
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
   execute(item: any): void {
     let formattedItems: any[] = [];

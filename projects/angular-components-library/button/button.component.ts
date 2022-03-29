@@ -4,9 +4,7 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 
 export type AclButtonColors =
@@ -25,7 +23,7 @@ export type AclButtonSizes = 'small' | 'medium' | 'large';
 @Component({
   selector: 'acl-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+  styleUrls: ['./styles/button.component.scss'],
 })
 export class AclButtonComponent implements OnChanges, AfterViewInit {
   @Input() color!: AclButtonColors;

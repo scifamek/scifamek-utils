@@ -1,1 +1,1 @@
-export { ResponseModel } from "./http/response.model";
+export { ResponseModel } from './http/response.model';

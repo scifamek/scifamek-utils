@@ -1,0 +1,19 @@
+@use "../../scss-core/protons/sizing.scss" as *;
+@use "../../scss-core/foundations/category-colors.foundation.scss" as *;
+@use "../../scss-core/protons/themes/base.scss" as *;
+
+$category-colors: $category-color-map;
+$button-border-width: 0.1 * $size-proton;
+$button-border-radius: $size-proton;
+$button-default-color: $main-color-9-proton;
+
+$button-padding-small: 0.8 * $size-proton;
+$button-font-size-small: 1.2 * $rem-size-proton;
+
+$button-y-padding-medium: 0.8 * $size-proton;
+$button-x-padding-medium: 0.8 * $size-proton;
+$button-font-size-medium: 1.4 * $rem-size-proton;
+
+$button-x-padding-large: 1.6 * $size-proton;
+$button-y-padding-large: 0.8 * $size-proton;
+$button-font-size-large: 1.6 * $rem-size-proton;

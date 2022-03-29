@@ -1,0 +1,84 @@
+@use "sass:color";
+
+$base-palette: (
+  "base": #0030cc,
+  "colors": #0030cc #0036e6 #003cff #1a50ff #3363ff #4d77ff #668aff #809eff
+    #99b1ff #b3c5ff #ccd8ff #e6ecff,
+) !default;
+
+$scale-length: length(map-get($base-palette, "colors"));
+
+@debug ($scale-length);
+@function color-diff($a, $b) {
+  $sat: saturation($a) - saturation($b);
+  $lig: lightness($a) - lightness($b);
+  $fn-sat: if($sat > 0, "desaturate", "saturate");
+  $fn-lig: if($lig > 0, "darken", "lighten");
+
+  @return (
+    adjust-hue: if(hue($a) - hue($b) == -0deg, 0deg, -(hue($a) - hue($b))),
+    #{$fn-sat}: abs($sat),
+    #{$fn-lig}: abs($lig)
+  );
+}
+
+@function palette-diff($palette) {
+  $base: map-get($palette, "base");
+  $colors: map-get($palette, "colors");
+  $diffs: ();
+
+  @each $color in $colors {
+    $diffs: append($diffs, color-diff($base, $color));
+  }
+
+  @return $diffs;
+}
+
+$palette-diff: palette-diff($base-palette);
+
+@function apply-diff($color, $diff) {
+  @each $function, $value in $diff {
+    $color: call(get-function($function), $color, $value);
+  }
+
+  @return $color;
+}
+
+@function create-palette($base-color) {
+  $palette: ();
+
+  @each $diff in $palette-diff {
+    $palette: append($palette, apply-diff($base-color, $diff));
+  }
+
+  @return $palette;
+}
+
+$root-color-1-proton: #003cff;
+$root-color-2-proton: #c80068;
+$root-color-3-proton: #18ba92;
+$root-color-4-proton: #ccb243;
+$root-color-5-proton: #cc5801;
+$root-color-6-proton: #c32021;
+$root-color-7-proton: #ae59c6;
+$root-color-8-proton: #3f3f3f;
+$root-color-9-proton: white;
+
+$main-color-1-scale-proton: create-palette($root-color-1-proton);
+$main-color-2-scale-proton: create-palette($root-color-2-proton);
+$main-color-3-scale-proton: create-palette($root-color-3-proton);
+$main-color-4-scale-proton: create-palette($root-color-4-proton);
+$main-color-5-scale-proton: create-palette($root-color-5-proton);
+$main-color-6-scale-proton: create-palette($root-color-6-proton);
+$main-color-7-scale-proton: create-palette($root-color-7-proton);
+$main-color-8-scale-proton: create-palette($root-color-8-proton);
+
+$main-color-1-proton: nth($main-color-1-scale-proton, 3);
+$main-color-2-proton: nth($main-color-2-scale-proton, 3);
+$main-color-3-proton: nth($main-color-3-scale-proton, 3);
+$main-color-4-proton: nth($main-color-4-scale-proton, 3);
+$main-color-5-proton: nth($main-color-5-scale-proton, 3);
+$main-color-6-proton: nth($main-color-6-scale-proton, 3);
+$main-color-7-proton: nth($main-color-7-scale-proton, 3);
+$main-color-8-proton: nth($main-color-8-scale-proton, 3);
+$main-color-9-proton: $root-color-8-proton;
