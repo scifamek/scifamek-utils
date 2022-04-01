@@ -17,10 +17,10 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
-      - run: ng build angular-components-library 
+      - run: npx ng build angular-components-library 
       - run: cd dist/angular-components-library && npm link 
       - run: npm link angular-components-library 
-      - run: ng test angular-components-library 
+      - run: npx ng test angular-components-library 
 
   publish-npm:
     needs: build
