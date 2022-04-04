@@ -49,7 +49,7 @@ jobs:
 
   build:
     needs: analize
-    if: $ {{ needs.check.outputs.sv-status == '0' }}
+    if: ${{ needs.check.outputs.sv-status == '0' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -67,7 +67,7 @@ jobs:
   fail:
     needs: analize
     runs-on: ubuntu-latest
-    if: $ {{ needs.check.outputs.sv-status == '1' }}
+    if: ${{ needs.check.outputs.sv-status == '1' }}
     steps:
       - run: sudo apt-get install jq
 
