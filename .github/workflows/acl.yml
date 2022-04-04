@@ -18,7 +18,7 @@ jobs:
         with:
           repository: scifamek/standarts-validator
           ref: main
-      - run: ls ..
+      - run: ls .. -R
   build:
     runs-on: ubuntu-latest
     steps:
