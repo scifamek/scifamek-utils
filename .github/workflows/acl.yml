@@ -41,6 +41,7 @@ jobs:
       - name: Standarts validator report
         id: sv_report
         run: |
+          apt-get install jq
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
           echo "::set-output name=status::$(cat scifamek-utils/sv-report.json | jq .status)"
 
