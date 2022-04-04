@@ -8,6 +8,12 @@ on:
     branches:
       - main
 
+outputs:
+  sv-report:
+    description: "Random number"
+    value: ${{ steps.sv_report.outputs.random-id }}
+
+
 jobs:
 
   analize:
@@ -35,6 +41,11 @@ jobs:
           cd standarts-validator
           ls
           python3 main.py -c ../scifamek-utils/sv-configuration.json -o ../scifamek-utils/sv-report.json
+      - name: Standarts validator report
+        id: sv_report
+        run: |
+          echo "::set-output name=report::$cat scifamek-utils/sv-report.json)\n"
+
   build:
     needs: analize
     runs-on: ubuntu-latest
