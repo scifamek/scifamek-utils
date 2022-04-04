@@ -42,14 +42,14 @@ jobs:
       - name: Standarts validator report
         id: sv_report
         run: |
-          STATUS="$(grep failure-sv-report scifamek-utils/sv-report.json)"
+          STATUS="$(grep -c failure-sv-report scifamek-utils/sv-report.json)"
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
           echo "::set-output name=sv-status::$(echo $STATUS)"
 
 
   build:
     needs: analize
-    if: !contains(needs.check.outputs.sv-status, 'failure-sv-report')
+    if: $ {{ needs.check.outputs.sv-status == '0' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -67,13 +67,14 @@ jobs:
   fail:
     needs: analize
     runs-on: ubuntu-latest
-    if: contains(needs.check.outputs.sv-status, 'failure-sv-report')
+    if: $ {{ needs.check.outputs.sv-status == '1' }}
     steps:
       - run: sudo apt-get install jq
 
   # publish-npm:
   #   needs: build
   #   runs-on: ubuntu-latest
+  #   if: ${{ github.ref == 'ref/heads/main' }}
   #   steps:
   #     - uses: actions/checkout@v2
   #     - uses: actions/setup-node@v2
