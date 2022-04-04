@@ -42,7 +42,7 @@ jobs:
         id: sv_report
         run: |
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
-          echo "::set-output name=status::$(cat scifamek-utils/sv-report.json | jq .status)"
+
 
   build:
     needs: analize
