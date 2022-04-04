@@ -1,0 +1,86 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: angular-components-library CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+
+
+
+jobs:
+
+  analize:
+    outputs:
+      sv-report: ${{ steps.sv_report.outputs.report }}
+      sv-status: ${{ steps.sv_report.outputs.status }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: scifamek-utils
+      - uses: actions/checkout@v2
+        with:
+          repository: scifamek/standarts-validator
+          ref: main
+          clean: false
+          path: standarts-validator
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.10.1'
+          architecture: 'x64'
+      - name: Install sv dependencies
+        run: |
+          cd standarts-validator
+          pip3 install -r packages
+      - run: |
+          cd standarts-validator
+          python3 main.py -c ../scifamek-utils/sv-configuration.json -o ../scifamek-utils/sv-report.json
+      - name: Standarts validator report
+        id: sv_report
+        run: |
+          grep -c failure-sv-report scifamek-utils/sv-report.json
+          echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
+          echo "::set-output name=status::$(grep -c success-sv-report scifamek-utils/sv-report.json)"
+
+
+  build:
+    needs: analize
+    if: contains(needs.check.outputs.sv-status, '1')
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: ls
+      - run: npm ci
+      - run: npx ng build angular-components-library 
+      - run: cd dist/angular-components-library && npm link 
+      - run: npm link angular-components-library 
+      - run: npx ng test angular-components-library 
+
+  fail:
+    needs: analize
+    runs-on: ubuntu-latest
+    if: contains(needs.check.outputs.sv-status, '0')
+    steps:
+      - run: sudo apt-get install jq
+
+  # publish-npm:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14
+  #         registry-url: https://registry.npmjs.org/
+  #     - run: npm ci
+  #     - run: npm publish
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
