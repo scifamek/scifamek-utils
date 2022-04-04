@@ -16,7 +16,7 @@ jobs:
   analize:
     outputs:
       sv-report: ${{ steps.sv_report.outputs.report }}
-      sv-status: ${{ steps.sv_report.outputs.status }}
+      sv-status: ${{ steps.sv_report.outputs.sv-status }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -42,14 +42,14 @@ jobs:
       - name: Standarts validator report
         id: sv_report
         run: |
-          grep -c failure-sv-report scifamek-utils/sv-report.json
+          STATUS="$(grep failure-sv-report scifamek-utils/sv-report.json)"
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
-          echo "::set-output name=status::$(grep -c success-sv-report scifamek-utils/sv-report.json)"
+          echo "::set-output name=sv-status::$(echo $STATUS)"
 
 
   build:
     needs: analize
-    if: contains(needs.check.outputs.sv-status, '1')
+    if: !contains(needs.check.outputs.sv-status, 'failure-sv-report')
 
     runs-on: ubuntu-latest
     steps:
@@ -67,7 +67,7 @@ jobs:
   fail:
     needs: analize
     runs-on: ubuntu-latest
-    if: contains(needs.check.outputs.sv-status, '0')
+    if: contains(needs.check.outputs.sv-status, 'failure-sv-report')
     steps:
       - run: sudo apt-get install jq
 
