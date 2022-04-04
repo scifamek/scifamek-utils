@@ -33,7 +33,6 @@ jobs:
       - name: Install sv dependencies
         run: |
           cd standarts-validator
-          sudo apt-get install jq
           pip3 install -r packages
       - run: |
           cd standarts-validator
@@ -43,10 +42,8 @@ jobs:
         run: |
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
 
-
   build:
     needs: analize
-    if: !contains(needs.analize.outputs.status, 'true')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
