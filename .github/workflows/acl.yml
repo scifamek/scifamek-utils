@@ -14,9 +14,7 @@ jobs:
 
   analize:
     outputs:
-      sv-report:
-        description: "Random number"
-        value: ${{ steps.sv_report.outputs.random-id }}
+      sv-report: ${{ steps.sv_report.outputs.report }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
