@@ -57,6 +57,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - run: echo ${{needs.check.outputs.sv-status}}
       - run: ls
       - run: npm ci
       - run: npx ng build angular-components-library 
