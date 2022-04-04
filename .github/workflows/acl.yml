@@ -63,6 +63,7 @@ jobs:
 
   fail:
     needs: analize
+    runs-on: ubuntu-latest
     if: contains(needs.check.outputs.sv-status, '0')
     steps:
       - run: sudo apt-get install jq
