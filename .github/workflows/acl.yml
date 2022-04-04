@@ -61,6 +61,12 @@ jobs:
       - run: npm link angular-components-library 
       - run: npx ng test angular-components-library 
 
+  fail:
+    needs: analize
+    if: contains(needs.check.outputs.sv-status, '0')
+    steps:
+      - run: sudo apt-get install jq
+
   # publish-npm:
   #   needs: build
   #   runs-on: ubuntu-latest

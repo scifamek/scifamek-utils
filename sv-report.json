@@ -1,5 +1,5 @@
 {
-  "status": false,
+  "status": "failure-sv-report",
   "rules": {
     "printers_are_not_allowed": {
       "status": true,
