@@ -20,8 +20,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run:
-        ls
+      - run: ls
       - run: npm ci
       - run: npx ng build angular-components-library 
       - run: cd dist/angular-components-library && npm link 
