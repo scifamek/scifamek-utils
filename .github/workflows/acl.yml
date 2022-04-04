@@ -49,7 +49,7 @@ jobs:
 
   build:
     needs: analize
-    if: ${{ needs.check.outputs.sv-status == '0' }}
+    if: ${{ needs.analize.outputs.sv-status == '0' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +57,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: echo ${{needs.check.outputs.sv-status}}
+      - run: echo ${{needs.analize.outputs.sv-status}}
       - run: ls
       - run: npm ci
       - run: npx ng build angular-components-library 
@@ -68,7 +68,7 @@ jobs:
   fail:
     needs: analize
     runs-on: ubuntu-latest
-    if: ${{ needs.check.outputs.sv-status == '1' }}
+    if: ${{ needs.analize.outputs.sv-status == '1' }}
     steps:
       - run: sudo apt-get install jq
 
