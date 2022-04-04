@@ -8,15 +8,15 @@ on:
     branches:
       - main
 
-outputs:
-  sv-report:
-    description: "Random number"
-    value: ${{ steps.sv_report.outputs.random-id }}
 
 
 jobs:
 
   analize:
+    outputs:
+      sv-report:
+        description: "Random number"
+        value: ${{ steps.sv_report.outputs.random-id }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
