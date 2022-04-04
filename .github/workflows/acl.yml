@@ -42,7 +42,7 @@ jobs:
       - name: Standarts validator report
         id: sv_report
         run: |
-          grep -c success-sv-report scifamek-utils/sv-report.json
+          grep -c failure-sv-report scifamek-utils/sv-report.json
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
           echo "::set-output name=status::$(grep -c success-sv-report scifamek-utils/sv-report.json)"
 
