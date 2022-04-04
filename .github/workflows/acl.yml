@@ -26,9 +26,13 @@ jobs:
         with:
           python-version: '3.10.1'
           architecture: 'x64'
+      - name: Install sv dependencies
+        run: |
+          cd standarts-validator
+          pip3 install -r packages
       - run: |
           cd standarts-validator
-          py .\main.py -c ..\scifamek-utils\sv-configuration.json -o ..\scifamek-utils\sv-report.json
+          python3 .\main.py -c ..\scifamek-utils\sv-configuration.json -o ..\scifamek-utils\sv-report.json
       - run: ls  -R
   build:
     needs: analize
