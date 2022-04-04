@@ -41,13 +41,12 @@ jobs:
       - name: Standarts validator report
         id: sv_report
         run: |
-          apt-get install jq
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
-          echo "::set-output name=status::$(cat scifamek-utils/sv-report.json | jq .status)"
+          echo "::set-output name=status::$(grep -c success-sv-report scifamek-utils/sv-report.json)"
 
   build:
     needs: analize
-    if: contains(needs.check.outputs.sv-status, 'true')
+    if: contains(needs.check.outputs.sv-status, '1')
 
     runs-on: ubuntu-latest
     steps:
