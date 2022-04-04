@@ -44,6 +44,8 @@ jobs:
 
   build:
     needs: analize
+    if: !contains(needs.check.outputs.status, 'failure')
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
