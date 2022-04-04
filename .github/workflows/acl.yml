@@ -26,8 +26,8 @@ jobs:
         with:
           python-version: '3.10.1'
           architecture: 'x64'
-      - name: Install sv dependencies
       - run: ls  -R
+      - name: Install sv dependencies
         run: |
           cd standarts-validator
           pip3 install -r packages
