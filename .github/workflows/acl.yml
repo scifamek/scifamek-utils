@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: scifamek/standarts-validator
-          path: main
+          ref: main
   build:
     runs-on: ubuntu-latest
     steps:
