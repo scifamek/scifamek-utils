@@ -12,6 +12,7 @@ jobs:
 
   analize:
     runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
         with:
           repository: scifamek/standarts-validator
