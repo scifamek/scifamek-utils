@@ -178,7 +178,6 @@ export class BaseBehavior implements Behavior {
     ) => void
   ) {
     for (const config of Object.values(this.children)) {
-      // if (config.subscriptions) {
       for (const event in config?.listeners) {
         if (config.elements instanceof Array) {
           for (const element of config.elements) {
@@ -197,7 +196,6 @@ export class BaseBehavior implements Behavior {
         }
       }
     }
-    // }
   }
 
   

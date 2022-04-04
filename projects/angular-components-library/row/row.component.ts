@@ -20,13 +20,8 @@ export class AclRowComponent implements OnInit, AfterViewInit {
   @ViewChild(AdDirective, { static: true }) adHost!: AdDirective;
   constructor(private dynamicComponentService: DynamicComponentService) {}
   ngAfterViewInit(): void {
-    // for (const col of this.data) {
-    //   this.dynamicComponentService.createComponent(
-    //     CrubuColComponent,
-    //     this.adHost.viewContainerRef,
-    //     col
-    //   );
-    // }
+
+    
   }
   ngOnInit(): void {
     this.key = this.key + ' row';

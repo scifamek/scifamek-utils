@@ -1,0 +1,52 @@
+{
+  "base-url": "../scifamek-utils/projects",
+  "rules": [
+    {
+      "display": "No se permiten impresiones por consola",
+      "identifier": "printers_are_not_allowed",
+      "kind": "pattern_not_allowed",
+      "enable": true,
+      "coverage": 0.2,
+      "data": {
+        "searches": [
+          {
+            "searched-patterns": ["(console.log)"],
+            "files-to-search-in": ["**/*.ts"]
+          }
+        ]
+      }
+    },
+
+    {
+      "display": "No se permiten comentarios",
+      "identifier": "comments_are_not_allowed",
+      "kind": "pattern_not_allowed",
+      "enable": true,
+      "coverage": 0.99,
+      "data": {
+        "searches": [
+          {
+            "searched-patterns": [ "(//[ ]*[a-zA-Z0-9 ]+)"],
+            "files-to-search-in": ["**/*.ts"]
+          }
+        ]
+      }
+    },
+    {
+      "display": "Solo deben existir los archvios necesarios en cada componente",
+      "identifier": "valid_files_by_component",
+      "kind": "allowed_structure_by_folder",
+
+      "enable": true,
+      "coverage": 0.2,
+      "data": {
+        "folders": [
+          {
+            "folder-pattern": "domain",
+            "valid-files-pattern": ["*.component.ts"]
+          }
+        ]
+      }
+    }
+  ]
+}
