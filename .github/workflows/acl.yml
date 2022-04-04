@@ -6,9 +6,7 @@ on:
       - main
       - feature/*
 
-
 jobs:
-
   analize:
     outputs:
       sv-report: ${{ steps.sv_report.outputs.report }}
