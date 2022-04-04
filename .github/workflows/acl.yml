@@ -14,11 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: scifamek-utils
       - uses: actions/checkout@v2
         with:
           repository: scifamek/standarts-validator
           ref: main
           clean: false
+          path: standarts-validator
       - run: ls .. -R
   build:
     runs-on: ubuntu-latest
