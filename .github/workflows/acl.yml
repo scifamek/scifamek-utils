@@ -70,7 +70,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ needs.analize.outputs.sv-status == '1' }}
     steps:
-      - run: sudo apt-get install jq
+      - run: echo ${{needs.analize.outputs.sv-status}}
+      - run: apt-get install jq
 
   # publish-npm:
   #   needs: build
