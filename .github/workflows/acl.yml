@@ -41,7 +41,7 @@ jobs:
         id: sv_report
         run: |
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
-          echo "::set-output name=status::$(grep -c '"status": false' scifamek-utils/sv-report.json)"
+          echo "::set-output name=status::$(grep -c \"\\"status\\": false\" scifamek-utils/sv-report.json)"
 
   build:
     needs: analize
