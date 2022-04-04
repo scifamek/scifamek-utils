@@ -15,6 +15,7 @@ jobs:
   analize:
     outputs:
       sv-report: ${{ steps.sv_report.outputs.report }}
+      sv-status: ${{ steps.sv_report.outputs.status }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,10 +42,11 @@ jobs:
         id: sv_report
         run: |
           echo "::set-output name=report::$(cat scifamek-utils/sv-report.json)"
+          echo "::set-output name=status::$(cat scifamek-utils/sv-report.json | jq .status)"
 
   build:
     needs: analize
-    if: !contains(needs.check.outputs.status, 'failure')
+    if: contains(needs.check.outputs.sv-status, 'true')
 
     runs-on: ubuntu-latest
     steps:
