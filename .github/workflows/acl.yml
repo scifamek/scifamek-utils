@@ -22,7 +22,7 @@ jobs:
           ref: main
           clean: false
           path: standarts-validator
-      - run: ls .. -R
+      - run: ls  -R
   build:
     runs-on: ubuntu-latest
     steps:
