@@ -8,8 +8,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "enableIvy": true
+    "strictTemplates": true
   },
   "files": [
     "src/main.ts",

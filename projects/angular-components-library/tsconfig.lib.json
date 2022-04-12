@@ -20,9 +20,7 @@
 
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "strictTemplates": true,
-
-    "enableIvy": true
+    "strictTemplates": true
   },
   "exclude": [
     "test.ts",
