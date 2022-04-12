@@ -8,14 +8,13 @@ import { ComponentsModule } from '../components/components.module';
 import { AclButtonModule } from 'angular-components-library/button';
 
 @NgModule({
-  entryComponents: [...EXAMPLES],
-  declarations: [ComponentListComponent, ComponentDetailComponent],
-  imports: [
-    CommonModule,
-    ComponentExamplesModule,
-    ComponentsModule,
-    AclButtonModule,
-  ],
-  exports: [ComponentListComponent, ComponentDetailComponent],
+    declarations: [ComponentListComponent, ComponentDetailComponent],
+    imports: [
+        CommonModule,
+        ComponentExamplesModule,
+        ComponentsModule,
+        AclButtonModule,
+    ],
+    exports: [ComponentListComponent, ComponentDetailComponent]
 })
 export class PagesModule {}
