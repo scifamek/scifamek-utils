@@ -13,8 +13,14 @@ module.exports = {
     "!./**/*.model.ts",
     "!./component-mapper/*-mapper.ts",
   ],
-  testPathIgnorePatterns: ["/node_modules/", ".*/public-api.ts", "angular-components-library/.*/public-api.ts",],
-
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    ".*/public-api.ts",
+    "angular-components-library/.*/public-api.ts",
+  ],
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
   coverageThreshold: {
     global: {
       branches: 80,
