@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AclButtonColors, AclButtonKinds, AclButtonSizes } from 'angular-components-library/button';
 import { AdComponent } from '../../components/ad-component';
 
 @Component({
@@ -7,7 +8,7 @@ import { AdComponent } from '../../components/ad-component';
   styleUrls: ['./button-example.component.scss'],
 })
 export class ButtonExampleComponent extends AdComponent implements OnInit {
-  colors = [
+  colors: AclButtonColors[] = [
     'primary',
     'secondary',
     'tertiary',
@@ -18,9 +19,9 @@ export class ButtonExampleComponent extends AdComponent implements OnInit {
     'notification',
   ];
 
-  sizes = ['small', 'medium', 'large'];
+  sizes: AclButtonSizes[] = ['small', 'medium', 'large'];
 
-  kinds = ['fill', 'outline'];
+  kinds: AclButtonKinds[] = ['fill', 'outline'];
 
   background = 'light';
   constructor() {

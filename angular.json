@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": false
+    "analytics": true
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -19,19 +19,9 @@
             "tsConfig": "projects/angular-components-library/tsconfig.lib.json",
             "project": "projects/angular-components-library/ng-package.json"
           },
-          "extractCss": true,
-          "styles": [
-            {
-              "input": "projects/angular-components-library/scss-core",
-              "bundleName": "scss-core"
-            }
-          ],
-          "stylePreprocessorOptions": {
-            "includePaths": [
-              "styles"
-            ],
-            "inlineCritical": true
-          },
+         
+          
+        
           "configurations": {
             "production": {
               "tsConfig": "projects/angular-components-library/tsconfig.lib.prod.json"
@@ -40,34 +30,7 @@
         }
       }
     },
-    "adgeci-core-utils": {
-      "projectType": "library",
-      "root": "projects/adgeci-core-utils",
-      "sourceRoot": "projects/adgeci-core-utils/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/adgeci-core-utils/tsconfig.lib.json",
-            "project": "projects/adgeci-core-utils/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/adgeci-core-utils/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/adgeci-core-utils/src/test.ts",
-            "tsConfig": "projects/adgeci-core-utils/tsconfig.spec.json",
-            "karmaConfig": "projects/adgeci-core-utils/karma.conf.js"
-          }
-        }
-      }
-    },
+    
     "showcase": {
       "projectType": "application",
       "schematics": {
@@ -90,7 +53,7 @@
             "main": "projects/showcase/src/main.ts",
             "polyfills": "projects/showcase/src/polyfills.ts",
             "tsConfig": "projects/showcase/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "preserveSymlinks": true,
             "assets": [
               "projects/showcase/src/favicon.ico",

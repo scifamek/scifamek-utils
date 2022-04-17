@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ButtonExampleComponent } from '../../component-examples/button-example/button-example.component';
 import { InputExampleComponent } from '../../component-examples/input-example/input-example.component';
+import { SelectExampleComponent } from '../../component-examples/select-example/select-example.component';
 import { AdComponent } from '../../components/ad-component';
 import { AdHostDirective } from '../../components/ad-host.directive';
 
@@ -30,6 +31,12 @@ export class ComponentListComponent implements OnInit {
     {
       name: 'Input',
       component: InputExampleComponent,
+      factory: undefined,
+    },
+
+    {
+      name: 'Select',
+      component: SelectExampleComponent,
       factory: undefined,
     },
   ];

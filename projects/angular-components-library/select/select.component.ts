@@ -18,10 +18,14 @@ import {
 } from 'angular-components-library/core';
 import { Observable, of } from 'rxjs';
 
+interface IItem {
+  display: string;
+  value: any;
+}
 @Component({
   selector: 'acl-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  styleUrls: ['./styles/select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -40,36 +44,33 @@ export class AclSelectComponent
   @Input() icon!: string;
   @Input() multiple: boolean = false;
 
-  @Input() relativeProperty!: any;
+  @Input() color!: string;
   @Output() onChange = new EventEmitter();
 
   formControl: any;
-  items = of([]);
-
+  @Input() items: IItem[] ;
   constructor() {
     super();
+    this.items = []
   }
   data: any;
-  dataFunction!: () => Observable<any>;
+  dataFunction!: () => Observable<any> | (() => any[]);
 
   ngOnInit(): void {
-    if (this.data) {
-      this.items = this.data['configuration']['items'];
-      this.label = this.data['configuration']['label'];
-      this.dataFunction = this.data['dataFunction'];
-      this.placeholder = this.data['configuration']['placeholder'];
-      this.icon = this.data['configuration']['icon'];
-      this.multiple = this.data['configuration']['multiple'];
-
-      this.relativeProperty = this.data.relativeProperty;
-      this.formControl = this.data.formControl;
-      this.getItems();
-    }
+    this.updateInputs();
+    this.getItems();
   }
 
   getItems() {
     if (this.dataFunction) {
-      this.items = this.dataFunction();
+      const data = this.dataFunction();
+      if (data instanceof Observable) {
+        data.subscribe((items: any[]) => {
+          console.log(typeof items)
+          const newItems: IItem[] = items;
+          // this.items.push(items);
+        });
+      }
     }
   }
   markItems() {}

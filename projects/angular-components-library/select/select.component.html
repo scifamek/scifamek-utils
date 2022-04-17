@@ -1,13 +1,30 @@
-  <!-- <mat-label>{{label}}</mat-label>
-  <mat-select [formControl]="formControl" *ngIf="!multiple" >
+<section>
+  <span class="material-icons" *ngIf="icon">{{ icon }}</span>
 
+  <section class="combo-wrap">
+    <label for="cpf-id3">{{ label }}</label>
+    <input
+      [attr.color]="color"
+      [attr.status]="status"
+      [placeholder]="placeholder"
+      type="text"
+      id="jokes"
+      role="combobox"
+      aria-owns="joketypes"
+      aria-autocomplete="list"
+      aria-expanded="true"
+      data-active-option="item1"
+      aria-activedescendant="item1"
+    />
     
-    <mat-option *ngFor="let item of items | async" [value]="item['value']">{{item['text']}}</mat-option>
-  </mat-select>
+  </section>
+  <span aria-hidden="true"  aria-expanded="true" aria-owns="joketypes" data-trigger="multiselect" class="material-icons">expand_more</span>
 
 
-  <mat-select [formControl]="formControl" multiple *ngIf="multiple" >
-
-    
-    <mat-option *ngFor="let item of items | async" [value]="item['value']">{{item['text']}}</mat-option>
-  </mat-select> -->
+</section>
+<ul  *ngIf="items" id="joketypes" role="listbox">
+  <li *ngFor="let item of items" class="active" role="option" id="item1">
+    {{ item.display }} - 45
+  </li>
+</ul>
+<span *ngIf="hint" class="text-base">{{ hint }}</span>

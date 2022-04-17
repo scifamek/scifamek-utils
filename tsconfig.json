@@ -17,7 +17,10 @@
     "importHelpers": true,
     "target": "ES2016",
     "module": "es2020",
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "angular-components-library/*": ["dist/angular-components-library/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -25,4 +28,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   }
+ 
 }

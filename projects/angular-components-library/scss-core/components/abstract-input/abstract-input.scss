@@ -1,0 +1,92 @@
+@use "./abstract-input.foundation.scss" as *;
+@use "../../foundations/category-colors.foundation.scss" as *;
+
+@mixin abstract-input() {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  > section {
+    border: $abstract-input-border-size solid
+      $abstract-input-default-border-color;
+  }
+  @each $name, $color-obj in $category-color-map {
+    &[color="#{$name}"] {
+      > section {
+        border: $abstract-input-border-size
+          solid
+          map-get(map-get($category-color-map, $name), "base");
+      }
+    }
+  }
+  &[focus] {
+    > section {
+      border: $abstract-input-border-size solid
+        $abstract-input-focus-border-color;
+    }
+  }
+  &[status="error"] {
+    > section {
+      border: $abstract-input-border-size solid
+        map-get(map-get($category-color-map, "danger"), "base");
+
+      span.material-icons {
+        color: map-get(map-get($category-color-map, "danger"), "base");
+      }
+    }
+    span {
+      color: map-get(map-get($category-color-map, "danger"), "base");
+    }
+  }
+  > section {
+    // background-color: red;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: $abstract-input-section-padding-y 0;
+    border-radius: $abstract-input-border-radius;
+
+    
+    span.material-icons {
+      width: $abstract-input-icon-width;
+      font-size: 2.8rem;
+    }
+    span.material-icons:first-child {
+      margin-left: $abstract-input-icons-margin-x;
+    }
+
+    span.material-icons:last-child {
+      margin-right: $abstract-input-icons-margin-x;
+    }
+    > section {
+      display: flex;
+      margin: 0 $abstract-input-icons-margin-x;
+      flex-direction: column;
+      width: $abstract-input-main-section-width;
+
+      label {
+        font-size: $abstract-input-font-size;
+        margin: 0;
+        color: $abstract-input-label-color;
+        // border: $abstract-input-border-size solid
+        //   map-get(map-get($category-color-map, "danger"), "base");
+        width: 100%;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 0;
+        // border: $abstract-input-border-size solid
+        //   map-get(map-get($category-color-map, "danger"), "base");
+        // border-radius: 0 0 $abstract-input-border-radius $abstract-input-border-radius;
+        font-size: $abstract-input-font-size;
+        outline: none;
+        font-weight: 700;
+      }
+    }
+  }
+  span {
+    font-size: $abstract-input-span-font-size;
+  }
+}

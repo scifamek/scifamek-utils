@@ -20,7 +20,7 @@ import { INPUT_IDENTIFIER } from './input.constants';
 @Component({
   selector: 'acl-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  styleUrls: ['./styles/input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

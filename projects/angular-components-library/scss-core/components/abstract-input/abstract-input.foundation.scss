@@ -1,0 +1,20 @@
+@use "../../protons/sizing.scss" as *;
+@use "../../protons/themes/base.scss" as *;
+@use "../../foundations/category-colors.foundation.scss" as *;
+
+$abstract-input-border-size: 0.1 * $size-proton;
+$abstract-input-border-radius: 1.8 * $size-proton;
+$abstract-input-focus-border-color: nth($main-color-1-scale-proton, 3);
+$abstract-input-default-border-color: nth($main-color-8-scale-proton, 12);
+
+$abstract-input-label-color: nth($main-color-8-scale-proton, 5);
+
+$abstract-input-icons-margin-x: 1.6 * $size-proton;
+$abstract-input-font-size: 1.4 * $rem-size-proton;
+$abstract-input-span-font-size: 1.2 * $rem-size-proton;
+$abstract-input-section-padding-y: 0.5 * $size-proton;
+
+$abstract-input-icon-width: calc(30px - #{(0 * $abstract-input-icons-margin-x)});
+$abstract-input-main-section-width: calc(
+  100% - #{(2 * $abstract-input-icons-margin-x)} - #{$abstract-input-icon-width}
+);
