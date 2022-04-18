@@ -4,6 +4,7 @@ import { AclButtonModule } from 'angular-components-library/button';
 import { AclDropdownItemModule } from 'angular-components-library/dropdown-item';
 import { AclInputModule } from 'angular-components-library/input';
 import { AclSelectModule } from 'angular-components-library/select';
+import { AclSegmentedControlModule } from 'projects/angular-components-library/segmented-control/segmented-control.module';
 import { ButtonExampleComponent } from './button-example/button-example.component';
 import { DropdownItemsExampleComponent } from './dropdown-items-example/dropdown-items-example.component';
 import { InputExampleComponent } from './input-example/input-example.component';
@@ -25,7 +26,7 @@ export const EXAMPLES = [
     AclInputModule,
     AclSelectModule,
     AclDropdownItemModule,
-
+    AclSegmentedControlModule
   ],
   exports: EXAMPLES,
 })

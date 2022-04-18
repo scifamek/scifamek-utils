@@ -6,6 +6,7 @@ import { ComponentDetailComponent } from './component-detail/component-detail.co
 import { AdHostDirective } from '../components/ad-host.directive';
 import { ComponentsModule } from '../components/components.module';
 import { AclButtonModule } from 'angular-components-library/button';
+import { AclSegmentedControlModule } from 'projects/angular-components-library/segmented-control/segmented-control.module';
 
 @NgModule({
     declarations: [ComponentListComponent, ComponentDetailComponent],
@@ -14,6 +15,7 @@ import { AclButtonModule } from 'angular-components-library/button';
         ComponentExamplesModule,
         ComponentsModule,
         AclButtonModule,
+        AclSegmentedControlModule
     ],
     exports: [ComponentListComponent, ComponentDetailComponent]
 })
