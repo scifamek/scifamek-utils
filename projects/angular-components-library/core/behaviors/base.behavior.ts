@@ -137,7 +137,6 @@ export class BaseBehavior implements Behavior {
       }
       return true;
     } else {
-      
       this.pendingElementsToBeAdded.push({
         events,
         listener,
@@ -198,8 +197,6 @@ export class BaseBehavior implements Behavior {
     }
   }
 
-  
-
   public getChildren(identifier: string): HTMLElement | Array<HTMLElement> {
     return this.children[identifier].elements;
   }
@@ -220,11 +217,12 @@ export class BaseBehavior implements Behavior {
     return response.length > 0 ? response[0] : null;
   }
 
-  public toogleElementProperty(name: string, identifier: string): void {
+  public toogleElementProperty(name: string, identifier: string): boolean {
     const element = this.getChildren(identifier) as HTMLElement;
     if (element) {
-      element.toggleAttribute(name);
+      return element.toggleAttribute(name);
     }
+    return false;
   }
 
   public toogleProperty(name: string): void {

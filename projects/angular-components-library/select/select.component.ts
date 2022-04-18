@@ -1,22 +1,13 @@
 import {
-  Component,
-  Input,
-  OnInit,
-  forwardRef,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  Output,
-  EventEmitter,
+  AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input,
+  OnInit, Output
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
-  RenderedGeneralComponent,
-  ITEM_VALUE,
-  GeneralInputComponent,
-  STATES,
+  GeneralInputComponent, ITEM_VALUE
 } from 'angular-components-library/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { SelectBehavior } from './select.behavior';
 
 interface IItem {
   display: string;
@@ -38,6 +29,8 @@ export class AclSelectComponent
   extends GeneralInputComponent
   implements OnInit, AfterViewInit
 {
+  behavior!: SelectBehavior;
+
   @Input() label!: string;
   @Input() hint!: string;
   @Input() placeholder!: string;
@@ -48,10 +41,11 @@ export class AclSelectComponent
   @Output() onChange = new EventEmitter();
 
   formControl: any;
-  @Input() items: IItem[] ;
-  constructor() {
+  @Input() items: IItem[];
+  constructor(private elementRef: ElementRef) {
     super();
-    this.items = []
+    this.behavior = new SelectBehavior();
+    this.items = [];
   }
   data: any;
   dataFunction!: () => Observable<any> | (() => any[]);
@@ -66,7 +60,7 @@ export class AclSelectComponent
       const data = this.dataFunction();
       if (data instanceof Observable) {
         data.subscribe((items: any[]) => {
-          console.log(typeof items)
+          console.log(typeof items);
           const newItems: IItem[] = items;
           // this.items.push(items);
         });
@@ -76,6 +70,9 @@ export class AclSelectComponent
   markItems() {}
 
   ngAfterViewInit(): void {
+    this.behavior.setRoot(this.elementRef.nativeElement);
+    this.behavior.init();
+
     if (this.data) {
       this.writeValue(this.data[ITEM_VALUE]);
     }

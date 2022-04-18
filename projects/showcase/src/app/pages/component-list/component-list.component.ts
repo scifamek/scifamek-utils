@@ -6,6 +6,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ButtonExampleComponent } from '../../component-examples/button-example/button-example.component';
+import { DropdownItemsExampleComponent } from '../../component-examples/dropdown-items-example/dropdown-items-example.component';
 import { InputExampleComponent } from '../../component-examples/input-example/input-example.component';
 import { SelectExampleComponent } from '../../component-examples/select-example/select-example.component';
 import { AdComponent } from '../../components/ad-component';
@@ -37,6 +38,12 @@ export class ComponentListComponent implements OnInit {
     {
       name: 'Select',
       component: SelectExampleComponent,
+      factory: undefined,
+    },
+
+    {
+      name: 'Dropdown Item',
+      component: DropdownItemsExampleComponent,
       factory: undefined,
     },
   ];

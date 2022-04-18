@@ -16,15 +16,20 @@
       data-active-option="item1"
       aria-activedescendant="item1"
     />
-    
   </section>
-  <span aria-hidden="true"  aria-expanded="true" aria-owns="joketypes" data-trigger="multiselect" class="material-icons">expand_more</span>
-
-
+  <span
+    aria-expanded="true"
+    aria-owns="joketypes"
+    data-trigger="multiselect"
+    class="material-icons"
+    >expand_more</span
+  >
 </section>
-<ul  *ngIf="items" id="joketypes" role="listbox">
-  <li *ngFor="let item of items" class="active" role="option" id="item1">
-    {{ item.display }} - 45
-  </li>
+<ul id="joketypes" role="listbox">
+  <ng-container *ngIf="items">
+    <li *ngFor="let item of items" class="active" role="option" id="item1">
+      <acl-dropdown-item label="{{ item.display }}"> </acl-dropdown-item>
+    </li>
+  </ng-container>
 </ul>
 <span *ngIf="hint" class="text-base">{{ hint }}</span>
