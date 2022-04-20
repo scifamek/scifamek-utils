@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AclButtonModule } from 'angular-components-library/button';
 import { AclDropdownItemModule } from 'angular-components-library/dropdown-item';
 import { AclInputModule } from 'angular-components-library/input';
@@ -23,6 +24,8 @@ export const EXAMPLES = [
     AclInputModule,
     AclSelectModule,
     AclDropdownItemModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: EXAMPLES,
 })

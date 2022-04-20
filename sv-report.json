@@ -3,127 +3,236 @@
   "rules": {
     "printers_are_not_allowed": {
       "status": true,
-      "coverage": 1.0,
-      "universe": 95,
-      "errors": 0,
-      "files": []
+      "coverage": 0.9801980198019802,
+      "universe": 101,
+      "errors": 2,
+      "files": [
+        {
+          "file": "../scifamek-utils/projects/angular-components-library/select/select.behavior.ts",
+          "errors": [
+            {
+              "line": 59,
+              "col": 5,
+              "find": "console.log"
+            },
+            {
+              "line": 69,
+              "col": 9,
+              "find": "console.log"
+            },
+            {
+              "line": 78,
+              "col": 9,
+              "find": "console.log"
+            }
+          ]
+        },
+        {
+          "file": "../scifamek-utils/projects/angular-components-library/select/select.component.ts",
+          "errors": [
+            {
+              "line": 63,
+              "col": 11,
+              "find": "console.log"
+            }
+          ]
+        }
+      ]
+    },
+    "static_unit_not_allowed": {
+      "status": false,
+      "coverage": 0.8,
+      "universe": 10,
+      "errors": 2,
+      "files": [
+        {
+          "file": "../scifamek-utils/projects/angular-components-library/select/styles/select.component.scss",
+          "errors": [
+            {
+              "line": 11,
+              "col": 20,
+              "find": "16px"
+            },
+            {
+              "line": 15,
+              "col": 17,
+              "find": "8px"
+            },
+            {
+              "line": 16,
+              "col": 14,
+              "find": "8px"
+            },
+            {
+              "line": 18,
+              "col": 17,
+              "find": "0px"
+            },
+            {
+              "line": 18,
+              "col": 21,
+              "find": "4px"
+            },
+            {
+              "line": 18,
+              "col": 25,
+              "find": "48px"
+            },
+            {
+              "line": 18,
+              "col": 30,
+              "find": "0px"
+            },
+            {
+              "line": 21,
+              "col": 15,
+              "find": "48px"
+            }
+          ]
+        },
+        {
+          "file": "../scifamek-utils/projects/angular-components-library/scss-core/components/abstract-avatar/abstract-avatar.scss",
+          "errors": [
+            {
+              "line": 2,
+              "col": 11,
+              "find": "32px"
+            },
+            {
+              "line": 3,
+              "col": 10,
+              "find": "32px"
+            },
+            {
+              "line": 4,
+              "col": 18,
+              "find": "12px"
+            }
+          ]
+        }
+      ]
     },
     "comments_are_not_allowed": {
       "status": false,
-      "coverage": 0.9368421052631579,
-      "universe": 95,
+      "coverage": 0.9405940594059405,
+      "universe": 101,
       "errors": 6,
       "files": [
         {
           "file": "../scifamek-utils/projects/angular-components-library/select/select.component.ts",
           "errors": [
             {
-              "line": 81,
+              "line": 65,
+              "col": 11,
+              "find": "// this"
+            },
+            {
+              "line": 79,
               "col": 5,
               "find": "// this"
             },
             {
-              "line": 82,
+              "line": 80,
               "col": 5,
               "find": "//   let data"
             },
             {
-              "line": 83,
+              "line": 81,
               "col": 5,
               "find": "//     "
+            },
+            {
+              "line": 82,
+              "col": 5,
+              "find": "//     "
+            },
+            {
+              "line": 83,
+              "col": 5,
+              "find": "//       "
             },
             {
               "line": 84,
               "col": 5,
-              "find": "//     "
+              "find": "//         acc"
             },
             {
               "line": 85,
               "col": 5,
-              "find": "//       "
+              "find": "//         acc"
             },
             {
               "line": 86,
               "col": 5,
-              "find": "//         acc"
+              "find": "//         return acc"
             },
             {
               "line": 87,
               "col": 5,
-              "find": "//         acc"
+              "find": "//       "
             },
             {
               "line": 88,
               "col": 5,
-              "find": "//         return acc"
+              "find": "//       "
             },
             {
               "line": 89,
               "col": 5,
-              "find": "//       "
+              "find": "//         text"
             },
             {
               "line": 90,
               "col": 5,
-              "find": "//       "
+              "find": "//         value"
             },
             {
               "line": 91,
               "col": 5,
-              "find": "//         text"
+              "find": "//       "
             },
             {
               "line": 92,
               "col": 5,
-              "find": "//         value"
+              "find": "//     "
             },
             {
               "line": 93,
               "col": 5,
-              "find": "//       "
+              "find": "//   this"
             },
             {
               "line": 94,
               "col": 5,
-              "find": "//     "
+              "find": "//     relativeProperty"
             },
             {
               "line": 95,
               "col": 5,
-              "find": "//   this"
+              "find": "//     "
             },
             {
               "line": 96,
               "col": 5,
-              "find": "//     relativeProperty"
+              "find": "//   "
             },
             {
               "line": 97,
               "col": 5,
-              "find": "//     "
-            },
-            {
-              "line": 98,
-              "col": 5,
-              "find": "//   "
-            },
-            {
-              "line": 99,
-              "col": 5,
               "find": "// "
             },
             {
-              "line": 104,
+              "line": 102,
               "col": 5,
               "find": "// if "
             },
             {
-              "line": 105,
+              "line": 103,
               "col": 5,
               "find": "//   this"
             },
             {
-              "line": 106,
+              "line": 104,
               "col": 5,
               "find": "// "
             }
@@ -148,42 +257,22 @@
               "find": "//angular"
             },
             {
-              "line": 24,
-              "col": 1,
-              "find": "// import "
-            },
-            {
-              "line": 24,
-              "col": 28,
-              "find": "// Run "
-            },
-            {
-              "line": 31,
-              "col": 1,
-              "find": "// import "
-            },
-            {
-              "line": 31,
-              "col": 33,
-              "find": "// Run "
-            },
-            {
-              "line": 46,
+              "line": 34,
               "col": 65,
               "find": "// disable patch requestAnimationFrame"
             },
             {
-              "line": 47,
+              "line": 35,
               "col": 55,
               "find": "// disable patch onProperty such as onclick"
             },
             {
-              "line": 48,
+              "line": 36,
               "col": 79,
               "find": "// disable patch specified eventNames"
             },
             {
-              "line": 60,
+              "line": 48,
               "col": 20,
               "find": "// Included with Angular CLI"
             }
@@ -203,12 +292,12 @@
               "find": "// First"
             },
             {
-              "line": 22,
+              "line": 24,
               "col": 1,
               "find": "// Then we find all the tests"
             },
             {
-              "line": 24,
+              "line": 26,
               "col": 1,
               "find": "// And load the modules"
             }

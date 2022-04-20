@@ -6,7 +6,7 @@
     <input
       [attr.color]="color"
       [attr.status]="status"
-      [placeholder]="placeholder"
+      [placeholder]="placeholder || '' "
       type="text"
       id="jokes"
       role="combobox"
@@ -27,8 +27,8 @@
 </section>
 <ul id="joketypes" role="listbox">
   <ng-container *ngIf="items">
-    <li *ngFor="let item of items" class="active" role="option" id="item1">
-      <acl-dropdown-item label="{{ item.display }}"> </acl-dropdown-item>
+    <li *ngFor="let item of items" [attr.item]="item | json" class="active" role="option" id="item1">
+      <acl-dropdown-item [color]="color" [attr.item]="item | json" [item]="item"> </acl-dropdown-item>
     </li>
   </ng-container>
 </ul>

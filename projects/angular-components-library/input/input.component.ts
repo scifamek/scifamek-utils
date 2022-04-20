@@ -68,9 +68,9 @@ export class AclInputComponent
     this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
 
     if (this.data) {
-      this.writeValue(this.data[ITEM_VALUE]);
+      this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     } else if (this.value) {
-      this.writeValue(this.value);
+      this.updateVisualComponentValue(this.value);
     }
   }
   configListeners() {
@@ -78,7 +78,7 @@ export class AclInputComponent
       ['keyup'],
       (event) => {
         this.value = this.behavior.getValue();
-        this.onChangeElement(this.value);
+        this._onChange();
         if (this.formControl) {
           this.formControl.setValue(this.value);
         }
@@ -87,7 +87,7 @@ export class AclInputComponent
     );
   }
 
-  writeValue(value: any): void {
+  updateVisualComponentValue(value: any): void {
     super.writeValue(value);
     if (this.status == 'error') {
     }

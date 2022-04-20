@@ -71,11 +71,11 @@ export class AclSliderComponent
   }
   ngAfterViewInit(): void {
     if (this.data) {
-      this.writeValue(this.data[ITEM_VALUE]);
+      this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     }
   }
 
-  writeValue(value: any): void {
+  updateVisualComponentValue(value: any): void {
     super.writeValue(value);
     this.formControl.setValue(value);
   }

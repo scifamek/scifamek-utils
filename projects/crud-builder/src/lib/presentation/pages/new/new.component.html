@@ -1,0 +1,23 @@
+<section *ngIf="data && data.mode == 'detail' " class="container">
+
+    <div *ngFor="let property of data.tags; let i = index;" class="col-12">
+        <strong>
+            {{property}}
+        </strong>
+        <span>
+            {{data.item[data.definitions[i+1]]}}
+        </span>
+    </div>
+</section>
+
+
+
+<div crubuAd></div>
+
+
+<form *ngIf="data && data.mode == 'create' || data.mode == 'edit' " class="container" [formGroup]="entityFG" (ngSubmit)="onSubmit()">
+
+    <div class="row crubu-footer justify-content-center">
+        <button mat-raised-button>Save</button>
+    </div>
+</form>

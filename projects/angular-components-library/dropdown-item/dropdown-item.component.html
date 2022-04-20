@@ -1,9 +1,7 @@
-<section>
-  <ng-content> </ng-content>
-</section>
+<ng-content> </ng-content>
 <section>
   <strong>
-    <span>{{ label }}</span>
+    <span>{{ item.display }}</span>
   </strong>
   <span *ngIf="caption">{{ caption }}</span>
 </section>
