@@ -1,0 +1,15 @@
+<h1>
+  {{ repr }}
+</h1>
+<form [formGroup]="formGroup">
+  <div aclAd></div>
+</form>
+
+<div class="row crubu-footer justify-content-center">
+  <acl-button  *ngIf="data.mode != 'detail'" (click)="saveItem()">
+    Save
+  </acl-button>
+  <acl-button  *ngIf="data.mode == 'detail'" (click)="back()">
+    Regresar
+  </acl-button>
+</div>

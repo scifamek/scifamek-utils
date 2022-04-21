@@ -1,0 +1,20 @@
+@use "../../scss-core/protons/themes/base.scss" as *;
+@use "../../scss-core/protons/sizing.scss" as *;
+
+$dropdown-item-hover-background-color: red;
+$dropdown-item-padding-top: 0.8 * $size-proton;
+$dropdown-item-padding-right: 1.6 * $size-proton;
+$dropdown-item-padding-bottom: 0.8 * $size-proton;
+
+$dropdown-item-height: 4.8 * $size-proton;
+$dropdown-item-border-radius: 1.6 * $size-proton;
+
+$dropdown-item-fragments-margin-left: 0.8 * $size-proton;
+
+$dropdown-item-texts-height: 1.6 * $size-proton;
+
+$dropdown-item-text-font-size: 1.2 * $rem-size-proton;
+$dropdown-item-text-color: nth($main-color-8-scale-proton,8);
+
+$dropdown-item-title-font-size: 1.4 * $rem-size-proton;
+$dropdown-item-title-color: nth($main-color-8-scale-proton,2);

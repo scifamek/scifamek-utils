@@ -19,7 +19,8 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "angular-components-library/*": ["dist/angular-components-library/*"]
+      "angular-components-library/*": ["dist/angular-components-library/*"],
+      "crud-builder": ["dist/crud-builder"]
     }
   },
   "angularCompilerOptions": {

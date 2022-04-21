@@ -232,4 +232,6 @@ export class BaseBehavior implements Behavior {
   public get isReady(): boolean {
     return this.ready;
   }
+
+  
 }

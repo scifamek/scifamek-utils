@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+:host {
+  width: 100%;
+  .spacer {
+    flex: 1 1 auto;
+  }
+}
+.float-right {
+  float: right;
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+}
+
+.crubu-list-footer {
+  position: fixed;
+  bottom: 0;
+}
+
+
+.crubu-list-content {
+  height: calc(100vh - 80px);
+}

@@ -1,0 +1,13 @@
+<div class="container">
+  <crubu-crud-builder
+    *ngIf="schemaDefinition && presentationDefinition"
+    [data-function]="dataFunction"
+    [create-action]="createAction"
+    [update-action]="updateAction"
+    [definition]="schemaDefinition"
+    [presentation]="presentationDefinition"
+    [row-actions]="rowActions"
+    [general-actions]="generalActions"
+  >
+  </crubu-crud-builder>
+</div>

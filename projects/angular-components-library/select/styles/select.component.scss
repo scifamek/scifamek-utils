@@ -1,4 +1,5 @@
 @use "../../scss-core/components/abstract-input/abstract-input.scss" as *;
+@use "./select.foundation.scss" as *;
 
 :host {
   @include abstract-input();

@@ -1,4 +1,9 @@
-<acl-dropdown-item label="Sergio" caption="Posada Urrea">
+<acl-dropdown-item
+  *ngFor="let color of colors"
+  [color]="color"
+  [item]="item"
+  caption="Posada Urrea"
+>
   <img
     src="https://th.bing.com/th/id/R.4a7993689f7c0bd3cc47d491c81f5dd8?rik=AEJvPS9noY51%2bw&riu=http%3a%2f%2fgetdrawings.com%2ffree-icon%2firon-man-icon-74.jpg&ehk=xUQ2EbNmRRyqxv2sVjvqHi7Cdg5dHa3JSrgCWrANSf0%3d&risl=&pid=ImgRaw&r=0"
     alt=""

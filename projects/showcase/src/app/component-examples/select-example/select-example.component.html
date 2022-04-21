@@ -1,8 +1,49 @@
 <div class="row">
-  <div class="col d-flex flex-column justify-content-center align-items-center">
-    <h1>Normal Select</h1>
-    <acl-select [items]="items" class="my-4" label="Edad" icon="123"> </acl-select>
-    hola
+  <h1>Input Select</h1>
+</div>
+<div class="row">
+  <div
+    *ngFor="let color of colors"
+    class="col d-flex flex-column justify-content-center align-items-center"
+  >
+    <h2>Select {{ color }}</h2>
+    <acl-select
+      [items]="items"
+      [color]="color"
+      class="my-4"
+      label="Edad"
+      icon="123"
+    >
+    </acl-select>
   </div>
-
+</div>
+<div class="row">
+  <div class="col-12">
+    <h2>Reactive Form</h2>
+  </div>
+  <div class="col-9">
+    <form [formGroup]="formGroup">
+      <acl-select
+        (onChange)="onChange($event)"
+        [items]="items"
+        class="my-4"
+        label="Sayayin"
+        icon="person"
+        formControlName="sayayin"
+      >
+      </acl-select>
+    </form>
+  </div>
+  <div class="col-3">
+    <div class="row">
+      <div class="col">
+        {{ selectedItemValue | json }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{ formValue | json}}
+      </div>
+    </div>
+  </div>
 </div>

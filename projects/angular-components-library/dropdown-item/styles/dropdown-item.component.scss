@@ -1,44 +1,58 @@
-:host {
-  &:hover{
-    background-color: rgb(41, 44, 237);
-    color: white;
+@use "../../scss-core/foundations/category-colors.foundation.scss" as *;
+@use "../../scss-core/components/abstract-avatar/abstract-avatar.scss" as *;
+@use "./dropdown-item.foundation.scss" as *;
 
+:host {
+  ::ng-deep {
+    > *:first-child {
+      @include abstract-avatar();
+      margin-left: $dropdown-item-fragments-margin-left;
+    }
   }
+
   display: flex;
   align-items: center;
-  padding-top: 8px;
-  padding-right: 16px;
-  padding-bottom: 8px;
+  padding-top: $dropdown-item-padding-top;
+  padding-right: $dropdown-item-padding-right;
+  padding-bottom: $dropdown-item-padding-bottom;
   width: 100%;
-  height: 48px;
-  border-radius: 16px;
-  > section {
-    margin-left: 8px;
-  }
-  > section:first-child {
-    
-    display: flex;
-    border-radius: 12px;
-    height: min-content;
-    width: min-content;
-    > * {
-      height: 32px;
-    width: 32px;
-      border-radius: 12px;
-    }
-  }
+  height: $dropdown-item-height;
+  border-radius: $dropdown-item-border-radius;
+  cursor: pointer;
   > section:last-child {
+    margin-left: $dropdown-item-fragments-margin-left;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     > * {
-      height: 16px;
+      height: $dropdown-item-texts-height;
     }
     > span {
-      font-size: 12px;
+      font-size: $dropdown-item-text-font-size;
+      color: $dropdown-item-text-color;
     }
     > strong {
-      font-size: 14px;
+      font-size: $dropdown-item-title-font-size;
+      color: $dropdown-item-title-color;
+    }
+  }
+
+  @each $name, $color_obj in $category-color-map {
+    &[color="#{$name}"] {
+      &:hover {
+        background-color: map-get($color_obj, "base");
+        > section > * {
+          color: white;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background-color: map-get(map-get($category-color-map, "primary"), "base");
+    > section > * {
+      color: white;
     }
   }
 }

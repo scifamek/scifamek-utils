@@ -1,18 +1,26 @@
 import {
-  AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input,
-  OnInit, Output
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
-  GeneralInputComponent, ITEM_VALUE
+  GeneralInputComponent,
+  ITEM_VALUE,
 } from 'angular-components-library/core';
-import { Observable } from 'rxjs';
-import { SelectBehavior } from './select.behavior';
+import { ControlValueAccessor } from '@angular/forms';
 
-interface IItem {
-  display: string;
-  value: any;
-}
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { SelectBehavior } from './select.behavior';
+import { IItem } from 'angular-components-library/dropdown-item';
+
 @Component({
   selector: 'acl-select',
   templateUrl: './select.component.html',
@@ -27,25 +35,38 @@ interface IItem {
 })
 export class AclSelectComponent
   extends GeneralInputComponent
-  implements OnInit, AfterViewInit
+  implements OnInit, AfterViewInit, OnDestroy
 {
   behavior!: SelectBehavior;
+
+  updateBehaviorData: BehaviorSubject<string>;
+  updateBehaviorDataSubscription!: Subscription;
+  formControl!: FormControl;
 
   @Input() label!: string;
   @Input() hint!: string;
   @Input() placeholder!: string;
   @Input() icon!: string;
   @Input() multiple: boolean = false;
-
-  @Input() color!: string;
-  @Output() onChange = new EventEmitter();
-
-  formControl: any;
   @Input() items: IItem[];
+  @Input() color!: string;
+
+  @Output() onChange = new EventEmitter();
+  relativeProperty: any;
+
+  @HostBinding('attr.color') get attrColor() {
+    return this.color;
+  }
+
   constructor(private elementRef: ElementRef) {
     super();
     this.behavior = new SelectBehavior();
     this.items = [];
+
+    this.updateBehaviorData = new BehaviorSubject('');
+  }
+  ngOnDestroy(): void {
+    this.updateBehaviorDataSubscription.unsubscribe();
   }
   data: any;
   dataFunction!: () => Observable<any> | (() => any[]);
@@ -55,14 +76,24 @@ export class AclSelectComponent
     this.getItems();
   }
 
+  onChangeFunction(value: any) {
+    this.value = value;
+    if (this.formControl) {
+      this.formControl.setValue(this.value.value);
+    }
+
+    this._onChange(this.value.value);
+    this.onChange.emit(value);
+  }
+
   getItems() {
     if (this.dataFunction) {
       const data = this.dataFunction();
+      console.log(data);
       if (data instanceof Observable) {
-        data.subscribe((items: any[]) => {
-          console.log(typeof items);
-          const newItems: IItem[] = items;
-          // this.items.push(items);
+        data.subscribe((items: IItem[]) => {
+          console.log(items);
+          this.items.push(...items);
         });
       }
     }
@@ -71,10 +102,16 @@ export class AclSelectComponent
 
   ngAfterViewInit(): void {
     this.behavior.setRoot(this.elementRef.nativeElement);
+    this.behavior.onChangeFunction = (value) => this.onChangeFunction(value);
     this.behavior.init();
 
+    this.updateBehaviorDataSubscription = this.updateBehaviorData.subscribe(
+      (value) => {
+        this.updateVisualComponentValue(value);
+      }
+    );
     if (this.data) {
-      this.writeValue(this.data[ITEM_VALUE]);
+      this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     }
     // this.select.valueChange.subscribe(async (value: any[]) => {
     //   let data: any = (await this.items.toPromise())
@@ -96,11 +133,19 @@ export class AclSelectComponent
     //   });
     // });
   }
-
   writeValue(value: any): void {
+    this.updateBehaviorData.next(value);
+  }
+
+  updateVisualComponentValue(value: any): void {
     super.writeValue(value);
-    // if (this.select) {
-    //   this.select.writeValue(value);
-    // }
+    const selectedDisplay: IItem | undefined = this.items
+      .filter((item) => {
+        return item.value == value;
+      })
+      ?.pop();
+    if (selectedDisplay) {
+      this.behavior.updateVisualComponentValue(selectedDisplay.display);
+    }
   }
 }

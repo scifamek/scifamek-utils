@@ -7,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DropdownItemsExampleComponent implements OnInit {
 
+  colors: string[] = [
+    'primary',
+    'secondary',
+    'tertiary',
+    'warning',
+    'alert',
+    'danger',
+    'info',
+    'notification',
+  ];
+
+  item = {
+    display: 'Gokú',
+    value: 'Sayan 3'
+  }
   constructor() { }
 
   ngOnInit(): void {

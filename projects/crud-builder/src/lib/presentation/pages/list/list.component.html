@@ -1,0 +1,90 @@
+<section class="row crubu-list-header">
+  <div class="col-12">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <acl-button
+          (click)="goToDetail('new', {})"
+          aria-label="Example icon button with a plus one icon"
+          size="small"
+          kind="outline"
+          color="primary"
+        >
+          Crear Nuevo
+        </acl-button>
+        <span class="spacer"></span>
+        <span> {{ page + 1 }} | {{ lastPage + 1 }} </span>
+        <button mat-icon-button (click)="goToPage(-1)">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button mat-icon-button (click)="goToPage(1)">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</section>
+<section class="crubu-list-content">
+  <table
+    *ngIf="definition && pageIsValid()"
+    mat-table
+    [dataSource]="items[this.page]"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef=" ">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let element">
+        <input
+          type="checkbox"
+          (change)="updateItem($event, element)"
+          name=""
+          id=""
+        />
+      </td>
+    </ng-container>
+    <ng-container
+      *ngFor="let column of definition.columns"
+      [matColumnDef]="column.definition"
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ column.tag }}</th>
+      <td
+        mat-cell
+        (click)="goToDetail('detail', element)"
+        *matCellDef="let element"
+      >
+        {{ element[column.definition] }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="rowActions">
+          <div class="row">
+            <button
+              *ngFor="let action of rowActions"
+              mat-icon-button
+              (click)="execute(action, element)"
+            >
+              <mat-icon>{{ action.icon }}</mat-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="definition.definitions"></tr>
+    <tr mat-row *matRowDef="let row; columns: definition.definitions"></tr>
+  </table>
+</section>
+
+<button
+  mat-fab
+  color="primary"
+  class="float-right"
+  aria-label="Example icon button with a heart icon"
+>
+  <mat-icon>menu</mat-icon>
+</button>
+<div class="crubu-list-footer">
+  <acl-footer [items]="selectedItems" [actions]="generalActions"></acl-footer>
+</div>
+
+<!-- <router-outlet></router-outlet> -->

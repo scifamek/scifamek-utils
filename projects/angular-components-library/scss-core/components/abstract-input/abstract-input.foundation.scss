@@ -14,7 +14,8 @@ $abstract-input-font-size: 1.4 * $rem-size-proton;
 $abstract-input-span-font-size: 1.2 * $rem-size-proton;
 $abstract-input-section-padding-y: 0.5 * $size-proton;
 
-$abstract-input-icon-width: calc(30px - #{(0 * $abstract-input-icons-margin-x)});
+$abstract-input-icon-width: 1.5 * $size-proton;
+$abstract-input-icon-font-size: 2.8 * $rem-size-proton;
 $abstract-input-main-section-width: calc(
   100% - #{(2 * $abstract-input-icons-margin-x)} - #{$abstract-input-icon-width}
 );

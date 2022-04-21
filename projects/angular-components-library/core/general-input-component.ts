@@ -7,23 +7,23 @@ export type STATES = 'error' | 'valid' | 'default' | 'disabled';
 @Injectable()
 export class GeneralInputComponent implements ControlValueAccessor {
   @Input() status: STATES = 'default';
-  private _disabled!: boolean | string;
-  private _touched: boolean = false;
-  private _onChange!: (value: any) => {};
-  private _onTouched: any;
+  touched: boolean = false;
+  _onChange: any = () => {};
+  _onTouched: any = () => {};
 
-  constructor() {
-    this.onChangeElement = (event: any) => {};
-  }
+  constructor() {}
 
-
-  
   value: any;
-  registerOnChange(onChange: any): void {
-    this.onChangeElement = onChange;
+  registerOnChange(fn: any): void {
+    this._onChange = fn;
+     
+    (value: any) => {
+      console.log(value, 123)
+      console.log(fn);
+    };
   }
-  registerOnTouched(onTouched: any): void {
-    this.onTouched = onTouched;
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn;
   }
   public onSetValue!: (value: any) => void;
   private validators!: any[];
@@ -74,42 +74,7 @@ export class GeneralInputComponent implements ControlValueAccessor {
     }
   }
   onValidate(status: STATES) {}
-
-  public get disabled(): boolean | string {
-    return this._disabled;
-  }
-
-  public set disabled(value: boolean | string) {
-    this._disabled = value;
-  }
-
-  public get touched(): boolean {
-    return this._touched;
-  }
-
-  public set touched(value) {
-    if (value) {
-      this._touched = value;
-    }
-  }
-
-  
-
-  public get onTouched(): any {
-    return this._onTouched;
-  }
-  public set onTouched(value: any) {
-    this._onTouched = value;
-  }
-
-  public get onChangeElement(): any {
-    return this._onChange;
-  }
-  public set onChangeElement(value: any) {
-    this._onChange = value;
-  }
 }
-
 
 export interface GeneralInputComponent extends RenderedGeneralComponent {}
 applyMixins(GeneralInputComponent, [RenderedGeneralComponent]);

@@ -16,7 +16,24 @@
         ]
       }
     },
-
+    {
+      "display": "No se permiten valores de unidades estáticas en los archivos de estilos de los componentes",
+      "identifier": "static_unit_not_allowed",
+      "kind": "pattern_not_allowed",
+      "enable": true,
+      "coverage": 1,
+      "data": {
+        "searches": [
+          {
+            "searched-patterns": ["([0-9\\.]+px)", "([0-9\\.]+em)", "([0-9\\.]+rem)"],
+            "files-to-search-in": [
+              "angular-components-library/**/styles/*.scss",
+              "angular-components-library/scss-core/components/**/*.scss"
+            ]
+          }
+        ]
+      }
+    },
     {
       "display": "No se permiten comentarios",
       "identifier": "comments_are_not_allowed",
@@ -26,7 +43,7 @@
       "data": {
         "searches": [
           {
-            "searched-patterns": [ "(//[ ]*[a-zA-Z0-9 ]+)"],
+            "searched-patterns": ["(//[ ]*[a-zA-Z0-9 ]+)"],
             "files-to-search-in": ["**/*.ts"]
           }
         ]
