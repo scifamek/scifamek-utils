@@ -114,7 +114,7 @@ export class ListComponent implements AfterViewInit, OnChanges {
   @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
 
   constructor(
-    public dialog: MatDialog,
+    // public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef // @Inject(INITIAL_PAGE_TOKEN) private initialPage, // @Inject(DEFINITION_TOKEN) public definition, // @Inject(PRESENTATION_TOKEN) private presentation, // @Inject(ROW_ACTIONS_TOKEN) private rowActions, // @Inject(GENERAL_ACTIONS_TOKEN) public generalActions,

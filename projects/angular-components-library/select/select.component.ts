@@ -69,7 +69,7 @@ export class AclSelectComponent
     this.updateBehaviorDataSubscription.unsubscribe();
   }
   data: any;
-  dataFunction!: () => Observable<any> | (() => any[]);
+  @Input() dataFunction!: () => Observable<any> | (() => any[]);
 
   ngOnInit(): void {
     this.updateInputs();
