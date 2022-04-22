@@ -1,7 +1,12 @@
-<p>segmented-control-example works!</p>
-<acl-segmented-control>
-  hola
-</acl-segmented-control>
-<acl-segmented-control>
-  hola
-</acl-segmented-control>
+<ng-container *ngFor="let size of sizes">
+  <ng-container *ngFor="let color of colors">
+    <acl-segmented-control
+      [name-attr]="nameAttr"
+      [identifier]="identifier"
+      [color]="color"
+      [size]="size"
+    >
+      hola
+    </acl-segmented-control>
+  </ng-container>
+</ng-container>

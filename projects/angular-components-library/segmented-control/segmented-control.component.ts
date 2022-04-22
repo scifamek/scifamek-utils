@@ -20,7 +20,8 @@ export type AclSegmentedSizes = 'small' | 'medium' | 'large';
 export class AclSegmentedControlComponent implements OnInit {
   @Input() color!: AclSegmentedColors;
   @Input() size!: AclSegmentedSizes;
-  @Input() identifier!: string
+  @Input() identifier!: string;
+  @Input('name-attr') nameAttr!: string;
 
   constructor() { }
 
