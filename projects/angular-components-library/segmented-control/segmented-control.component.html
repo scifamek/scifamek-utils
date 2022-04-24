@@ -1,4 +1,12 @@
-<input type="radio" name="name-attr" [id]="identifier">
-<label [for]="identifier">
+<input
+type="radio"
+[name]="nameAttr"
+[id]="identifier"
+>
+<label
+  [for]="identifier"
+  [attr.color]="color"
+  [attr.size]="size"
+>
   <ng-content></ng-content>
 </label>
