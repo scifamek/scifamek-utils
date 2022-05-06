@@ -3,7 +3,7 @@
   <ng-container *ngFor="let color of colors; let i = index;">
     <acl-segmented-control
       name-attr="perros"
-      [identifier]="smallDogs[i]"
+      [id]="'perro_'+i"
       [color]="color"
       size="small"
     >
@@ -17,7 +17,7 @@
   <ng-container *ngFor="let color of colors; let i = index;">
       <acl-segmented-control
         name-attr="conejos"
-        [identifier]="mediumBunnies[i]"
+        [id]="'conejo_'+i"
         [color]="color"
         size="medium"
       >
@@ -31,7 +31,7 @@
   <ng-container *ngFor="let color of colors; let i = index;">
     <acl-segmented-control
       name-attr="gatos"
-      [identifier]="largeCats[i]"
+      [id]="'gato_'+i"
       [color]="color"
       size="large"
     >
