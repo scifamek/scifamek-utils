@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AclSegmentedColors, AclSegmentedSizes } from 'angular-components-library/segmented-control';
 
 @Component({
@@ -6,7 +6,7 @@ import { AclSegmentedColors, AclSegmentedSizes } from 'angular-components-librar
   templateUrl: './segmented-control-example.component.html',
   styleUrls: ['./segmented-control-example.component.scss']
 })
-export class SegmentedControlExampleComponent implements OnInit {
+export class SegmentedControlExampleComponent {
   smallDogs: string[] = [
     'perro1',
     'perro2',
@@ -54,8 +54,5 @@ export class SegmentedControlExampleComponent implements OnInit {
   sizes: AclSegmentedSizes[] = ['small', 'medium', 'large'];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

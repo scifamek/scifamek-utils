@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export type AclSegmentedColors =
   | 'primary'
@@ -17,16 +17,13 @@ export type AclSegmentedSizes = 'small' | 'medium' | 'large';
   templateUrl: './segmented-control.component.html',
   styleUrls: ['./styles/segmented-control.component.scss']
 })
-export class AclSegmentedControlComponent implements OnInit {
+export class AclSegmentedControlComponent {
   @Input() color!: AclSegmentedColors;
   @Input() size!: AclSegmentedSizes;
   @Input() identifier!: string;
   @Input('name-attr') nameAttr!: string;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
 
