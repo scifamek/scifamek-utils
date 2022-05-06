@@ -1,6 +1,8 @@
 @use "./button.foundation.scss" as *;
 
 %medium {
+  display: flex;
+  align-items: center;
   padding: $button-y-padding-medium $button-x-padding-medium;
   font-size: $button-font-size-medium;
   border-radius: $button-border-radius;

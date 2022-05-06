@@ -62,7 +62,7 @@ import { ListComponent } from './list/list.component';
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
-    MatDialogModule,
+    // MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     AclCoreModule,
