@@ -18,9 +18,9 @@ module.exports = {
     ".*/public-api.ts",
     "angular-components-library/.*/public-api.ts",
   ],
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-  },
+  // transform: {
+  //   "^.+\\.(ts|tsx)$": "ts-jest",
+  // },
   coverageThreshold: {
     global: {
       branches: 80,

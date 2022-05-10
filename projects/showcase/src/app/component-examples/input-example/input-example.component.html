@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col d-flex flex-column justify-content-center align-items-center">
     <h1>Normal Input</h1>
-    <acl-input class="my-4" label="Edad" color="tertiary" left-icon="123"> </acl-input>
+    <acl-input class="my-4" label="Edad" color="tertiary" left-icon="123">
+    </acl-input>
     <acl-input class="my-4" label="Edad" right-icon="person"> </acl-input>
     <acl-input class="my-4" label="Edad" left-icon="123" right-icon="person">
     </acl-input>
@@ -38,3 +39,27 @@
     </acl-input>
   </div>
 </div>
+
+<span>Formulario</span>
+<form [formGroup]="formGroup">
+  <input
+    label="Nombre"
+    left-icon="person"
+    formControlName="name"
+  />
+
+
+  <acl-input
+    label="Apellido"
+    left-icon="person"
+    formControlName="lastName"
+  >
+  </acl-input>
+</form>
+
+<acl-button (click)="change()">
+  change
+</acl-button>
+<acl-button (click)="sentToServer()">
+  Enviar al servidor
+</acl-button>

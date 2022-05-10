@@ -15,7 +15,7 @@ import {
 
 import {
   GeneralInputComponent,
-  IGeneralComponent,
+  // IGeneralComponent,
   STATES,
   ITEM_VALUE,
 } from 'angular-components-library/core';
@@ -33,7 +33,7 @@ import {
 })
 export class AclSliderComponent
   extends GeneralInputComponent
-  implements OnInit, IGeneralComponent, AfterViewInit
+  implements OnInit, AfterViewInit
 {
   @Input() label!: string;
 
