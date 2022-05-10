@@ -1,0 +1,41 @@
+<h1 class="text-center">Small</h1>
+<section class="row d-flex my-5">
+  <ng-container *ngFor="let color of colors; let i = index;">
+    <acl-segmented-control
+      name-attr="perros"
+      [id]="'perro_'+i"
+      [color]="color"
+      size="small"
+    >
+      {{"Perro " + (i + 1)}}
+    </acl-segmented-control>
+  </ng-container>
+</section>
+
+<h1 class="text-center">Medium</h1>
+<section class="row d-flex my-5">
+  <ng-container *ngFor="let color of colors; let i = index;">
+      <acl-segmented-control
+        name-attr="conejos"
+
+        [color]="color"
+        size="medium"
+      >
+        {{"Conejo " + (i + 1)}}
+      </acl-segmented-control>
+    </ng-container>
+</section>
+
+<h1 class="text-center">Large</h1>
+<section class="row d-flex my-5">
+  <ng-container *ngFor="let color of colors; let i = index;">
+    <acl-segmented-control
+      name-attr="gatos"
+      [id]="'gato_'+i"
+      [color]="color"
+      size="large"
+    >
+      {{"Gato " + (i + 1)}}
+    </acl-segmented-control>
+  </ng-container>
+</section>

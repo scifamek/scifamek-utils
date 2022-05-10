@@ -1,0 +1,42 @@
+@use './segmented-control.foundation.scss' as *;
+
+%medium {
+  padding: $segmented-y-padding-medium $segmented-x-padding-medium;
+  font-size: $segmented-font-size-medium;
+  border-radius: $segmented-border-radius;
+  cursor: pointer;
+}
+
+@mixin segmented-component {
+  input[type="radio"] {
+    display: none;
+
+    @each $name, $color-obj in $category-colors {
+      &:checked + label[color="#{$name}"] {
+        background-color: map-get(map-get($category-colors, $name), "base");
+        color: $segmented-default-color;
+      }
+    }
+  }
+
+  label {
+    border-radius: $segmented-border-radius;
+    @extend %medium;
+
+    &[size="large"] {
+      padding: $segmented-y-padding-large $segmented-x-padding-large;
+      font-size: $segmented-font-size-large;
+    }
+
+    &[size="medium"] {
+      @extend %medium;
+    }
+
+    &[size="small"] {
+      padding: $segmented-padding-small;
+      font-size: $segmented-font-size-small;
+    }
+  }
+}
+
+@include segmented-component();

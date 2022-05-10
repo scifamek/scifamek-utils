@@ -9,6 +9,7 @@ import { ComponentDetailComponent } from './component-detail/component-detail.co
 import { AdHostDirective } from '../components/ad-host.directive';
 import { ComponentsModule } from '../components/components.module';
 import { AclButtonModule } from 'angular-components-library/button';
+import { AclSegmentedControlModule } from 'angular-components-library/segmented-control';
 import { CrudBuilderExampleComponent } from './crud-builder/crud-builder-example.component';
 import { CrudBuilderModule } from 'crud-builder';
 
@@ -23,7 +24,8 @@ import { CrudBuilderModule } from 'crud-builder';
     ComponentExamplesModule,
     ComponentsModule,
     AclButtonModule,
-    CrudBuilderModule
+    CrudBuilderModule,
+    AclSegmentedControlModule
   ],
   exports: [
     ComponentListComponent,

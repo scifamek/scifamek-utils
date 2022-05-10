@@ -5,9 +5,11 @@ import { AclButtonModule } from 'angular-components-library/button';
 import { AclDropdownItemModule } from 'angular-components-library/dropdown-item';
 import { AclInputModule } from 'angular-components-library/input';
 import { AclSelectModule } from 'angular-components-library/select';
+import { AclSegmentedControlModule } from 'angular-components-library/segmented-control';
 import { ButtonExampleComponent } from './button-example/button-example.component';
 import { DropdownItemsExampleComponent } from './dropdown-items-example/dropdown-items-example.component';
 import { InputExampleComponent } from './input-example/input-example.component';
+import { SegmentedControlExampleComponent } from './segmented-control-example/segmented-control-example.component';
 import { SelectExampleComponent } from './select-example/select-example.component';
 
 export const EXAMPLES = [
@@ -15,6 +17,7 @@ export const EXAMPLES = [
   InputExampleComponent,
   SelectExampleComponent,
   DropdownItemsExampleComponent,
+  SegmentedControlExampleComponent
 ];
 @NgModule({
   declarations: EXAMPLES,
@@ -24,8 +27,9 @@ export const EXAMPLES = [
     AclInputModule,
     AclSelectModule,
     AclDropdownItemModule,
+    AclSegmentedControlModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: EXAMPLES,
 })

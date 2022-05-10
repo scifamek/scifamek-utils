@@ -1,0 +1,20 @@
+@use "../../scss-core/protons/sizing.scss"as *;
+@use "../../scss-core/foundations/category-colors.foundation.scss"as *;
+@use "../../scss-core/protons/themes/base.scss"as *;
+
+$category-colors: $category-color-map;
+$segmented-border-width: 0.1 * $size-proton;
+$segmented-border-radius: 0.8 * $size-proton;
+$segmented-default-color: $main-color-9-proton;
+$segmented-default-background-color: $main-color-9-proton;
+
+$segmented-padding-small: 0.8 * $size-proton;
+$segmented-font-size-small: 1.2 * $rem-size-proton;
+
+$segmented-y-padding-medium: 0.8 * $size-proton;
+$segmented-x-padding-medium: 0.8 * $size-proton;
+$segmented-font-size-medium: 1.4 * $rem-size-proton;
+
+$segmented-x-padding-large: 1.6 * $size-proton;
+$segmented-y-padding-large: 0.8 * $size-proton;
+$segmented-font-size-large: 1.6 * $rem-size-proton;

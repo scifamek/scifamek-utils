@@ -1,0 +1,14 @@
+<input
+type="radio"
+[name]="nameAttr"
+[id]="id"
+>
+<label
+  [for]="id"
+  [attr.color]="color"
+  [attr.size]="size"
+>
+
+<!-- <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span> -->
+  <ng-content></ng-content>
+</label>

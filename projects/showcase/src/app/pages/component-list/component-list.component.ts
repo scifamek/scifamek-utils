@@ -8,6 +8,7 @@ import {
 import { ButtonExampleComponent } from '../../component-examples/button-example/button-example.component';
 import { DropdownItemsExampleComponent } from '../../component-examples/dropdown-items-example/dropdown-items-example.component';
 import { InputExampleComponent } from '../../component-examples/input-example/input-example.component';
+import { SegmentedControlExampleComponent } from '../../component-examples/segmented-control-example/segmented-control-example.component';
 import { SelectExampleComponent } from '../../component-examples/select-example/select-example.component';
 import { AdComponent } from '../../components/ad-component';
 import { AdHostDirective } from '../../components/ad-host.directive';
@@ -46,6 +47,12 @@ export class ComponentListComponent implements OnInit {
       component: DropdownItemsExampleComponent,
       factory: undefined,
     },
+
+    {
+      name: 'Segmented Control',
+      component: SegmentedControlExampleComponent,
+      factory: undefined
+    }
   ];
 
   @ViewChild(AdHostDirective) private adHost!: AdHostDirective;

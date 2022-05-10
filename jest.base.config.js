@@ -6,4 +6,9 @@ module.exports = {
   collectCoverage: true,
   testRegex: ".*.spec.(js|ts|tsx)?$",
   testPathIgnorePatterns: ["node_modules", "./**/public-api.ts"],
+  transform: {
+    // "^.+\\.(ts|tsx)$": "ts-jest",
+    '^.+\\.(ts|js|html)$': 'jest-preset-angular'
+
+  },
 };
