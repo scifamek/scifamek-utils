@@ -11,6 +11,7 @@ import { ComponentsModule } from '../components/components.module';
 import { AclButtonModule } from 'angular-components-library/button';
 import { CrudBuilderExampleComponent } from './crud-builder/crud-builder-example.component';
 import { CrudBuilderModule } from 'crud-builder';
+import { AclCardModule } from 'angular-components-library/card';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CrudBuilderModule } from 'crud-builder';
     ComponentExamplesModule,
     ComponentsModule,
     AclButtonModule,
-    CrudBuilderModule
+    AclCardModule,
+    CrudBuilderModule,
   ],
   exports: [
     ComponentListComponent,

@@ -1,13 +1,14 @@
 <div class="container">
   <div class="row d-flex my-5">
-    <ng-container *ngFor="let component of components; let i = index">
-      <acl-button class ="mx-3" size="small" kind="outline" (click)="loadComponent(i)">{{
-        component.name
-      }}</acl-button>
-    </ng-container>
+    <section class="col-6 col-sm-6 col-md-4 col-lg-4"  *ngFor="let component of components; let i = index">
+      <acl-card
+        class="mx-3"
+        [img]="component.preview"
+        [title]="component.name"
+        (click)="loadComponent(i)"
+        ></acl-card
+      >
+    </section>
   </div>
-  <div class="row py-5">
-    <ng-template appAdHost></ng-template>
-  </div>
-</div>
 
+</div>
