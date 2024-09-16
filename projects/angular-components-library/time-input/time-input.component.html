@@ -1,0 +1,19 @@
+<section>
+  <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span>
+  <section>
+    <label>{{ label }}</label>
+
+    <input
+      #input
+      [(ngModel)]="value"
+      [placeholder]="placeholder || ''"
+      [attr.color]="color"
+      [attr.status]="status"
+      type="time"
+      [value]="value"
+      (change)="change($event)"
+    />
+  </section>
+  <span class="material-icons" *ngIf="rightIcon">{{ rightIcon }}</span>
+</section>
+<span *ngIf="hint" class="text-base">{{ hint }}</span>

@@ -4,17 +4,14 @@ import {
   OnInit,
   forwardRef,
   ElementRef,
-  ViewChild,
   AfterViewInit,
   SimpleChanges,
+  HostBinding,
 } from '@angular/core';
+
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ITEM_VALUE } from 'angular-components-library/core';
-import {
-  RenderedGeneralComponent,
-  GeneralInputComponent,
-  STATES,
-} from 'angular-components-library/core';
+import { GeneralInputComponent } from 'angular-components-library/core';
 import { InputBehavior } from './input.behavior';
 import { INPUT_IDENTIFIER } from './input.constants';
 @Component({
@@ -36,11 +33,17 @@ export class AclInputComponent
   @Input() appearance: 'legacy' | 'standard' | 'fill' | 'outline' = 'standard';
   @Input() label!: string;
   @Input() hint!: string;
+  @Input() rows!: number;
   @Input() placeholder!: string;
   @Input('left-icon') leftIcon!: string;
   @Input('right-icon') rightIcon!: string;
-  @Input() type!: string;
+  @Input() type: string = 'text';
+  @Input() min?: number ;
+  @Input() max?: number ;
   @Input() color!: string;
+  @Input() kind = 'input';
+  @HostBinding('class') classAttr!: string;
+  @HostBinding('style') style!: string;
 
   data: any;
   formControl!: FormControl;
@@ -78,9 +81,17 @@ export class AclInputComponent
       ['keyup'],
       (event) => {
         this.value = this.behavior.getValue();
+        if (this.type == 'number') {
+          this.value = parseFloat(this.value);
+        }
         this._onChange();
         if (this.formControl) {
           this.formControl.setValue(this.value);
+          if (this.formControl.errors) {
+            this.status = 'error';
+          } else {
+            this.status = 'default';
+          }
         }
       },
       INPUT_IDENTIFIER
@@ -89,8 +100,12 @@ export class AclInputComponent
 
   updateVisualComponentValue(value: any): void {
     super.writeValue(value);
-    if (this.status == 'error') {
+    if (this.formControl.errors) {
+      this.status = 'error';
+    } else {
+      this.status = 'default';
     }
+
     if (value) {
       if (this.behavior) {
         this.behavior.setValue(value);

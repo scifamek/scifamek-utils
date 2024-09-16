@@ -1,5 +1,6 @@
 import { ButtonExampleComponent } from '../component-examples/button-example/button-example.component';
 import { DropdownItemsExampleComponent } from '../component-examples/dropdown-items-example/dropdown-items-example.component';
+import { FileExampleComponent } from '../component-examples/file-example/file-example.component';
 import { InputExampleComponent } from '../component-examples/input-example/input-example.component';
 import { SelectExampleComponent } from '../component-examples/select-example/select-example.component';
 
@@ -19,6 +20,13 @@ export const COMPONENTS: {
   {
     name: 'Input',
     component: InputExampleComponent,
+    preview: 'assets/components/input.png',
+
+    factory: undefined,
+  },
+  {
+    name: 'File',
+    component: FileExampleComponent,
     preview: 'assets/components/input.png',
 
     factory: undefined,

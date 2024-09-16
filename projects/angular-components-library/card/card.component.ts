@@ -12,6 +12,7 @@ const SIZES_WITH_PREFIX = ['sm', 'lg', 'md', 'xl'];
 @Component({
   selector: 'acl-card',
   templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss'],
 })
 export class AclCardComponent
   extends RenderedGeneralComponent
@@ -28,6 +29,11 @@ export class AclCardComponent
   @Input('button-text') buttonText!: string;
 
   @Input('button-action') buttonAction!: () => {};
+
+  @ViewChild(AdDirective, { static: true }) adHost!: AdDirective;
+
+  @HostBinding('class') classAttr!: string;
+  @HostBinding('style') style!: string;
 
   constructor() {
     super();

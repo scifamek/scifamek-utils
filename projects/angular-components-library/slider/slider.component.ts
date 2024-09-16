@@ -6,6 +6,7 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
+  HostBinding,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -64,6 +65,9 @@ export class AclSliderComponent
   }
 
   data: any;
+
+  @HostBinding('class') classAttr!: string;
+  @HostBinding('style') style!: string;
   formControl!: FormControl;
 
   constructor(private el: ElementRef) {
@@ -81,15 +85,6 @@ export class AclSliderComponent
   }
 
   ngOnInit(): void {
-    if (this.data) {
-      this.formControl = this.data.formControl;
-      this.label = this.data['configuration']['label'];
-      this.icon = this.data['configuration']['icon'];
-      this.invert = this.data['configuration']['invert'];
-      this.max = this.data['configuration']['max'];
-      this.min = this.data['configuration']['min'];
-      this.step = this.data['configuration']['step'];
-      this.thumbLabel = this.data['configuration']['thumbLabel'];
-    }
+    this.updateInputs();
   }
 }

@@ -1,0 +1,27 @@
+<img
+  #img
+  *ngIf="fullPath && !insidePreview"
+  [src]="fullPath"
+  alt=""
+  srcset=""
+/>
+<img *ngIf="insidePreview" [src]="insidePreview" />
+<input #inputFile [accept]="accept" type="file" id="file" />
+<span class="mx-3 my-2" *ngIf="showFile && nameFile"
+  ><strong>
+    {{ nameFile }}
+  </strong>
+</span>
+<span class="text-center formats" *ngIf="availableFormats"
+  >Formatos:
+  <strong>
+    {{ getDisplayFormats() }}
+  </strong>
+</span>
+<acl-button *ngIf="nameFile" size="xxsmall" class="clear">
+  <span class="material-icons">clear</span>
+</acl-button>
+<span *ngIf="error">{{ error }} </span>
+<acl-button *ngIf="!formControl.disabled" size="xsmall" (click)="inputFile.click()" color="notification">{{
+  text
+}}</acl-button>

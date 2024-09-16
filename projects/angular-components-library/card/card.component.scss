@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px;
+
+  .title {
+    font-weight: bold;
+    margin: 8px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .acl-card{
+    // border-left: 0.5px solid rgba(128, 128, 128, 0.548) ;
+  }
+}

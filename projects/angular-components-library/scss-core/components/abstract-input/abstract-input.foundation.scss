@@ -2,20 +2,22 @@
 @use "../../protons/themes/base.scss" as *;
 @use "../../foundations/category-colors.foundation.scss" as *;
 
-$abstract-input-border-size: 0.1 * $size-proton;
-$abstract-input-border-radius: 1.8 * $size-proton;
+$abstract-input-border-size: 0.09 * $size-proton;
+$abstract-input-border-radius: 0.5 * $size-proton;
 $abstract-input-focus-border-color: nth($main-color-1-scale-proton, 3);
-$abstract-input-default-border-color: nth($main-color-8-scale-proton, 12);
+$abstract-input-default-border-color: nth($main-color-8-scale-proton, 7);
 
 $abstract-input-label-color: nth($main-color-8-scale-proton, 5);
+$abstract-input-label-size: 1 * $rem-size-proton;
 
-$abstract-input-icons-margin-x: 1.6 * $size-proton;
-$abstract-input-font-size: 1.4 * $rem-size-proton;
-$abstract-input-span-font-size: 1.2 * $rem-size-proton;
+$abstract-input-icons-margin-x: 1.2 * $size-proton;
+$abstract-input-font-size: 1 * $rem-size-proton;
+$abstract-input-span-font-size:  0.8 *$rem-size-proton;
 $abstract-input-section-padding-y: 0.5 * $size-proton;
 
 $abstract-input-icon-width: 1.5 * $size-proton;
-$abstract-input-icon-font-size: 2.8 * $rem-size-proton;
+$abstract-input-icon-font-size: 1.5 * $rem-size-proton;
+$abstract-input-icon-color: nth($main-color-8-scale-proton, 7);
 $abstract-input-main-section-width: calc(
   100% - #{(2 * $abstract-input-icons-margin-x)} - #{$abstract-input-icon-width}
 );

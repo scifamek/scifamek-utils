@@ -1,0 +1,4 @@
+@use "../../scss-core/protons/sizing.scss" as *;
+
+$select-font-size: 1 * $rem-size-proton;
+$select-border-size: 0.09 * $size-proton;

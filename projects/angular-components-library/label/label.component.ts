@@ -4,6 +4,7 @@ import {
   OnInit,
   forwardRef,
   ElementRef,
+  HostBinding,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
@@ -34,6 +35,8 @@ export class AclLabelComponent
   @Input() icon!: string;
   @Input() type!: string;
   data: any;
+  @HostBinding('class') classAttr!: string;
+  @HostBinding('style') style!: string;
 
   constructor(private el: ElementRef) {
     super();

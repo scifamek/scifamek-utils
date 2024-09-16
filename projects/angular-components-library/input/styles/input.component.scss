@@ -2,6 +2,8 @@
 
 :host {
   @include abstract-input();
+  textarea {
+    margin-top: 5px;
+  }
 }
-
 

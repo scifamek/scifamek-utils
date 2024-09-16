@@ -4,9 +4,10 @@
   <section class="combo-wrap">
     <label for="cpf-id3">{{ label }}</label>
     <input
+      readonly
       [attr.color]="color"
       [attr.status]="status"
-      [placeholder]="placeholder || '' "
+      [placeholder]="placeholder || ''"
       type="text"
       id="jokes"
       role="combobox"
@@ -15,8 +16,10 @@
       aria-expanded="true"
       data-active-option="item1"
       aria-activedescendant="item1"
+      [disabled]="formControl.disabled"
     />
   </section>
+
   <span
     aria-expanded="true"
     aria-owns="joketypes"
@@ -27,9 +30,19 @@
 </section>
 <ul id="joketypes" role="listbox">
   <ng-container *ngIf="items">
-    <li *ngFor="let item of items" [attr.item]="item | json" class="active" role="option" id="item1">
-      <acl-dropdown-item [color]="color" [attr.item]="item | json" [item]="item"> </acl-dropdown-item>
+    <li
+      *ngFor="let item of items"
+      [attr.item]="item | json"
+      class="active"
+      role="option"
+      id="item1"
+    >
+      <span [attr.item]="item | json">
+        {{ item.display }}
+      </span>
+      <!-- <acl-dropdown-item [color]="color" [attr.item]="item | json" [item]="item"> </acl-dropdown-item> -->
     </li>
   </ng-container>
 </ul>
 <span *ngIf="hint" class="text-base">{{ hint }}</span>
+

@@ -1,15 +1,28 @@
-<section>
+<section [attr.status]="status">
   <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span>
   <section>
-    <label for="cpf-id3">{{ label }}</label>
     <input
+      *ngIf="kind == 'input'"
       [attr.color]="color"
       [attr.status]="status"
-      [placeholder]="placeholder"
-      />
+      [attr.type]="type"
+      [attr.min]="min"
+      [attr.max]="max"
+      [placeholder]="placeholder || ''"
+      [disabled]="formControl.disabled"
+    />
+
+    <textarea
+      *ngIf="kind == 'textarea'"
+      [attr.color]="color"
+      [attr.status]="status"
+      [attr.type]="type"
+      [attr.rows]="rows"
+      [placeholder]="placeholder || ''"
+      [disabled]="formControl.disabled"
+    ></textarea>
+    <label>{{ label }}</label>
   </section>
   <span class="material-icons" *ngIf="rightIcon">{{ rightIcon }}</span>
 </section>
-
-
 <span *ngIf="hint" class="text-base">{{ hint }}</span>

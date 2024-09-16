@@ -1,0 +1,16 @@
+<section [attr.status]="status">
+  <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span>
+  <section>
+    <label for="cpf-id3">{{ label }}</label>
+    <input
+      #input
+      [attr.color]="color"
+      type="date"
+      [placeholder]="placeholder"
+      [disabled]="formControl.disabled"
+
+    />
+  </section>
+  <span class="material-icons" *ngIf="rightIcon">{{ rightIcon }}</span>
+</section>
+<span *ngIf="hint" class="text-base">{{ hint }}</span>

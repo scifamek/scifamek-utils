@@ -9,18 +9,22 @@ import { ButtonExampleComponent } from './button-example/button-example.componen
 import { DropdownItemsExampleComponent } from './dropdown-items-example/dropdown-items-example.component';
 import { InputExampleComponent } from './input-example/input-example.component';
 import { SelectExampleComponent } from './select-example/select-example.component';
+import { AclFileComponent, AclFileModule } from 'angular-components-library/file';
+import { FileExampleComponent } from './file-example/file-example.component';
 
 export const EXAMPLES = [
   ButtonExampleComponent,
   InputExampleComponent,
   SelectExampleComponent,
   DropdownItemsExampleComponent,
+  FileExampleComponent
 ];
 @NgModule({
   declarations: EXAMPLES,
   imports: [
     CommonModule,
     AclButtonModule,
+    AclFileModule,
     AclInputModule,
     AclSelectModule,
     AclDropdownItemModule,

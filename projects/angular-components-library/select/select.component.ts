@@ -15,11 +15,10 @@ import {
   GeneralInputComponent,
   ITEM_VALUE,
 } from 'angular-components-library/core';
-import { ControlValueAccessor } from '@angular/forms';
 
+import { IItem } from 'angular-components-library/dropdown-item';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { SelectBehavior } from './select.behavior';
-import { IItem } from 'angular-components-library/dropdown-item';
 
 @Component({
   selector: 'acl-select',
@@ -51,8 +50,11 @@ export class AclSelectComponent
   @Input() items: IItem[];
   @Input() color!: string;
 
-  @Output() onChange = new EventEmitter();
+  @Output() onChange: EventEmitter<any> ;
   relativeProperty: any;
+
+  @HostBinding('class') classAttr!: string;
+  @HostBinding('style') style!: string;
 
   @HostBinding('attr.color') get attrColor() {
     return this.color;
@@ -60,6 +62,7 @@ export class AclSelectComponent
 
   constructor(private elementRef: ElementRef) {
     super();
+    this.onChange = new EventEmitter();
     this.behavior = new SelectBehavior();
     this.items = [];
 
@@ -80,24 +83,27 @@ export class AclSelectComponent
     this.value = value;
     if (this.formControl) {
       this.formControl.setValue(this.value.value);
+      if (this.formControl.errors) {
+        this.status = 'error';
+      } else {
+        this.status = 'default';
+      }
     }
-
-    this._onChange(this.value.value);
+    this._onChange(this.value?.value);
     this.onChange.emit(value);
   }
 
   getItems() {
     if (this.dataFunction) {
       const data = this.dataFunction();
-      console.log(data);
       if (data instanceof Observable) {
         data.subscribe((items: IItem[]) => {
-          console.log(items);
           this.items.push(...items);
         });
       }
     }
   }
+  
   markItems() {}
 
   ngAfterViewInit(): void {
@@ -139,6 +145,14 @@ export class AclSelectComponent
 
   updateVisualComponentValue(value: any): void {
     super.writeValue(value);
+
+    if (this.formControl.errors) {
+      this.status = 'error';
+    } else {
+      this.status = 'default';
+    }
+
+
     const selectedDisplay: IItem | undefined = this.items
       .filter((item) => {
         return item.value == value;

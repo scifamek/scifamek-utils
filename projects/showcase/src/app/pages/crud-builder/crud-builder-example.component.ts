@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
-import { IActionModel, IDefinitionModel } from 'crud-builder';
+// import { IActionModel, IDefinitionModel } from 'crud-builder';
 import { of } from 'rxjs';
 
 @Component({
@@ -16,107 +16,107 @@ export class CrudBuilderExampleComponent implements AfterViewInit {
    * @type {IDefinitionModel}
    * @memberof CrudBuilderExampleComponent
    */
-  schemaDefinition: IDefinitionModel = {
-    columns: [
-      {
-        definition: 'name',
-        tag: 'Nombre',
-      },
-      {
-        definition: 'lastname',
-        tag: 'Apellido',
-      },
-      {
-        definition: 'age',
-        tag: 'Edad',
-      },
-      {
-        definition: 'pet',
-        tag: 'Mascota',
-      },
-      {
-        definition: 'pets',
-        tag: 'Mascotas',
-      },
-    ],
-    definitions: ['name', 'lastname', 'age', 'pet', 'pets'],
-    tags: ['Nombre', 'Apellido', 'Edad', 'Mascota', 'Mascotas'],
-    relationship: [
-      {
-        from: 'pet-id',
-        to: 'pet',
-        dataFunction: () => {
-          return of([
-            {
-              display: 'Tobby',
-              value: 'tobby-id',
-            },
-            {
-              display: 'Sacha',
-              value: 'sacha-id',
-            },
-          ]);
-        },
-      },
+  // schemaDefinition: IDefinitionModel = {
+  //   columns: [
+  //     {
+  //       definition: 'name',
+  //       tag: 'Nombre',
+  //     },
+  //     {
+  //       definition: 'lastname',
+  //       tag: 'Apellido',
+  //     },
+  //     {
+  //       definition: 'age',
+  //       tag: 'Edad',
+  //     },
+  //     {
+  //       definition: 'pet',
+  //       tag: 'Mascota',
+  //     },
+  //     {
+  //       definition: 'pets',
+  //       tag: 'Mascotas',
+  //     },
+  //   ],
+  //   definitions: ['name', 'lastname', 'age', 'pet', 'pets'],
+  //   tags: ['Nombre', 'Apellido', 'Edad', 'Mascota', 'Mascotas'],
+  //   relationship: [
+  //     {
+  //       from: 'pet-id',
+  //       to: 'pet',
+  //       dataFunction: () => {
+  //         return of([
+  //           {
+  //             display: 'Tobby',
+  //             value: 'tobby-id',
+  //           },
+  //           {
+  //             display: 'Sacha',
+  //             value: 'sacha-id',
+  //           },
+  //         ]);
+  //       },
+  //     },
 
-      {
-        from: 'pet-ids',
-        to: 'pets',
-        dataFunction: () => {
-          return of([
-            {
-              display: 'Tobby',
-              value: 'tobby-id',
-            },
-            {
-              display: 'Sacha',
-              value: 'sacha-id',
-            },
-          ]);
-        },
-      },
-    ],
-    schema: {
-      collection: 'tutors',
-      type: 'entity',
-      presentation: {
-        icon: 'supervisor_account',
-      },
-      display: 'Tutores',
-      repr: ['name', 'lastname'],
-      definition: {
-        _id: {
-          display: 'Identificador',
-          usable: true,
-          visible: false,
-          type: 'ObjectId',
-          required: true,
-        },
-        name: {
-          display: 'Primer Nombre',
-          usable: true,
-          visible: true,
-          type: 'string',
-          required: true,
-        },
-        lastname: {
-          display: 'Segundo Nombre',
-          usable: true,
-          visible: true,
-          type: 'string',
-          required: true,
-        },
-        pet_id: {
-          display: 'Mascotas',
-          usable: true,
-          visible: true,
-          type: '[ObjectId]',
-          relationship: 'pet',
-          required: true,
-        },
-      },
-    },
-  };
+  //     {
+  //       from: 'pet-ids',
+  //       to: 'pets',
+  //       dataFunction: () => {
+  //         return of([
+  //           {
+  //             display: 'Tobby',
+  //             value: 'tobby-id',
+  //           },
+  //           {
+  //             display: 'Sacha',
+  //             value: 'sacha-id',
+  //           },
+  //         ]);
+  //       },
+  //     },
+  //   ],
+  //   schema: {
+  //     collection: 'tutors',
+  //     type: 'entity',
+  //     presentation: {
+  //       icon: 'supervisor_account',
+  //     },
+  //     display: 'Tutores',
+  //     repr: ['name', 'lastname'],
+  //     definition: {
+  //       _id: {
+  //         display: 'Identificador',
+  //         usable: true,
+  //         visible: false,
+  //         type: 'ObjectId',
+  //         required: true,
+  //       },
+  //       name: {
+  //         display: 'Primer Nombre',
+  //         usable: true,
+  //         visible: true,
+  //         type: 'string',
+  //         required: true,
+  //       },
+  //       lastname: {
+  //         display: 'Segundo Nombre',
+  //         usable: true,
+  //         visible: true,
+  //         type: 'string',
+  //         required: true,
+  //       },
+  //       pet_id: {
+  //         display: 'Mascotas',
+  //         usable: true,
+  //         visible: true,
+  //         type: '[ObjectId]',
+  //         relationship: 'pet',
+  //         required: true,
+  //       },
+  //     },
+  //   },
+  // };
 
   /**
    * This attribute is used for defining the presentation schema when you want to display
@@ -349,28 +349,28 @@ export class CrudBuilderExampleComponent implements AfterViewInit {
    * @type {IActionModel[]}
    * @memberof CrudBuilderExampleComponent
    */
-  rowActions: IActionModel[] = [
-    {
-      display: 'Editar',
-      icon: 'edit',
-      event: (item: any, items: any[]) => {
-        console.log('Imprime algo j', item);
-        return Promise.resolve(item);
-      },
-      mode: 'edit',
-    },
-    {
-      display: 'Eliminar',
-      icon: 'clear',
-      event: (item: any, items: any[]) => {
-        console.log('Imprime algo', item, items);
-        let index = items.indexOf(item);
-        console.log(index);
-        items.splice(index, 1);
-        return Promise.resolve(item);
-      },
-    },
-  ];
+  // rowActions: IActionModel[] = [
+  //   {
+  //     display: 'Editar',
+  //     icon: 'edit',
+  //     event: (item: any, items: any[]) => {
+  //       console.log('Imprime algo j', item);
+  //       return Promise.resolve(item);
+  //     },
+  //     mode: 'edit',
+  //   },
+  //   {
+  //     display: 'Eliminar',
+  //     icon: 'clear',
+  //     event: (item: any, items: any[]) => {
+  //       console.log('Imprime algo', item, items);
+  //       let index = items.indexOf(item);
+  //       console.log(index);
+  //       items.splice(index, 1);
+  //       return Promise.resolve(item);
+  //     },
+  //   },
+  // ];
 
   /**
    *
@@ -408,22 +408,22 @@ export class CrudBuilderExampleComponent implements AfterViewInit {
    * @type {IActionModel[]}
    * @memberof CrudBuilderExampleComponent
    */
-  generalActions: IActionModel[] = [
-    {
-      display: 'Enviar Correos',
-      event: (items: any[]) => {
-        console.log('D=> ', items);
-        return Promise.resolve(items);
-      },
-    },
-    {
-      display: 'Descargar Historial',
-      event: (items: any[]) => {
-        console.log('D=> ', items);
-        return Promise.resolve(items);
-      },
-    },
-  ];
+  // generalActions: IActionModel[] = [
+  //   {
+  //     display: 'Enviar Correos',
+  //     event: (items: any[]) => {
+  //       console.log('D=> ', items);
+  //       return Promise.resolve(items);
+  //     },
+  //   },
+  //   {
+  //     display: 'Descargar Historial',
+  //     event: (items: any[]) => {
+  //       console.log('D=> ', items);
+  //       return Promise.resolve(items);
+  //     },
+  //   },
+  // ];
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();

@@ -13,6 +13,7 @@ import {
 @Component({
   selector: 'acl-container',
   templateUrl: './container.component.html',
+  styleUrls: ['./container.component.scss'],
 })
 export class AclContainerComponent implements OnInit, AfterViewInit {
   data!: any[];
@@ -20,10 +21,7 @@ export class AclContainerComponent implements OnInit, AfterViewInit {
 
   @ViewChild(AdDirective, { static: true }) adHost!: AdDirective;
   constructor(private dynamicComponentService: DynamicComponentService) {}
-  ngAfterViewInit(): void {
-
-    
-  }
+  ngAfterViewInit(): void {}
   ngOnInit(): void {
     this.key = this.key + ' container';
   }

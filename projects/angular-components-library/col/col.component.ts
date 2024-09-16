@@ -3,60 +3,61 @@ import {
   ChangeDetectorRef,
   Component,
   HostBinding,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { AdDirective } from 'angular-components-library/core';
 import { DynamicComponentService } from 'angular-components-library/core';
-const SIZES_WITH_PREFIX = ['sm', 'lg', 'md', 'xl'];
+import { RenderedGeneralComponent } from 'angular-components-library/core';
 @Component({
   selector: 'acl-col',
   templateUrl: './col.component.html',
+  styleUrls: ['./col.component.scss'],
 })
-export class AclColComponent implements OnInit, AfterViewInit {
+export class AclColComponent
+  extends RenderedGeneralComponent
+  implements OnInit, AfterViewInit
+{
   data: any;
-  @HostBinding('class') key!: string;
+  @HostBinding('class') classAttr!: string;
+  @HostBinding('style') style!: string;
 
   @ViewChild(AdDirective, { static: true }) adHost!: AdDirective;
 
-  constructor(
-    private dynamicComponentService: DynamicComponentService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
-  ngAfterViewInit(): void {
-
+  constructor(private dynamicComponentService: DynamicComponentService) {
+    super();
   }
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
+    this.updateInputs();
+
     let response = '';
-    if (this.data && this.data.responsive) {
-      const map = {};
-      for (const key in this.data.responsive) {
-        if (
-          Object.prototype.hasOwnProperty.call(this.data.responsive, key)
-        ) {
-          const element = this.data.responsive[key];
-          if (key !== 'default') {
-            let prefix = `-${key}`;
+    if (this.data) {
+      if (this.data.configuration) {
+        if (this.data.configuration['crossAlign']) {
+          response += ` align-items: ${this.data.configuration['crossAlign']};`;
+        }
+        if (this.data.configuration['mainAlign']) {
+          response += ` justify-content: ${this.data.configuration['mainAlign']};`;
+        }
+        if (this.data.configuration['direction']) {
+          response += ` flex-direction: ${this.data.configuration['direction']};`;
+        }
 
-            if (key == 'xs') {
-              prefix = '';
-            }
-            response += ` col${prefix}-${element['layout']}`;
-            if ('offset' in element) {
-              response += ` col${prefix}-offset-${element['offset']}`;
-            }
-          } else {
-            for (const size of SIZES_WITH_PREFIX) {
-              if (Object.keys(this.data.responsive).indexOf(size) === -1) {
-                response += ` col-${size}-${element['layout']}`;
-              }
-            }
-
+        if (this.data.configuration['display']) {
+          response += ` display: ${this.data.configuration['display']};`;
+        } else {
+          if (
+            this.data.configuration['crossAlign'] ||
+            this.data.configuration['mainAlign']
+          ) {
+            response += ` display: flex;`;
           }
         }
       }
     }
-    this.key = response;
+    this.style = this.style + response;
   }
 }

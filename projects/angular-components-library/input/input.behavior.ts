@@ -34,7 +34,7 @@ export class InputBehavior extends BaseBehavior {
     );
   }
 
-  setValue(value: string) {
+    setValue(value: string) {
     if(this.input){
 
       this.input.value = value;

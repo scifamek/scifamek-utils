@@ -78,29 +78,32 @@ export class SelectBehavior extends BaseBehavior {
       : SELECT_EXPAND_ICON_NAME;
   }
   addSubscribers(): void {
-    this.addSubscriber(
-      ['click'],
-      (event) => {
-        this.toggleSelect();
-      },
-      SELECT_TOGGLE_ICON_IDENTIFIER
-    );
+    const isDisabled = this.input.hasAttribute('disabled');
+    if (!isDisabled) {
+      this.addSubscriber(
+        ['click'],
+        (event) => {
+          this.toggleSelect();
+        },
+        SELECT_TOGGLE_ICON_IDENTIFIER
+      );
 
-    this.addSubscriber(['focus'], (event) => {}, SELECT_INPUT_IDENTIFIER);
+      this.addSubscriber(['focus'], (event) => {}, SELECT_INPUT_IDENTIFIER);
 
-    this.addSubscriber(
-      ['click'],
-      (event) => {
-        const element = event.target;
-        const valueObj = JSON.parse(element.getAttribute('item'));
-        this.toggleSelect();
-        this.updateVisualComponentValue(valueObj.display);
-        if (this.onChangeFunction) {
-          this.onChangeFunction(valueObj);
-        }
-      },
-      SELECT_ITEMS_IDENTIFIER
-    );
+      this.addSubscriber(
+        ['click'],
+        (event) => {
+          const element = event.target;
+          const valueObj = JSON.parse(element.getAttribute('item'));
+          this.toggleSelect();
+          this.updateVisualComponentValue(valueObj.display);
+          if (this.onChangeFunction) {
+            this.onChangeFunction(valueObj);
+          }
+        },
+        SELECT_ITEMS_IDENTIFIER
+      );
+    }
   }
   updateVisualComponentValue(value: string) {
     if (value) {

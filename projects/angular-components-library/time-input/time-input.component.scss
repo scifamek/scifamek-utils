@@ -1,0 +1,84 @@
+@use "../scss-core/components/abstract-input/abstract-input.scss" as *;
+
+
+:host {
+
+  @include abstract-input();
+
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  display: block;
+
+  // label {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 1.5rem;
+  //   background-color: white;
+  //   font-size: 1.3rem;
+  //   // border: 1px solid;
+  //   padding: 1px 3px;
+  //   color: rgb(143, 143, 143);
+  //   font-weight: 500;
+  // }
+
+  input[type="time"] {
+    // border: 1px solid rgb(143, 143, 143);
+    // border-radius: 5px;
+    // font-size: 1.5rem;
+    // width: 100%;
+    // height: 50px;
+  }
+
+  input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+    display: flex;
+  }
+
+  $padding-v: 1.2rem;
+
+  /* The space between the fields - between hour and minute, the minute and 
+      second, second and am/pm */
+  input[type="time"]::-webkit-datetime-edit-text {
+    padding: $padding-v 4px;
+  }
+
+  /* The naming convention for the hour, minute, second, and am/pm field is
+      `-webkit-datetime-edit-{field}-field` */
+
+  /* Hour */
+  input[type="time"]::-webkit-datetime-edit-hour-field {
+    padding: $padding-v 13px;
+  }
+
+  /* Minute */
+  input[type="time"]::-webkit-datetime-edit-minute-field {
+    padding: $padding-v 13px;
+  }
+
+  /* AM/PM */
+  input[type="time"]::-webkit-datetime-edit-ampm-field {
+    // background-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bolder;
+    padding: $padding-v 13px;
+  }
+
+  /* 'X' button for resetting/clearing time */
+  input[type="time"]::-webkit-clear-button {
+    // display: none;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background-color: transparent;
+    /* Cambia el color de fondo del botón del reloj */
+
+    // font-size: 20px;
+    /* Cambia el tamaño del icono del reloj */
+    // margin-right: 1rem;
+  }
+
+  /* Up/Down arrows for incrementing/decrementing the value */
+  input[type="time"]::-webkit-inner-spin-button {
+    // display: none;
+  }
+}

@@ -18,7 +18,8 @@ export type AclButtonColors =
   | 'notification';
 
 export type AclButtonKinds = 'outline' | 'fill';
-export type AclButtonSizes = 'small' | 'medium' | 'large';
+export type AclButtonSizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large';
+
 
 @Component({
   selector: 'acl-button',

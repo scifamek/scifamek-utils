@@ -13,7 +13,59 @@ export function applyMixins(derivedCtor: any, constructors: any[]) {
 
 export class RenderedGeneralComponent {
   data: any;
+  classAttr!: string;
+  style!: string;
 
+  resolveResponsive(): string {
+    let response = '';
+    const SIZES_WITH_PREFIX = ['sm', 'md', 'lg', 'xl', 'xxl'];
+
+    if (this.data) {
+      if (this.data.responsive) {
+        const map = {};
+        for (const key in this.data.responsive) {
+          const element = this.data.responsive[key];
+          if (key !== 'default') {
+            let prefix = `-${key}`;
+
+            if (key == 'xs') {
+              prefix = '';
+            }
+            response += ` col${prefix}-${element['layout']}`;
+            if ('offset' in element) {
+              response += ` col${prefix}-offset-${element['offset']}`;
+            }
+          } else {
+            for (const size of SIZES_WITH_PREFIX) {
+              if (Object.keys(this.data.responsive).indexOf(size) === -1) {
+                response += ` col-${size}-${element['layout']}`;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    this.classAttr = response;
+    return response;
+  }
+
+  resolveSpacing(): string {
+    let response = '';
+
+    if (this.data) {
+      if (this.data.spacing) {
+        if (this.data.spacing['padding']) {
+          response += ` padding: ${this.data.spacing['padding']};`;
+        }
+        if (this.data.spacing['margin']) {
+          response += ` margin: ${this.data.spacing['margin']};`;
+        }
+      }
+    }
+    this.style = response;
+    return response;
+  }
   updateInputs() {
     if (this.data && this.data['configuration']) {
       let obj = this as any;
@@ -46,5 +98,8 @@ export class RenderedGeneralComponent {
         }
       }
     }
+
+    this.resolveResponsive();
+    this.resolveSpacing();
   }
 }

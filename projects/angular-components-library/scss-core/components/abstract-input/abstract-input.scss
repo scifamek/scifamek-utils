@@ -5,52 +5,50 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  > section {
-    border: $abstract-input-border-size solid
-      $abstract-input-default-border-color;
+  margin-top: 0.2rem;
+  $disabled-background-color: rgba(250, 250, 250, 0.8);
+
+  >section {
+    border: $abstract-input-border-size solid $abstract-input-default-border-color;
   }
+
   @each $name, $color-obj in $category-color-map {
     &[color="#{$name}"] {
-      > section {
-        border: $abstract-input-border-size
-          solid
-          map-get(map-get($category-color-map, $name), "base");
+      >section {
+        border: $abstract-input-border-size solid map-get(map-get($category-color-map, $name), "base");
       }
     }
   }
-  &[focus] {
-    > section {
-      border: $abstract-input-border-size solid
-        $abstract-input-focus-border-color;
-    }
-  }
-  &[status="error"] {
-    > section {
-      border: $abstract-input-border-size solid
-        map-get(map-get($category-color-map, "danger"), "base");
 
-      span.material-icons {
-        color: map-get(map-get($category-color-map, "danger"), "base");
-      }
-    }
-    span {
-      color: map-get(map-get($category-color-map, "danger"), "base");
+  &[focus] {
+    >section {
+      border: $abstract-input-border-size solid $abstract-input-focus-border-color;
     }
   }
-  > section {
-    // background-color: red;
+
+
+
+
+  >section {
+    background-color: white;
     align-items: center;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: $abstract-input-section-padding-y 0;
+    padding: 0;
     border-radius: $abstract-input-border-radius;
+    position: relative;
 
-    
+    &:has(input[disabled], textarea[disabled]) {
+      background-color: $disabled-background-color;
+    }
+
     span.material-icons {
       width: $abstract-input-icon-width;
       font-size: $abstract-input-icon-font-size;
+      color: $abstract-input-icon-color;
     }
+
     span.material-icons:first-child {
       margin-left: $abstract-input-icons-margin-x;
     }
@@ -58,20 +56,40 @@
     span.material-icons:last-child {
       margin-right: $abstract-input-icons-margin-x;
     }
-    > section {
+
+    >section {
       display: flex;
       margin: 0 $abstract-input-icons-margin-x;
       flex-direction: column;
-      width: $abstract-input-main-section-width;
+      // width: $abstract-input-main-section-width;
+      flex: 1 1 auto;
 
       label {
-        font-size: $abstract-input-font-size;
+        font-size: $abstract-input-label-size;
+        background-color: white;
         margin: 0;
+        position: absolute;
+        left: 5px;
+        top: - $abstract-input-font-size * 0.8;
         color: $abstract-input-label-color;
-        // border: $abstract-input-border-size solid
-        //   map-get(map-get($category-color-map, "danger"), "base");
-        width: 100%;
+        padding: 0 3px;
+        border-radius: 0.7rem;
+
+
+
+
       }
+
+
+
+      input {
+        height: 50px;
+
+        &:disabled {
+          background-color: $disabled-background-color;
+        }
+      }
+
 
       input,
       textarea {
@@ -82,11 +100,38 @@
         // border-radius: 0 0 $abstract-input-border-radius $abstract-input-border-radius;
         font-size: $abstract-input-font-size;
         outline: none;
-        font-weight: 700;
+
+        &:disabled {
+          background-color: $disabled-background-color;
+        }
+
+
+        &:disabled+label,
+        &:disabled+label {
+          background-color: $disabled-background-color;
+        }
       }
     }
   }
+
   span {
     font-size: $abstract-input-span-font-size;
+  }
+
+  &:has(section[status="error"]) {
+    >section {
+      border: $abstract-input-border-size solid map-get(map-get($category-color-map, "danger"), "base");
+
+      span.material-icons {
+        color: map-get(map-get($category-color-map, "danger"), "base");
+      }
+      label {
+        color: map-get(map-get($category-color-map, "danger"), "base");
+      }
+    }
+
+    span {
+      color: map-get(map-get($category-color-map, "danger"), "base");
+    }
   }
 }
