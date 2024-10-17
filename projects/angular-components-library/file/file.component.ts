@@ -12,8 +12,10 @@ import {
   forwardRef,
 } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { GeneralInputComponent } from 'angular-components-library/core';
-import { ITEM_VALUE } from 'angular-components-library/core';
+import {
+  GeneralInputComponent,
+  ITEM_VALUE,
+} from 'angular-components-library/core';
 
 export type FileFormat = 'jpg' | 'jpeg' | 'png' | 'gif' | 'pdf' | 'docx';
 
@@ -69,7 +71,7 @@ export class AclFileComponent
   nameFile!: string;
   file!: File;
   error!: string;
-  formControl!: FormControl;
+  formControl?: FormControl;
 
   fullPath?: string;
   insidePreview: string | undefined = undefined;
@@ -95,10 +97,7 @@ export class AclFileComponent
       if (this.transformPath) {
         this.transformedPath = this.transformPath(this.path);
       }
-      console.log('transformedPath', this.transformedPath);
-
       const mime = this.getExtension(this.path);
-      console.log(mime);
 
       const inc = previewMapper.includes(mime);
       if (inc) {
@@ -109,6 +108,8 @@ export class AclFileComponent
       } else {
         this.fullPath = this.transformedPath;
       }
+    } else if (this.formControl && this.formControl.value) {
+      this.insidePreview = this.formControl.value;
     } else if (this.defaultImg) {
       this.fullPath = this.defaultImg;
     }
@@ -145,6 +146,11 @@ export class AclFileComponent
         this.img.nativeElement.style.borderRadius = this.radius;
       }
     }
+    this.formControl?.registerOnChange((x: any) => {
+      this.value = x;
+      this.insidePreview = x;
+      this.fullPath = x;
+    });
   }
 
   searchMime(mime: string): FileFormat | undefined {

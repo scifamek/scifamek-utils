@@ -22,6 +22,6 @@
   <span class="material-icons">clear</span>
 </acl-button>
 <span *ngIf="error">{{ error }} </span>
-<acl-button *ngIf="!formControl.disabled" size="xsmall" (click)="inputFile.click()" color="notification">{{
+<acl-button *ngIf="!formControl?.disabled" kind="outline" size="xsmall" (click)="inputFile.click()" color="notification">{{
   text
 }}</acl-button>

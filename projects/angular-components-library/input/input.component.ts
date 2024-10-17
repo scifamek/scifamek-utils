@@ -1,17 +1,19 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
+  HostBinding,
   Input,
   OnInit,
-  forwardRef,
-  ElementRef,
-  AfterViewInit,
   SimpleChanges,
-  HostBinding,
+  forwardRef,
 } from '@angular/core';
 
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ITEM_VALUE } from 'angular-components-library/core';
-import { GeneralInputComponent } from 'angular-components-library/core';
+import {
+  GeneralInputComponent,
+  ITEM_VALUE,
+} from 'angular-components-library/core';
 import { InputBehavior } from './input.behavior';
 import { INPUT_IDENTIFIER } from './input.constants';
 @Component({
@@ -38,15 +40,15 @@ export class AclInputComponent
   @Input('left-icon') leftIcon!: string;
   @Input('right-icon') rightIcon!: string;
   @Input() type: string = 'text';
-  @Input() min?: number ;
-  @Input() max?: number ;
+  @Input() min?: number;
+  @Input() max?: number;
   @Input() color!: string;
   @Input() kind = 'input';
   @HostBinding('class') classAttr!: string;
   @HostBinding('style') style!: string;
 
   data: any;
-  formControl!: FormControl;
+  formControl?: FormControl;
   behavior!: InputBehavior;
 
   constructor(private elementRef: ElementRef) {
@@ -100,7 +102,15 @@ export class AclInputComponent
 
   updateVisualComponentValue(value: any): void {
     super.writeValue(value);
-    if (this.formControl.errors) {
+    if (this.formControl) {
+      this.formControl.registerOnChange((value: any) => {
+        this.value = value;
+        if (this.behavior) {
+          this.behavior.setValue(value);
+        }
+      });
+    }
+    if (this.formControl && this.formControl.errors) {
       this.status = 'error';
     } else {
       this.status = 'default';

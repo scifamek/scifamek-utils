@@ -1,0 +1,52 @@
+<ng-container *ngIf="model">
+  <header>
+    <strong>{{ label }}</strong>
+  </header>
+  <section class="form">
+    <ng-template #form> </ng-template>
+  </section>
+
+  <footer>
+    <header>
+      <div>
+        <acl-button kind="outline" (click)="addData()" size="xsmall">{{
+          currentEditingData ? editLabel : addLabel
+        }}</acl-button>
+        <acl-button
+          kind="outline"
+          (click)="clearForm()"
+          [color]="'notification'"
+          size="xsmall"
+          >Limpiar</acl-button
+        >
+      </div>
+      <div>
+        <label>
+          <input #swap type="checkbox" />
+        </label>
+      </div>
+    </header>
+    <section>
+      <ng-container *ngIf="properties && opened && value.length > 0">
+        <div *ngFor="let item of value; index as i">
+          <ul
+            [ngClass]="{ 'editing-indicator': currentEditingData?.index == i }"
+            (click)="setForm(item, i)"
+          >
+            <div class="close-button">
+              <button (click)="delteItem(i)"></button>
+            </div>
+            <li *ngFor="let property of repr">
+              <ng-container *ngIf="model[property]">
+                <strong> {{ model[property].display }}: </strong>
+                <span>
+                  {{ item[property] }}
+                </span>
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </section>
+  </footer>
+</ng-container>

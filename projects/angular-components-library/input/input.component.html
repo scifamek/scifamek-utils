@@ -9,7 +9,7 @@
       [attr.min]="min"
       [attr.max]="max"
       [placeholder]="placeholder || ''"
-      [disabled]="formControl.disabled"
+      [disabled]="formControl?.disabled"
     />
 
     <textarea
@@ -19,7 +19,7 @@
       [attr.type]="type"
       [attr.rows]="rows"
       [placeholder]="placeholder || ''"
-      [disabled]="formControl.disabled"
+      [disabled]="formControl?.disabled"
     ></textarea>
     <label>{{ label }}</label>
   </section>
