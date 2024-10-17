@@ -45,11 +45,7 @@ export class AclDynamicInputComponent
   extends GeneralInputComponent
   implements OnInit, AfterViewInit
 {
-  delteItem(i: number) {
-    this.value.splice(i, 1);
-  }
   @Input('add-label') addLabel: string = 'Agregar';
-  @Input('edit-label') editLabel: string = 'Guardar';
   @ViewChild('swap') checkbox?: ElementRef;
   @HostBinding('class') classAttr!: string;
   componentsMapper: any = {
@@ -65,7 +61,12 @@ export class AclDynamicInputComponent
     'time-input': AclTimeInputComponent,
     'dynamic-input': AclDynamicInputComponent,
   };
+  currentEditingData?: {
+    index: number;
+    item: any;
+  };
   data: any;
+  @Input('edit-label') editLabel: string = 'Guardar';
   @ViewChild('form', {
     read: ViewContainerRef,
   })
@@ -83,18 +84,12 @@ export class AclDynamicInputComponent
       configuration: any;
     };
   };
-  @Input() repr?: string[];
-
-  opened = false;
+  @Input() opened = false;
   @Input() placeholder!: string;
   properties?: string[];
+  @Input() repr?: string[];
   @HostBinding('style') style!: string;
   value: any[];
-
-  currentEditingData?: {
-    index: number;
-    item: any;
-  };
 
   constructor(
     private elementRef: ElementRef,
@@ -105,9 +100,14 @@ export class AclDynamicInputComponent
     super();
     this.formControlReferences = {};
     this.value = [];
+    this.registerOnChange((value: any) => {
+      console.log(value);
+    });
   }
 
   addData() {
+    console.log(this.value);
+
     if (!this.value || !Array.isArray(this.value)) {
       this.value = [];
     }
@@ -117,6 +117,7 @@ export class AclDynamicInputComponent
 
       value[property] = control.value;
     }
+    console.log('VALUE', value);
 
     if (this.currentEditingData) {
       this.value.splice(this.currentEditingData.index, 1, value);
@@ -128,6 +129,7 @@ export class AclDynamicInputComponent
     if (this.formControl) {
       this.formControl.setValue(this.value);
     }
+    this._onChange(this.value);
   }
 
   clearForm() {
@@ -138,7 +140,15 @@ export class AclDynamicInputComponent
     }
   }
 
+  delteItem(i: number) {
+    this.value.splice(i, 1);
+    this.formControl.setValue(this.value);
+    this._onChange(this.value);
+  }
+
   ngAfterViewInit(): void {
+    console.log(this.checkbox);
+
     if (this.checkbox) {
       (this.checkbox.nativeElement as HTMLInputElement).addEventListener(
         'change',
@@ -208,7 +218,7 @@ export class AclDynamicInputComponent
 
   updateVisualComponentValue(value: any): void {
     super.writeValue(value);
-    if (this.formControl.errors) {
+    if (this.formControl && this.formControl.errors) {
       this.status = 'error';
     } else {
       this.status = 'default';
