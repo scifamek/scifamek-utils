@@ -68,8 +68,8 @@ export class AclFileComponent
 
   @Output() onSelectedFile: EventEmitter<any>;
 
-  nameFile!: string;
-  file!: File;
+  nameFile?: string;
+  file?: File;
   error!: string;
   formControl?: FormControl;
 
@@ -161,6 +161,14 @@ export class AclFileComponent
       }
     }
     return 'png';
+  }
+  clear() {
+    this.file = undefined;
+    this.insidePreview = undefined;
+    this.nameFile = undefined;
+    
+    this.formControl?.setValue('');
+    this.value = '';
   }
   addListener() {
     const inputElement: HTMLInputElement = this.uploadComponent

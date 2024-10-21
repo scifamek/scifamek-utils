@@ -37,28 +37,22 @@ export class AclSelectComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   behavior!: SelectBehavior;
-
+  @HostBinding('class') classAttr!: string;
+  @Input() color!: string;
+  data: any;
+  @Input() dataFunction!: () => Observable<any> | (() => any[]);
+  formControl!: FormControl;
+  @Input() hint!: string;
+  @Input() icon!: string;
+  @Input() items: IItem[];
+  @Input() label!: string;
+  @Input() multiple: boolean = false;
+  @Output() onChange: EventEmitter<any> ;
+  @Input() placeholder!: string;
+  relativeProperty: any;
+  @HostBinding('style') style!: string;
   updateBehaviorData: BehaviorSubject<string>;
   updateBehaviorDataSubscription!: Subscription;
-  formControl!: FormControl;
-
-  @Input() label!: string;
-  @Input() hint!: string;
-  @Input() placeholder!: string;
-  @Input() icon!: string;
-  @Input() multiple: boolean = false;
-  @Input() items: IItem[];
-  @Input() color!: string;
-
-  @Output() onChange: EventEmitter<any> ;
-  relativeProperty: any;
-
-  @HostBinding('class') classAttr!: string;
-  @HostBinding('style') style!: string;
-
-  @HostBinding('attr.color') get attrColor() {
-    return this.color;
-  }
 
   constructor(private elementRef: ElementRef) {
     super();
@@ -68,29 +62,9 @@ export class AclSelectComponent
 
     this.updateBehaviorData = new BehaviorSubject('');
   }
-  ngOnDestroy(): void {
-    this.updateBehaviorDataSubscription.unsubscribe();
-  }
-  data: any;
-  @Input() dataFunction!: () => Observable<any> | (() => any[]);
 
-  ngOnInit(): void {
-    this.updateInputs();
-    this.getItems();
-  }
-
-  onChangeFunction(value: any) {
-    this.value = value;
-    if (this.formControl) {
-      this.formControl.setValue(this.value.value);
-      if (this.formControl.errors) {
-        this.status = 'error';
-      } else {
-        this.status = 'default';
-      }
-    }
-    this._onChange(this.value?.value);
-    this.onChange.emit(value);
+  @HostBinding('attr.color') get attrColor() {
+    return this.color;
   }
 
   getItems() {
@@ -103,7 +77,7 @@ export class AclSelectComponent
       }
     }
   }
-  
+
   markItems() {}
 
   ngAfterViewInit(): void {
@@ -139,8 +113,28 @@ export class AclSelectComponent
     //   });
     // });
   }
-  writeValue(value: any): void {
-    this.updateBehaviorData.next(value);
+
+  ngOnDestroy(): void {
+    this.updateBehaviorDataSubscription?.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.updateInputs();
+    this.getItems();
+  }
+
+  onChangeFunction(value: any) {
+    this.value = value;
+    if (this.formControl) {
+      this.formControl.setValue(this.value.value);
+      if (this.formControl.errors) {
+        this.status = 'error';
+      } else {
+        this.status = 'default';
+      }
+    }
+    this._onChange(this.value?.value);
+    this.onChange.emit(value);
   }
 
   updateVisualComponentValue(value: any): void {
@@ -152,7 +146,6 @@ export class AclSelectComponent
       this.status = 'default';
     }
 
-
     const selectedDisplay: IItem | undefined = this.items
       .filter((item) => {
         return item.value == value;
@@ -161,5 +154,9 @@ export class AclSelectComponent
     if (selectedDisplay) {
       this.behavior.updateVisualComponentValue(selectedDisplay.display);
     }
+  }
+
+  writeValue(value: any): void {
+    this.updateBehaviorData.next(value);
   }
 }

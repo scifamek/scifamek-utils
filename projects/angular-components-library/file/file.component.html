@@ -18,10 +18,20 @@
     {{ getDisplayFormats() }}
   </strong>
 </span>
-<acl-button *ngIf="nameFile" size="xxsmall" class="clear">
+<acl-button
+  (click)="clear()"
+  *ngIf="insidePreview"
+  size="xxsmall"
+  class="clear"
+>
   <span class="material-icons">clear</span>
 </acl-button>
 <span *ngIf="error">{{ error }} </span>
-<acl-button *ngIf="!formControl?.disabled" kind="outline" size="xsmall" (click)="inputFile.click()" color="notification">{{
-  text
-}}</acl-button>
+<acl-button
+  *ngIf="!formControl?.disabled"
+  kind="outline"
+  size="xsmall"
+  (click)="inputFile.click()"
+  color="notification"
+  >{{ text }}</acl-button
+>

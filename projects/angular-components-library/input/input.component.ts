@@ -40,6 +40,7 @@ export class AclInputComponent
   @Input('left-icon') leftIcon!: string;
   @Input('right-icon') rightIcon!: string;
   @Input() type: string = 'text';
+  @Input() step: number = 1;
   @Input() min?: number;
   @Input() max?: number;
   @Input() color!: string;

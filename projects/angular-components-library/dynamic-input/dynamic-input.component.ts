@@ -141,6 +141,8 @@ export class AclDynamicInputComponent
   }
 
   delteItem(i: number) {
+    console.log(this.value);
+    
     this.value.splice(i, 1);
     this.formControl.setValue(this.value);
     this._onChange(this.value);
@@ -184,6 +186,8 @@ export class AclDynamicInputComponent
         this.formControlReferences[property] = control;
       }
     }
+    console.log(this.data);
+    
 
     if (this.data) {
       this.updateVisualComponentValue(this.data[ITEM_VALUE]);
@@ -196,6 +200,8 @@ export class AclDynamicInputComponent
 
   ngOnInit(): void {
     this.updateInputs();
+    console.log(this.value);
+    
   }
 
   setForm(item: any, index: number) {
@@ -223,6 +229,7 @@ export class AclDynamicInputComponent
     } else {
       this.status = 'default';
     }
+console.log(Array.isArray(value) );
 
     if (value) {
       this.value = value;
