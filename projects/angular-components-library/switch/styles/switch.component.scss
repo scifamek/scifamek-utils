@@ -1,0 +1,62 @@
+@use "../../scss-core/components/abstract-input/abstract-input.scss" as *;
+
+:host {
+  display: flex;
+  align-items: center;
+
+  >label {
+    margin: 0.1rem 0.5rem;
+  }
+
+  .switch-container {
+
+    $width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type=checkbox] {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    label {
+      cursor: pointer;
+      text-indent: -9999px;
+      width: $width;
+      height: $width / 2;
+      background: grey;
+      display: block;
+      border-radius: $width / 2;
+      position: relative;
+    }
+
+    label:after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: ($width / 2) *0.9;
+      height: ($width / 2) *0.9;
+      background: #fff;
+      border-radius: ($width / 2) * 0.9;
+      transition: 0.3s;
+    }
+
+    input:checked+label {
+      background: var(--primary-color);
+    }
+
+    input:checked+label:after {
+      left: calc(100% - 1px);
+      transform: translateX(-100%);
+    }
+
+    label:active:after {
+      width: $width * 130 / 200;
+    }
+
+
+  }
+}

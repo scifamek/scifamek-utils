@@ -68,17 +68,17 @@ export class RenderedGeneralComponent {
   }
   updateInputs() {
     if (this.data && this.data['configuration']) {
-      let obj = this as any;
+      let instance = this as any;
       if (this.data['dataFunction']) {
-        obj.dataFunction = this.data['dataFunction'];
+        instance.dataFunction = this.data['dataFunction'];
       }
 
       if (this.data['formControl']) {
-        obj.formControl = this.data['formControl'];
+        instance.formControl = this.data['formControl'];
       }
 
       if (this.data['relativeProperty']) {
-        obj.relativeProperty = this.data['relativeProperty'];
+        instance.relativeProperty = this.data['relativeProperty'];
       }
 
       for (const key in this.data['configuration']) {
@@ -93,8 +93,8 @@ export class RenderedGeneralComponent {
             .map(
               (x: string) => `${x.charAt(0).toUpperCase()}${x.substring(1)}`
             );
-          const capital = firstWord + otherWords.join('');
-          obj[capital] = element;
+          const capitalProperty = firstWord + otherWords.join('');
+          instance[capitalProperty] = element;
         }
       }
     }

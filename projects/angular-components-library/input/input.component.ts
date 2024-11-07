@@ -49,7 +49,7 @@ export class AclInputComponent
   @HostBinding('style') style!: string;
 
   data: any;
-  formControl?: FormControl;
+  @Input() formControl?: FormControl;
   behavior!: InputBehavior;
 
   constructor(private elementRef: ElementRef) {
@@ -64,6 +64,16 @@ export class AclInputComponent
     ) {
       this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
     }
+    if (changes.disabled) {
+      if (changes.disabled.currentValue) {
+        this.status = 'disabled';
+      } else {
+        this.status = 'default';
+      }
+      console.log('Hubo cambio ', this.status);
+
+      this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
+    }
   }
 
   ngAfterViewInit(): void {
@@ -71,13 +81,18 @@ export class AclInputComponent
     this.configListeners();
     this.behavior.init();
 
-    this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
+    if (this.disabled) {
+      this.status = 'disabled';
+    }
 
     if (this.data) {
       this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     } else if (this.value) {
       this.updateVisualComponentValue(this.value);
     }
+    console.log('thishishis ', this.disabled, this.elementRef.nativeElement);
+
+    this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
   }
   configListeners() {
     this.behavior.addSubscriber(

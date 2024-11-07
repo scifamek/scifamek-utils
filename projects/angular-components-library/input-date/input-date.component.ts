@@ -1,18 +1,20 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
+  HostBinding,
   Input,
   OnInit,
-  forwardRef,
-  ElementRef,
-  AfterViewInit,
   SimpleChanges,
-  HostBinding,
   ViewChild,
+  forwardRef,
 } from '@angular/core';
 
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ITEM_VALUE } from 'angular-components-library/core';
-import { GeneralInputComponent } from 'angular-components-library/core';
+import {
+  GeneralInputComponent,
+  ITEM_VALUE,
+} from 'angular-components-library/core';
 @Component({
   selector: 'acl-input-date',
   templateUrl: './input-date.component.html',
@@ -89,25 +91,25 @@ export class AclInputDateComponent
   }
 
   updateVisualComponentValue(value: any): void {
-
     if (this.formControl.errors) {
       this.status = 'error';
     } else {
       this.status = 'default';
     }
 
-    
     if (value) {
       let d!: Date;
+
       if (typeof value === 'string') {
         d = new Date(value);
       }
-
-      const t = `${d.getFullYear()}-${this.format(
-        d.getMonth() + 1
-      )}-${this.format(d.getDate())}`;
-      const input = this.input.nativeElement as HTMLInputElement;
-      input.value = t;
+      if (d) {
+        const t = `${d.getFullYear()}-${this.format(
+          d.getMonth() + 1
+        )}-${this.format(d.getDate())}`;
+        const input = this.input.nativeElement as HTMLInputElement;
+        input.value = t;
+      }
     }
   }
 }

@@ -90,6 +90,8 @@ export class AclSelectComponent
         this.updateVisualComponentValue(value);
       }
     );
+    console.log(this.data);
+    
     if (this.data) {
       this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     }
@@ -119,6 +121,7 @@ export class AclSelectComponent
   }
 
   ngOnInit(): void {
+
     this.updateInputs();
     this.getItems();
   }
@@ -133,6 +136,8 @@ export class AclSelectComponent
         this.status = 'default';
       }
     }
+    console.log(value)
+    console.log(this.relativeProperty)
     this._onChange(this.value?.value);
     this.onChange.emit(value);
   }
