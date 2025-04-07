@@ -5,13 +5,16 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { AdDirective } from 'angular-components-library/core';
-import { DynamicComponentService } from 'angular-components-library/core';
-import { RenderedGeneralComponent } from 'angular-components-library/core';
+import {
+  AdDirective,
+  DynamicComponentService,
+  RenderedGeneralComponent,
+} from 'angular-components-library/core';
 
 @Component({
   selector: 'acl-row',
   templateUrl: './row.component.html',
+  styleUrls: ['./row.component.scss'],
 })
 export class AclRowComponent
   extends RenderedGeneralComponent
@@ -20,6 +23,7 @@ export class AclRowComponent
   data: any;
   @HostBinding('class') classAttr!: string;
   @HostBinding('style') style: string = '';
+  
 
   @ViewChild(AdDirective, { static: true }) adHost!: AdDirective;
   constructor(private dynamicComponentService: DynamicComponentService) {
@@ -32,7 +36,6 @@ export class AclRowComponent
     let response = '';
     if (this.data) {
       if (this.data.configuration) {
-
         if (this.data.configuration['crossAlign']) {
           response += ` align-items: ${this.data.configuration['crossAlign']};`;
         }

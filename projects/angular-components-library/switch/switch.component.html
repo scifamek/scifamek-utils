@@ -1,5 +1,17 @@
 <label>{{ label }}</label>
 <div class="switch-container">
-  <input #input type="checkbox"  [id]="'switch-' + id" />
-  <label [for]="'switch-' + id">Toggle</label>
+  <input
+    [checked]="value"
+    [disabled]="disabled"
+    #input
+    type="checkbox"
+    [id]="'switch-' + id"
+  />
+  <label
+    [ngStyle]="{
+      'background-color':  value ? backgroundColor ?? 'var(--accent-color)' : 'grey'
+    }"
+    [for]="'switch-' + id"
+    >Toggle</label
+  >
 </div>

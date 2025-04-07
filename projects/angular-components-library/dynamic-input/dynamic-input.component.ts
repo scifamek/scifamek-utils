@@ -14,6 +14,7 @@ import {
 
 import { FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AclCardComponent } from 'angular-components-library/card';
+import { AclChoiceInputComponent } from 'angular-components-library/choice-input';
 import { AclColComponent } from 'angular-components-library/col';
 import { AclContainerComponent } from 'angular-components-library/container';
 import {
@@ -24,10 +25,14 @@ import {
 import { AclFileComponent } from 'angular-components-library/file';
 import { AclInputComponent } from 'angular-components-library/input';
 import { AclInputDateComponent } from 'angular-components-library/input-date';
+import { AclJsonInputComponent } from 'angular-components-library/json-input';
 import { AclLabelComponent } from 'angular-components-library/label';
+import { AclListInputComponent } from 'angular-components-library/list-input';
 import { AclRowComponent } from 'angular-components-library/row';
 import { AclSelectComponent } from 'angular-components-library/select';
+import { AclSwitchComponent } from 'angular-components-library/switch';
 import { AclTimeInputComponent } from 'angular-components-library/time-input';
+
 
 @Component({
   selector: 'acl-dynamic-input',
@@ -60,6 +65,10 @@ export class AclDynamicInputComponent
     'input-date': AclInputDateComponent,
     'time-input': AclTimeInputComponent,
     'dynamic-input': AclDynamicInputComponent,
+    switch: AclSwitchComponent,
+    'choice-input': AclChoiceInputComponent,
+    'json-input': AclJsonInputComponent,
+    'list-input': AclListInputComponent,
   };
   currentEditingData?: {
     index: number;
@@ -101,12 +110,10 @@ export class AclDynamicInputComponent
     this.formControlReferences = {};
     this.value = [];
     this.registerOnChange((value: any) => {
-      console.log(value);
     });
   }
 
   addData() {
-    console.log(this.value);
 
     if (!this.value || !Array.isArray(this.value)) {
       this.value = [];
@@ -117,7 +124,6 @@ export class AclDynamicInputComponent
 
       value[property] = control.value;
     }
-    console.log('VALUE', value);
 
     if (this.currentEditingData) {
       this.value.splice(this.currentEditingData.index, 1, value);
@@ -141,15 +147,13 @@ export class AclDynamicInputComponent
   }
 
   delteItem(i: number) {
-    console.log(this.value);
-    
+
     this.value.splice(i, 1);
     this.formControl.setValue(this.value);
     this._onChange(this.value);
   }
 
   ngAfterViewInit(): void {
-    console.log(this.checkbox);
 
     if (this.checkbox) {
       (this.checkbox.nativeElement as HTMLInputElement).addEventListener(
@@ -163,7 +167,18 @@ export class AclDynamicInputComponent
       this.properties = Object.keys(this.model);
     }
     this.form?.clear();
+    this.createForm();
+
+    if (this.data) {
+      this.updateVisualComponentValue(this.data[ITEM_VALUE]);
+    } else if (this.value) {
+      this.updateVisualComponentValue(this.value);
+    }
+  }
+
+  private createForm() {
     if (this.model && this.form) {
+
       for (const property in this.model) {
         const element = this.model[property];
 
@@ -186,22 +201,16 @@ export class AclDynamicInputComponent
         this.formControlReferences[property] = control;
       }
     }
-    console.log(this.data);
-    
-
-    if (this.data) {
-      this.updateVisualComponentValue(this.data[ITEM_VALUE]);
-    } else if (this.value) {
-      this.updateVisualComponentValue(this.value);
-    }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.createForm();
+  }
 
   ngOnInit(): void {
     this.updateInputs();
-    console.log(this.value);
-    
   }
 
   setForm(item: any, index: number) {
@@ -229,7 +238,6 @@ export class AclDynamicInputComponent
     } else {
       this.status = 'default';
     }
-console.log(Array.isArray(value) );
 
     if (value) {
       this.value = value;

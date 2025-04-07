@@ -1,0 +1,20 @@
+<header>
+  <h6>
+    {{ label }}
+  </h6>
+</header>
+<ul *ngIf="options">
+  <li *ngFor="let option of options">
+    <input #optionItems *ngIf="multiple" (change)="reco()" type="checkbox" />
+    <input
+      #optionItems
+      *ngIf="!multiple"
+      (change)="reco()"
+      [name]="myName"
+      type="radio"
+    />
+    <span>
+      {{ option.display }}
+    </span>
+  </li>
+</ul>

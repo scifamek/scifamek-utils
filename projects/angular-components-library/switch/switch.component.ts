@@ -32,6 +32,7 @@ export class AclSwitchComponent
   implements OnInit, AfterViewInit
 {
   @Input() label!: string;
+  @Input('background-color') backgroundColor!: string;
   @Input() color!: string;
   @HostBinding('class') classAttr!: string;
   @HostBinding('style') style!: string;
@@ -54,6 +55,11 @@ export class AclSwitchComponent
     }
   }
 
+  writeValue(value: string): void {
+    super.writeValue(value);
+
+
+  }
   ngAfterViewInit(): void {
     this.configListeners();
 
@@ -67,8 +73,7 @@ export class AclSwitchComponent
     this.input?.nativeElement.addEventListener('change', (x) => {
       const val = (x.target as HTMLInputElement).checked;
       this.value = val;
-      console.log(val);
-      this._onChange();
+      this._onChange(this.value);
       if (this.formControl) {
         this.formControl.setValue(this.value);
         if (this.formControl.errors) {

@@ -32,9 +32,9 @@ export class RenderedGeneralComponent {
               prefix = '';
             }
             response += ` col${prefix}-${element['layout']}`;
-            if ('offset' in element) {
-              response += ` col${prefix}-offset-${element['offset']}`;
-            }
+            // if ('offset' in element) {
+            //   response += ` col${prefix}-offset-${element['offset']}`;
+            // }
           } else {
             for (const size of SIZES_WITH_PREFIX) {
               if (Object.keys(this.data.responsive).indexOf(size) === -1) {

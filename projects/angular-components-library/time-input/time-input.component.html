@@ -2,13 +2,13 @@
   <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span>
   <section>
     <label>{{ label }}</label>
-
     <input
       #input
       [(ngModel)]="value"
       [placeholder]="placeholder || ''"
       [attr.color]="color"
       [attr.status]="status"
+      [disabled]="disabled"
       type="time"
       [value]="value"
       (change)="change($event)"

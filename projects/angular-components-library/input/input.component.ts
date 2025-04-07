@@ -70,7 +70,6 @@ export class AclInputComponent
       } else {
         this.status = 'default';
       }
-      console.log('Hubo cambio ', this.status);
 
       this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
     }
@@ -90,7 +89,6 @@ export class AclInputComponent
     } else if (this.value) {
       this.updateVisualComponentValue(this.value);
     }
-    console.log('thishishis ', this.disabled, this.elementRef.nativeElement);
 
     this.behavior.toogleElementProperty(this.status, INPUT_IDENTIFIER);
   }
@@ -102,7 +100,7 @@ export class AclInputComponent
         if (this.type == 'number') {
           this.value = parseFloat(this.value);
         }
-        this._onChange();
+        this._onChange(this.value);
         if (this.formControl) {
           this.formControl.setValue(this.value);
           if (this.formControl.errors) {
@@ -114,6 +112,13 @@ export class AclInputComponent
       },
       INPUT_IDENTIFIER
     );
+  }
+  writeValue(value: string): void {
+    super.writeValue(value);
+
+    if (this.behavior) {
+      this.behavior.setValue(value);
+    }
   }
 
   updateVisualComponentValue(value: any): void {

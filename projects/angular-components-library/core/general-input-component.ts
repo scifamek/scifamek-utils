@@ -17,11 +17,6 @@ export class GeneralInputComponent implements ControlValueAccessor {
   value: any;
   registerOnChange(fn: any): void {
     this._onChange = fn;
-     
-    (value: any) => {
-      console.log(value, 123)
-      console.log(fn);
-    };
   }
   registerOnTouched(fn: any): void {
     this._onTouched = fn;

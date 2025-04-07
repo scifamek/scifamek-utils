@@ -1,0 +1,30 @@
+<div>
+  <section *ngIf="!disabled" class="form">
+    <acl-input
+      [label]="label"
+      [disabled]="disabled"
+      [formControl]="innerFormControl"
+    ></acl-input>
+  </section>
+
+  <header *ngIf="disabled">
+    <h6>
+      {{ label }}
+    </h6>
+  </header>
+
+  <footer *ngIf="value && value.length > 0">
+    <ul class="ps-2">
+      <li
+        [ngClass]="{ 'editing-indicator': currentEditingData?.index == i }"
+        (click)="setForm(item, i)"
+        *ngFor="let item of value; index as i"
+      >
+        {{ item }}
+        <div class="close-button" *ngIf="!disabled">
+          <button (click)="delteItem(i)"></button>
+        </div>
+      </li>
+    </ul>
+  </footer>
+</div>

@@ -6,7 +6,9 @@
       {{ subtitle }}
     </p>
     <ng-content></ng-content>
-    <ng-template aclAd></ng-template>
+    <section>
+      <ng-template aclAd></ng-template>
+    </section>
     <acl-button kind="outline" (click)="execute()" *ngIf="buttonText">
       {{ buttonText }}
     </acl-button>

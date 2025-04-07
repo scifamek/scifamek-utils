@@ -44,10 +44,11 @@ export class AclSelectComponent
   formControl!: FormControl;
   @Input() hint!: string;
   @Input() icon!: string;
+  @Input('value-option') valueOption = 'value';
   @Input() items: IItem[];
   @Input() label!: string;
   @Input() multiple: boolean = false;
-  @Output() onChange: EventEmitter<any> ;
+  @Output() onChange: EventEmitter<any>;
   @Input() placeholder!: string;
   relativeProperty: any;
   @HostBinding('style') style!: string;
@@ -90,11 +91,11 @@ export class AclSelectComponent
         this.updateVisualComponentValue(value);
       }
     );
-    console.log(this.data);
-    
+
     if (this.data) {
       this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     }
+    this.valueOption = this.valueOption ?? 'value';
     // this.select.valueChange.subscribe(async (value: any[]) => {
     //   let data: any = (await this.items.toPromise())
     //     .filter((item: any) => value.includes(item.value))
@@ -121,7 +122,6 @@ export class AclSelectComponent
   }
 
   ngOnInit(): void {
-
     this.updateInputs();
     this.getItems();
   }
@@ -129,23 +129,25 @@ export class AclSelectComponent
   onChangeFunction(value: any) {
     this.value = value;
     if (this.formControl) {
-      this.formControl.setValue(this.value.value);
+      this.formControl.setValue(this.value[this.valueOption]);
       if (this.formControl.errors) {
         this.status = 'error';
       } else {
         this.status = 'default';
       }
     }
-    console.log(value)
-    console.log(this.relativeProperty)
-    this._onChange(this.value?.value);
+    console.log(value, 'en el select');
+    console.log(this.relativeProperty);
+    if (this.value) {
+      this._onChange(this.value[this.valueOption]);
+    }
     this.onChange.emit(value);
   }
 
   updateVisualComponentValue(value: any): void {
     super.writeValue(value);
 
-    if (this.formControl.errors) {
+    if (this.formControl && this.formControl.errors) {
       this.status = 'error';
     } else {
       this.status = 'default';
@@ -161,7 +163,12 @@ export class AclSelectComponent
     }
   }
 
-  writeValue(value: any): void {
+  writeValue(value: string): void {
+    super.writeValue(value);
     this.updateBehaviorData.next(value);
+
+    if (this.behavior) {
+      this.behavior.updateVisualComponentValue(value);
+    }
   }
 }

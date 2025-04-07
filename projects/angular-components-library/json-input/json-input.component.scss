@@ -1,0 +1,38 @@
+.key-decorator {
+  color: #569CD6;
+}
+
+.double-decorator {
+  color: white;
+}
+.separator-decorator {
+  color: white;
+}
+
+.value-decorator {
+  color: #CE9178;
+}
+
+.array-decorator {
+  color: #CE9178;
+}
+
+.group-decorator {
+  color: #DCDCAA;
+}
+
+.editor {
+  width: 100%;
+  min-height: 200px;
+  font-family: consolas;
+  // background-color: #1E1E1E;
+  background-color: #eaeaea;
+  padding: 10px;
+  border-radius: 1rem;
+  color: #2c2c2c;
+  white-space: pre-wrap;
+  outline: none;
+
+}
+
+:host {}

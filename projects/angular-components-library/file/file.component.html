@@ -15,12 +15,13 @@
 <span class="text-center formats" *ngIf="availableFormats"
   >Formatos:
   <strong>
+    
     {{ getDisplayFormats() }}
   </strong>
 </span>
 <acl-button
   (click)="clear()"
-  *ngIf="insidePreview"
+  *ngIf="insidePreview || fullPath"
   size="xxsmall"
   class="clear"
 >

@@ -16,7 +16,8 @@
       aria-expanded="true"
       data-active-option="item1"
       aria-activedescendant="item1"
-      [disabled]="formControl.disabled"
+      [disabled]="(formControl && formControl.disabled) || disabled"
+      
     />
   </section>
 

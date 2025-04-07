@@ -16,18 +16,18 @@ import {
 } from 'angular-components-library/core';
 
 @Component({
-  selector: 'acl-list-input',
-  templateUrl: './list-input.component.html',
-  styleUrls: ['./styles/list-input.component.scss'],
+  selector: 'acl-radio-list',
+  templateUrl: './radio-list.component.html',
+  styleUrls: ['./styles/radio-list.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AclListInputComponent),
+      useExisting: forwardRef(() => AclRadioListComponent),
       multi: true,
     },
   ],
 })
-export class AclListInputComponent
+export class AclRadioListComponent
   extends GeneralInputComponent
   implements OnInit, AfterViewInit
 {
@@ -49,27 +49,27 @@ export class AclListInputComponent
   constructor(public elementRef: ElementRef) {
     super();
     this.value = [];
-    this.registerOnChange((value: any) => {});
+
     this.innerFormControl = new FormControl('', [Validators.required]);
   }
 
-  addData() {
-    if (!this.value || !Array.isArray(this.value)) {
-      this.value = [];
-    }
-    const value: any = this.innerFormControl.value;
+  // addData() {
+  //   if (!this.value || !Array.isArray(this.value)) {
+  //     this.value = [];
+  //   }
+  //   const value: any = this.innerFormControl.value;
 
-    if (this.currentEditingData) {
-      this.value.splice(this.currentEditingData.index, 1, value);
-      this.currentEditingData = undefined;
-    } else {
-      this.value.push(value);
-    }
-    if (this.formControl) {
-      this.formControl.setValue(this.value);
-    }
-    this._onChange(this.value);
-  }
+  //   if (this.currentEditingData) {
+  //     this.value.splice(this.currentEditingData.index, 1, value);
+  //     this.currentEditingData = undefined;
+  //   } else {
+  //     this.value.push(value);
+  //   }
+  //   if (this.formControl) {
+  //     this.formControl.setValue(this.value);
+  //   }
+  //   this._onChange(this.value);
+  // }
 
   delteItem(i: number) {
     this.value.splice(i, 1);
@@ -79,6 +79,7 @@ export class AclListInputComponent
 
   ngAfterViewInit(): void {
     if (this.data) {
+
       this.updateVisualComponentValue(this.data[ITEM_VALUE]);
     } else if (this.value) {
       this.updateVisualComponentValue(this.value);
@@ -89,16 +90,19 @@ export class AclListInputComponent
 
   ngOnInit(): void {
     this.updateInputs();
+
   }
 
   setForm(item: string, index: number) {
-    if (this.currentEditingData?.index == index) {
-      this.currentEditingData = undefined;
-    } else {
-      this.currentEditingData = {
-        index,
-        item,
-      };
+    if (!this.disabled) {
+      if (this.currentEditingData?.index == index) {
+        this.currentEditingData = undefined;
+      } else {
+        this.currentEditingData = {
+          index,
+          item,
+        };
+      }
     }
   }
 
