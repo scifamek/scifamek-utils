@@ -1,18 +1,19 @@
 <section>
   <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span>
   <section>
-    <label>{{ label }}</label>
     <input
       #input
       [(ngModel)]="value"
       [placeholder]="placeholder || ''"
       [attr.color]="color"
       [attr.status]="status"
-      [disabled]="disabled"
+      [disabled]="(formControl && formControl.disabled) || disabled"
       type="time"
       [value]="value"
       (change)="change($event)"
     />
+    <label>{{ label }}</label>
+
   </section>
   <span class="material-icons" *ngIf="rightIcon">{{ rightIcon }}</span>
 </section>

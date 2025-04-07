@@ -2,7 +2,6 @@
   <span class="material-icons" *ngIf="icon">{{ icon }}</span>
 
   <section class="combo-wrap">
-    <label for="cpf-id3">{{ label }}</label>
     <input
       readonly
       [attr.color]="color"
@@ -19,6 +18,8 @@
       [disabled]="(formControl && formControl.disabled) || disabled"
       
     />
+    <label >{{ label }}</label>
+
   </section>
 
   <span

@@ -29,8 +29,7 @@ import {
 })
 export class AclListInputComponent
   extends GeneralInputComponent
-  implements OnInit, AfterViewInit
-{
+  implements OnInit, AfterViewInit {
   @HostBinding('class') classAttr!: string;
 
   currentEditingData?: {
@@ -49,7 +48,7 @@ export class AclListInputComponent
   constructor(public elementRef: ElementRef) {
     super();
     this.value = [];
-    this.registerOnChange((value: any) => {});
+    this.registerOnChange((value: any) => { });
     this.innerFormControl = new FormControl('', [Validators.required]);
   }
 
@@ -85,10 +84,14 @@ export class AclListInputComponent
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void { }
 
   ngOnInit(): void {
     this.updateInputs();
+    if (this.formControl && this.formControl.disabled) {
+
+      this.innerFormControl.disable()
+    }
   }
 
   setForm(item: string, index: number) {

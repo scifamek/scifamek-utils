@@ -1,84 +1,224 @@
 @use "sass:color";
 
-$base-palette: (
-  "base": #0030cc,
-  "colors": #0030cc #0036e6 #003cff #1a50ff #3363ff #4d77ff #668aff #809eff
-    #99b1ff #b3c5ff #ccd8ff #e6ecff,
-) !default;
+// PRIMARY
 
-$scale-length: length(map-get($base-palette, "colors"));
+$acl-primary-color: var(--sci-acl-primary-color, #0158ff);
+$acl-primary-0-color: var(--sci-acl-primary-0-color, #0158ff);
+$acl-primary-1-color: var(--sci-acl-primary-1-color, #2670ff);
+$acl-primary-2-color: var(--sci-acl-primary-2-color, #4484ff);
+$acl-primary-3-color: var(--sci-acl-primary-3-color, #6398ff);
+$acl-primary-4-color: var(--sci-acl-primary-4-color, #8bb3ff);
+$acl-primary-5-color: var(--sci-acl-primary-5-color, #a8c5ff);
+$acl-primary-6-color: var(--sci-acl-primary-6-color, #c5d8ff);
+$acl-primary-7-color: var(--sci-acl-primary-7-color, #e2ecff);
 
-@debug ($scale-length);
-@function color-diff($a, $b) {
-  $sat: saturation($a) - saturation($b);
-  $lig: lightness($a) - lightness($b);
-  $fn-sat: if($sat > 0, "desaturate", "saturate");
-  $fn-lig: if($lig > 0, "darken", "lighten");
+$acl-primary-contrast-color: var(--sci-acl-primary-contrast-color, #ffffff);
+$acl-primary-contrast-0-color: var(--sci-acl-primary-contrast-0-color, #ffffff);
+$acl-primary-contrast-1-color: var(--sci-acl-primary-contrast-1-color, #ffffff);
+$acl-primary-contrast-2-color: var(--sci-acl-primary-contrast-2-color, #ffffff);
+$acl-primary-contrast-3-color: var(--sci-acl-primary-contrast-3-color, #ffffff);
+$acl-primary-contrast-4-color: var(--sci-acl-primary-contrast-4-color, #000000);
+$acl-primary-contrast-5-color: var(--sci-acl-primary-contrast-5-color, #000000);
+$acl-primary-contrast-6-color: var(--sci-acl-primary-contrast-6-color, #000000);
+$acl-primary-contrast-7-color: var(--sci-acl-primary-contrast-7-color, #000000);
 
-  @return (
-    adjust-hue: if(hue($a) - hue($b) == -0deg, 0deg, -(hue($a) - hue($b))),
-    #{$fn-sat}: abs($sat),
-    #{$fn-lig}: abs($lig)
-  );
-}
+// SECONDARY
 
-@function palette-diff($palette) {
-  $base: map-get($palette, "base");
-  $colors: map-get($palette, "colors");
-  $diffs: ();
+$acl-secondary-color: var(--sci-acl-secondary-color, #000000);
+$acl-secondary-0-color: var(--sci-acl-secondary-0-color, #000000);
+$acl-secondary-1-color: var(--sci-acl-secondary-1-color, #3d3d3d);
+$acl-secondary-2-color: var(--sci-acl-secondary-2-color, #585858);
+$acl-secondary-3-color: var(--sci-acl-secondary-3-color, #808080);
+$acl-secondary-4-color: var(--sci-acl-secondary-4-color, #a4a4a4);
+$acl-secondary-5-color: var(--sci-acl-secondary-5-color, #cacaca);
+$acl-secondary-6-color: var(--sci-acl-secondary-6-color, #ebebeb);
+$acl-secondary-7-color: var(--sci-acl-secondary-7-color, #fcfcfc);
 
-  @each $color in $colors {
-    $diffs: append($diffs, color-diff($base, $color));
-  }
+$acl-secondary-contrast-color: var(--sci-acl-secondary-contrast-color, #ffffff);
+$acl-secondary-contrast-0-color: var(--sci-acl-secondary-contrast-0-color, #ffffff);
+$acl-secondary-contrast-1-color: var(--sci-acl-secondary-contrast-1-color, #ffffff);
+$acl-secondary-contrast-2-color: var(--sci-acl-secondary-contrast-2-color, #ffffff);
+$acl-secondary-contrast-3-color: var(--sci-acl-secondary-contrast-3-color, #ffffff);
+$acl-secondary-contrast-4-color: var(--sci-acl-secondary-contrast-4-color, #000000);
+$acl-secondary-contrast-5-color: var(--sci-acl-secondary-contrast-5-color, #000000);
+$acl-secondary-contrast-6-color: var(--sci-acl-secondary-contrast-6-color, #000000);
+$acl-secondary-contrast-7-color: var(--sci-acl-secondary-contrast-7-color, #000000);
 
-  @return $diffs;
-}
 
-$palette-diff: palette-diff($base-palette);
+// SUCCESS
 
-@function apply-diff($color, $diff) {
-  @each $function, $value in $diff {
-    $color: call(get-function($function), $color, $value);
-  }
+$acl-success-color: var(--sci-acl-success-color, #18ba92);
+$acl-success-0-color: var(--sci-acl-success-0-color, #18ba92);
+$acl-success-1-color: var(--sci-acl-success-1-color, #3fc5a1);
+$acl-success-2-color: var(--sci-acl-success-2-color, #5dd0af);
+$acl-success-3-color: var(--sci-acl-success-3-color, #7bdbbd);
+$acl-success-4-color: var(--sci-acl-success-4-color, #9ee5ce);
+$acl-success-5-color: var(--sci-acl-success-5-color, #b8eddb);
+$acl-success-6-color: var(--sci-acl-success-6-color, #d2f4e8);
+$acl-success-7-color: var(--sci-acl-success-7-color, #ebfbf5);
 
-  @return $color;
-}
+$acl-success-contrast-color: var(--sci-acl-success-contrast-color, #ffffff);
+$acl-success-contrast-0-color: var(--sci-acl-success-0-color, #ffffff);
+$acl-success-contrast-1-color: var(--sci-acl-success-contrast-1-color, #ffffff);
+$acl-success-contrast-2-color: var(--sci-acl-success-contrast-2-color, #ffffff);
+$acl-success-contrast-3-color: var(--sci-acl-success-contrast-3-color, #ffffff);
+$acl-success-contrast-4-color: var(--sci-acl-success-contrast-4-color, #000000);
+$acl-success-contrast-5-color: var(--sci-acl-success-contrast-5-color, #000000);
+$acl-success-contrast-6-color: var(--sci-acl-success-contrast-6-color, #000000);
+$acl-success-contrast-7-color: var(--sci-acl-success-contrast-7-color, #000000);
 
-@function create-palette($base-color) {
-  $palette: ();
 
-  @each $diff in $palette-diff {
-    $palette: append($palette, apply-diff($base-color, $diff));
-  }
+// WARNING
 
-  @return $palette;
-}
+$acl-warning-color: var(--sci-acl-warning-color, #ccb243);
+$acl-warning-0-color: var(--sci-acl-warning-0-color, #ccb243);
+$acl-warning-1-color: var(--sci-acl-warning-1-color, #d2be5f);
+$acl-warning-2-color: var(--sci-acl-warning-2-color, #d8ca7a);
+$acl-warning-3-color: var(--sci-acl-warning-3-color, #ded796);
+$acl-warning-4-color: var(--sci-acl-warning-4-color, #e5e1ad);
+$acl-warning-5-color: var(--sci-acl-warning-5-color, #ebe9c5);
+$acl-warning-6-color: var(--sci-acl-warning-6-color, #f2f1dc);
+$acl-warning-7-color: var(--sci-acl-warning-7-color, #f8f8f1);
 
-$root-color-1-proton: #003cff;
-$root-color-2-proton: #c80068;
-$root-color-3-proton: #18ba92;
-$root-color-4-proton: #ccb243;
-$root-color-5-proton: #cc5801;
-$root-color-6-proton: #c32021;
-$root-color-7-proton: #ae59c6;
-$root-color-8-proton: #3f3f3f;
-$root-color-9-proton: white;
 
-$main-color-1-scale-proton: create-palette($root-color-1-proton);
-$main-color-2-scale-proton: create-palette($root-color-2-proton);
-$main-color-3-scale-proton: create-palette($root-color-3-proton);
-$main-color-4-scale-proton: create-palette($root-color-4-proton);
-$main-color-5-scale-proton: create-palette($root-color-5-proton);
-$main-color-6-scale-proton: create-palette($root-color-6-proton);
-$main-color-7-scale-proton: create-palette($root-color-7-proton);
-$main-color-8-scale-proton: create-palette($root-color-8-proton);
+$acl-warning-contrast-color: var(--sci-acl-warning-contrast-color, #ffffff);
+$acl-warning-contrast-0-color: var(--sci-acl-warning-contrast-0-color, #ffffff);
+$acl-warning-contrast-1-color: var(--sci-acl-warning-contrast-1-color, #ffffff);
+$acl-warning-contrast-2-color: var(--sci-acl-warning-contrast-2-color, #ffffff);
+$acl-warning-contrast-3-color: var(--sci-acl-warning-contrast-3-color, #000000);
+$acl-warning-contrast-4-color: var(--sci-acl-warning-contrast-4-color, #000000);
+$acl-warning-contrast-5-color: var(--sci-acl-warning-contrast-5-color, #000000);
+$acl-warning-contrast-6-color: var(--sci-acl-warning-contrast-6-color, #000000);
+$acl-warning-contrast-7-color: var(--sci-acl-warning-contrast-7-color, #000000);
 
-$main-color-1-proton: nth($main-color-1-scale-proton, 3);
-$main-color-2-proton: nth($main-color-2-scale-proton, 3);
-$main-color-3-proton: nth($main-color-3-scale-proton, 3);
-$main-color-4-proton: nth($main-color-4-scale-proton, 3);
-$main-color-5-proton: nth($main-color-5-scale-proton, 3);
-$main-color-6-proton: nth($main-color-6-scale-proton, 3);
-$main-color-7-proton: nth($main-color-7-scale-proton, 3);
-$main-color-8-proton: nth($main-color-8-scale-proton, 3);
-$main-color-9-proton: $root-color-9-proton;
+
+
+
+// DANGER
+
+$acl-danger-color: var(--sci-acl-danger-color, #c32021);
+$acl-danger-0-color: var(--sci-acl-danger-0-color, #c32021);
+$acl-danger-1-color: var(--sci-acl-danger-1-color, #cf3d3d);
+$acl-danger-2-color: var(--sci-acl-danger-2-color, #db5959);
+$acl-danger-3-color: var(--sci-acl-danger-3-color, #e67575);
+$acl-danger-4-color: var(--sci-acl-danger-4-color, #f19a9a);
+$acl-danger-5-color: var(--sci-acl-danger-5-color, #f5b3b3);
+$acl-danger-6-color: var(--sci-acl-danger-6-color, #f9cdcd);
+$acl-danger-7-color: var(--sci-acl-danger-7-color, #fce6e6);
+
+
+$acl-danger-contrast-color: var(--sci-acl-danger-contrast-color, #ffffff);
+$acl-danger-contrast-0-color: var(--sci-acl-danger-contrast-0-color, #ffffff);
+$acl-danger-contrast-1-color: var(--sci-acl-danger-contrast-1-color, #ffffff);
+$acl-danger-contrast-2-color: var(--sci-acl-danger-contrast-2-color, #ffffff);
+$acl-danger-contrast-3-color: var(--sci-acl-danger-contrast-3-color, #000000);
+$acl-danger-contrast-4-color: var(--sci-acl-danger-contrast-4-color, #000000);
+$acl-danger-contrast-5-color: var(--sci-acl-danger-contrast-5-color, #000000);
+$acl-danger-contrast-6-color: var(--sci-acl-danger-contrast-6-color, #000000);
+$acl-danger-contrast-7-color: var(--sci-acl-danger-contrast-7-color, #000000);
+
+
+
+$primary-palette: (
+  "base": $acl-primary-color,
+  "colors": $acl-primary-0-color $acl-primary-1-color $acl-primary-2-color $acl-primary-3-color $acl-primary-4-color $acl-primary-5-color $acl-primary-6-color $acl-primary-7-color,
+  "contrast-colors": $acl-primary-contrast-0-color $acl-primary-contrast-1-color $acl-primary-contrast-2-color $acl-primary-contrast-3-color $acl-primary-contrast-4-color $acl-primary-contrast-5-color $acl-primary-contrast-6-color $acl-primary-contrast-7-color ) !default;
+
+$secondary-palette: (
+  "base": $acl-secondary-color,
+  "colors": $acl-secondary-0-color $acl-secondary-1-color $acl-secondary-2-color $acl-secondary-3-color $acl-secondary-4-color $acl-secondary-5-color $acl-secondary-6-color $acl-secondary-7-color,
+  "contrast-colors": $acl-secondary-contrast-0-color $acl-secondary-contrast-1-color $acl-secondary-contrast-2-color $acl-secondary-contrast-3-color $acl-secondary-contrast-4-color $acl-secondary-contrast-5-color $acl-secondary-contrast-6-color $acl-secondary-contrast-7-color ) !default;
+
+$success-palette: (
+  "base": $acl-success-color,
+  "colors": $acl-success-0-color $acl-success-1-color $acl-success-2-color $acl-success-3-color $acl-success-4-color $acl-success-5-color $acl-success-6-color $acl-success-7-color,
+  "contrast-colors": $acl-success-contrast-0-color $acl-success-contrast-1-color $acl-success-contrast-2-color $acl-success-contrast-3-color $acl-success-contrast-4-color $acl-success-contrast-5-color $acl-success-contrast-6-color $acl-success-contrast-7-color ) !default;
+
+$warning-palette: (
+  "base": $acl-warning-color,
+  "colors": $acl-warning-0-color $acl-warning-1-color $acl-warning-2-color $acl-warning-3-color $acl-warning-4-color $acl-warning-5-color $acl-warning-6-color $acl-warning-7-color,
+  "contrast-colors": $acl-warning-contrast-0-color $acl-warning-contrast-1-color $acl-warning-contrast-2-color $acl-warning-contrast-3-color $acl-warning-contrast-4-color $acl-warning-contrast-5-color $acl-warning-contrast-6-color $acl-warning-contrast-7-color ) !default;
+
+$danger-palette: (
+  "base": $acl-danger-color,
+  "colors": $acl-danger-0-color $acl-danger-1-color $acl-danger-2-color $acl-danger-3-color $acl-danger-4-color $acl-danger-5-color $acl-danger-6-color $acl-danger-7-color,
+  "contrast-colors": $acl-danger-contrast-0-color $acl-danger-contrast-1-color $acl-danger-contrast-2-color $acl-danger-contrast-3-color $acl-danger-contrast-4-color $acl-danger-contrast-5-color $acl-danger-contrast-6-color $acl-danger-contrast-7-color ) !default;
+
+// $scale-length: length(map-get($primary-palette, "colors")
+// );
+
+// @debug ($scale-length);
+
+// @function color-diff($a, $b) {
+//   $sat: saturation($a) - saturation($b);
+//   $lig: lightness($a) - lightness($b);
+//   $fn-sat: if($sat > 0, "desaturate", "saturate");
+//   $fn-lig: if($lig > 0, "darken", "lighten");
+
+//   @return (adjust-hue: if(hue($a) - hue($b)==-0deg, 0deg, -(hue($a) - hue($b))),
+//     #{$fn-sat}: abs($sat),
+//     #{$fn-lig}: abs($lig));
+// }
+
+// @function palette-diff($palette) {
+//   $primary: map-get($palette, "primary");
+//   $colors: map-get($palette, "colors");
+//   $diffs: (
+//   );
+
+// @each $color in $colors {
+//   $diffs: append($diffs, color-diff($primary, $color));
+// }
+
+// @return $diffs;
+// }
+
+// $palette-diff: palette-diff($primary-palette);
+
+// @function apply-diff($color, $diff) {
+//   @each $function, $value in $diff {
+//     $color: call(get-function($function), $color, $value);
+//   }
+
+//   @return $color;
+// }
+
+// @function create-palette($base-color) {
+//   $palette: (
+//   );
+
+// @each $diff in $palette-diff {
+//   $palette: append($palette, apply-diff($base-color, $diff));
+// }
+
+// @return $palette;
+// }
+
+// $root-color-1-proton: $acl-primary-0-color;
+// $root-color-2-proton: #c80068;
+// $root-color-3-proton: #18ba92;
+// $root-color-4-proton: #ccb243;
+// $root-color-5-proton: #cc5801;
+// $root-color-6-proton: #c32021;
+// $root-color-7-proton: #ae59c6;
+// $root-color-8-proton: #3f3f3f;
+// $root-color-9-proton: white;
+
+// $main-color-1-scale-proton: create-palette($root-color-1-proton);
+// $main-color-2-scale-proton: create-palette($root-color-2-proton);
+// $main-color-3-scale-proton: create-palette($root-color-3-proton);
+// $main-color-4-scale-proton: create-palette($root-color-4-proton);
+// $main-color-5-scale-proton: create-palette($root-color-5-proton);
+// $main-color-6-scale-proton: create-palette($root-color-6-proton);
+// $main-color-7-scale-proton: create-palette($root-color-7-proton);
+// $main-color-8-scale-proton: create-palette($root-color-8-proton);
+
+// $main-color-1-proton: nth($main-color-1-scale-proton, 3);
+// $main-color-2-proton: nth($main-color-2-scale-proton, 3);
+// $main-color-3-proton: nth($main-color-3-scale-proton, 3);
+// $main-color-4-proton: nth($main-color-4-scale-proton, 3);
+// $main-color-5-proton: nth($main-color-5-scale-proton, 3);
+// $main-color-6-proton: nth($main-color-6-scale-proton, 3);
+// $main-color-7-proton: nth($main-color-7-scale-proton, 3);
+// $main-color-8-proton: nth($main-color-8-scale-proton, 3);
+// $main-color-9-proton: $root-color-9-proton;

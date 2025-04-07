@@ -1,87 +1,93 @@
 @use "./button.foundation.scss" as *;
 
-%medium {
-  display: flex;
-  align-items: center;
-  padding: $button-y-padding-medium $button-x-padding-medium;
-  font-size: $button-font-size-medium;
-  border-radius: $button-border-radius;
-  cursor: pointer;
-}
+:host {
+  width: fit-content;
+  display: block;
 
-@mixin outline-button-style($name) {
-  &[kind="outline"] {
-    background-color: $button-default-background-color;
-    border: $button-border-width solid map-get(map-get($category-colors, $name), "base");
-    color: map-get(map-get($category-colors, $name), "base");
-
-    &:hover {
-      border: $button-border-width solid map-get(map-get($category-colors, $name), "hover");
-    }
-
-    &[disabled] {
-      border: $button-border-width solid map-get(map-get($category-colors, $name), "disabled");
-      color: map-get(map-get($category-colors, $name), "disabled");
-    }
+  %medium {
+    display: flex;
+    align-items: center;
+    padding: $button-y-padding-medium $button-x-padding-medium;
+    font-size: $button-font-size-medium;
+    border-radius: $button-border-radius;
+    cursor: pointer;
   }
-}
 
-@mixin button-component {
-  button {
-    @extend %medium;
+  @mixin outline-button-style($name) {
+    &[kind="outline"] {
+      background-color: nth(map-get(map-get($category-colors, $name), 'contrast-colors'), 1);
+      border: $button-border-width solid map-get(map-get($category-colors, $name), "base");
+      color: map-get(map-get($category-colors, $name), "base");
 
-    &[size="large"] {
-      padding: $button-y-padding-large $button-x-padding-large;
-      font-size: $button-font-size-large;
-    }
+      &:hover {
+        border: $button-border-width solid map-get(map-get($category-colors, $name), "hover");
+      }
 
-    &[size="medium"] {
-      @extend %medium;
-    }
-
-    &[size="small"] {
-      padding: $button-padding-small;
-      font-size: $button-font-size-small;
-    }
-
-    &[size="xsmall"] {
-
-      padding: $button-padding-xsmall;
-      font-size: $button-font-size-xsmall;
-    }
-    &[size="xxsmall"] {
-
-      padding: $button-padding-xxsmall;
-      font-size: $button-font-size-xxsmall;
-    }
-
-    color: $button-default-color;
-    border: $button-border-width solid map-get(map-get($category-colors, "primary"), "base");
-    background-color: map-get(map-get($category-colors, "primary"), "base");
-
-    @include outline-button-style("primary");
-
-    @each $name, $color-obj in $category-colors {
-      &[color="#{$name}"] {
-        border: $button-border-width solid map-get(map-get($category-colors, $name), "base");
-        background-color: map-get(map-get($category-colors, $name), "base");
-
-        &:hover {
-          border: $button-border-width solid map-get(map-get($category-colors, $name), "hover");
-          background-color: map-get(map-get($category-colors, $name), "hover");
-        }
-
-        &[disabled] {
-          border: $button-border-width solid map-get(map-get($category-colors, $name), "disabled");
-          background-color: map-get(map-get($category-colors, $name),
-              "disabled"
-            );
-        }
-
-        @include outline-button-style($name);
+      &[disabled] {
+        border: $button-border-width solid map-get(map-get($category-colors, $name), "disabled");
+        color: map-get(map-get($category-colors, $name), "disabled");
       }
     }
   }
-}
 
-@include button-component();
+  @mixin button-component {
+    button {
+      @extend %medium;
+
+      &[size="large"] {
+        padding: $button-y-padding-large $button-x-padding-large;
+        font-size: $button-font-size-large;
+      }
+
+      &[size="medium"] {
+        @extend %medium;
+      }
+
+      &[size="small"] {
+        padding: $button-padding-small $button-padding-small * 2;
+        font-size: $button-font-size-small;
+      }
+
+      &[size="xsmall"] {
+
+        padding: $button-padding-xsmall $button-padding-xsmall * 2;
+        font-size: $button-font-size-xsmall;
+      }
+
+      &[size="xxsmall"] {
+
+        padding: $button-padding-xxsmall $button-padding-xxsmall *2;
+        font-size: $button-font-size-xxsmall;
+      }
+
+      color: $button-default-color;
+      border: $button-border-width solid map-get(map-get($category-colors, "primary"), "base");
+      background-color: map-get(map-get($category-colors, "primary"), "base");
+
+      @include outline-button-style("primary");
+
+      @each $name, $color-obj in $category-colors {
+        &[color="#{$name}"] {
+          border: $button-border-width solid map-get(map-get($category-colors, $name), "base");
+          background-color: map-get(map-get($category-colors, $name), "base");
+
+          &:hover {
+            border: $button-border-width solid map-get(map-get($category-colors, $name), "hover");
+            background-color: map-get(map-get($category-colors, $name), "hover");
+          }
+
+          &[disabled] {
+            border: $button-border-width solid map-get(map-get($category-colors, $name), "disabled");
+            background-color: map-get(map-get($category-colors, $name),
+                "disabled"
+              );
+          }
+
+          @include outline-button-style($name);
+        }
+      }
+    }
+  }
+
+  @include button-component();
+}

@@ -2,7 +2,7 @@
   <section *ngIf="!disabled" class="form">
     <acl-input
       [label]="label"
-      [disabled]="disabled"
+      [disabled]="formControl?.disabled || disabled"
       [formControl]="innerFormControl"
     ></acl-input>
   </section>
@@ -21,14 +21,14 @@
         *ngFor="let item of value; index as i"
       >
         {{ item }}
-        <div class="close-button" *ngIf="!disabled">
+        <div class="close-button" *ngIf="!(formControl?.disabled || disabled)">
           <button (click)="delteItem(i)"></button>
         </div>
       </li>
     </ul>
   </footer>
 </div>
-<section *ngIf="!disabled" >
+<section *ngIf="!(formControl?.disabled || disabled)" >
   <acl-button kind="outline" (click)="addData()" size="xsmall">
     <mat-icon>add</mat-icon></acl-button
   >

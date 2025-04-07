@@ -1,48 +1,42 @@
 @use "../protons/themes/base.scss" as *;
 
-$base-index: 3;
-$hover-index: 6;
-$disabled-index: 8;
+$base-index: 1;
+$hover-index: 3;
+$disabled-index: 7;
+
 
 $category-color-map: (
-  "primary": (
-    "base": nth($main-color-1-scale-proton, $base-index),
-    "hover": nth($main-color-1-scale-proton, $hover-index),
-    "disabled": nth($main-color-1-scale-proton, $disabled-index),
-  ),
-  "secondary": (
-    "base": nth($main-color-2-scale-proton, $base-index),
-    "hover": nth($main-color-2-scale-proton, $hover-index),
-    "disabled": nth($main-color-2-scale-proton, $disabled-index),
-  ),
-  "tertiary": (
-    "base": nth($main-color-3-scale-proton, $base-index),
-    "hover": nth($main-color-3-scale-proton, $hover-index),
-    "disabled": nth($main-color-3-scale-proton, $disabled-index),
-  ),
-  "warning": (
-    "base": nth($main-color-4-scale-proton, $base-index),
-    "hover": nth($main-color-4-scale-proton, $hover-index),
-    "disabled": nth($main-color-4-scale-proton, $disabled-index),
-  ),
-  "alert": (
-    "base": nth($main-color-5-scale-proton, $base-index),
-    "hover": nth($main-color-5-scale-proton, $hover-index),
-    "disabled": nth($main-color-5-scale-proton, $disabled-index),
-  ),
-  "danger": (
-    "base": nth($main-color-6-scale-proton, $base-index),
-    "hover": nth($main-color-6-scale-proton, $hover-index),
-    "disabled": nth($main-color-6-scale-proton, $disabled-index),
-  ),
-  "info": (
-    "base": nth($main-color-7-scale-proton, $base-index),
-    "hover": nth($main-color-7-scale-proton, $hover-index),
-    "disabled": nth($main-color-7-scale-proton, $disabled-index),
-  ),
-  "notification": (
-    "base": nth($main-color-8-scale-proton, $base-index),
-    "hover": nth($main-color-8-scale-proton, $hover-index),
-    "disabled": nth($main-color-8-scale-proton, $disabled-index),
-  ),
+  "primary": $primary-palette,
+  "secondary": $secondary-palette,
+  "success": $success-palette,
+  "warning": $warning-palette,
+  "danger": $danger-palette,
+  //  (
+  //   "base": map-get($primary-palette, 'base'),
+  //   "hover": nth(map-get($primary-palette, 'colors'), $hover-index),
+  //   "disabled": nth(map-get($primary-palette, 'colors'), $disabled-index),
+  // ),
+
+  // "secondary": (
+  //   "base": map-get($secondary-palette, 'base'),
+  //   "hover": nth(map-get($secondary-palette, 'colors'), $hover-index),
+  //   "disabled": nth(map-get($secondary-palette, 'colors'), $disabled-index),
+  // ),
+  // "success": (
+  //   "base": map-get($success-palette, 'base'),
+  //   "hover": nth(map-get($success-palette, 'colors'), $hover-index),
+  //   "disabled": nth(map-get($success-palette, 'colors'), $disabled-index),
+  // ),
+  // "warning": (
+  //   "base": map-get($warning-palette, 'base'),
+  //   "hover": nth(map-get($warning-palette, 'colors'), $hover-index),
+  //   "disabled": nth(map-get($warning-palette, 'colors'), $disabled-index),
+  // ),
+  // "danger": (
+  //   "base": map-get($danger-palette, 'base'),
+  //   "hover": nth(map-get($danger-palette, 'colors'), $hover-index),
+  //   "disabled": nth(map-get($danger-palette, 'colors'), $disabled-index),
+  // ),
+
+ 
 );

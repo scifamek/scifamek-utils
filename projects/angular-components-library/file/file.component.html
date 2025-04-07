@@ -21,7 +21,8 @@
 </span>
 <acl-button
   (click)="clear()"
-  *ngIf="insidePreview || fullPath"
+  *ngIf="(insidePreview || fullPath) && !formControl?.disabled"
+
   size="xxsmall"
   class="clear"
 >

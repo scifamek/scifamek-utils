@@ -4,23 +4,26 @@
 
 $category-colors: $category-color-map;
 $button-border-width: 0.1 * $size-proton;
-$button-border-radius: $size-proton;
-$button-default-color: $main-color-9-proton;
-$button-default-background-color: $main-color-9-proton;
+$button-border-radius: 0.5 * $size-proton;
+
+@debug(map-get(map-get($category-color-map,'primary'),'contrast-colors'));
+
+$button-default-color: nth(map-get(map-get($category-color-map,'primary'),'contrast-colors'),1);
+$button-default-background-color: nth(map-get(map-get($category-color-map,'primary'),'colors'),1);
 
 $button-padding-xxsmall: 0.2 * $size-proton ;
 $button-font-size-xxsmall: 0.7 * $rem-size-proton;
 
 $button-padding-xsmall: 0.4 * $size-proton;
-$button-font-size-xsmall: 1 * $rem-size-proton;
+$button-font-size-xsmall: 0.8 * $rem-size-proton;
 
 $button-padding-small: 0.8 * $size-proton;
-$button-font-size-small: 1.2 * $rem-size-proton;
+$button-font-size-small: 1 * $rem-size-proton;
 
 $button-y-padding-medium: 0.8 * $size-proton;
-$button-x-padding-medium: 0.8 * $size-proton;
-$button-font-size-medium: 1.4 * $rem-size-proton;
+$button-x-padding-medium: 1.2 * $size-proton;
+$button-font-size-medium: 1.1 * $rem-size-proton;
 
 $button-x-padding-large: 1.6 * $size-proton;
 $button-y-padding-large: 0.8 * $size-proton;
-$button-font-size-large: 1.6 * $rem-size-proton;
+$button-font-size-large: 1.3 * $rem-size-proton;
