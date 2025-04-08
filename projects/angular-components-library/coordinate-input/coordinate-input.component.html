@@ -1,0 +1,21 @@
+<section>
+  <span class="material-icons" *ngIf="leftIcon">{{ leftIcon }}</span>
+  <section>
+    <input
+      #input
+      [(ngModel)]="innerValue"
+      [placeholder]="placeholder || ''"
+      [attr.color]="color"
+      [attr.status]="status"
+      [disabled]="(formControl && formControl.disabled) || disabled"
+      type="text"
+      [value]="innerValue"
+      (change)="change($event)"
+    />
+
+    <label>{{ label }}</label>
+
+  </section>
+  <span class="material-icons" *ngIf="rightIcon">{{ rightIcon }}</span>
+</section>
+<span *ngIf="hint" class="text-base">{{ hint }}</span>
