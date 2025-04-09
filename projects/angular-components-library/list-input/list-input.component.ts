@@ -97,11 +97,14 @@ export class AclListInputComponent
   setForm(item: string, index: number) {
     if (this.currentEditingData?.index == index) {
       this.currentEditingData = undefined;
+      this.innerFormControl.reset()
+
     } else {
       this.currentEditingData = {
         index,
         item,
       };
+      this.innerFormControl.setValue(item)
     }
   }
 

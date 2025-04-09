@@ -1,4 +1,5 @@
-@use "../../scss-core/components/abstract-input/abstract-input.scss" as *;
+@use "../../scss-core/components/abstract-input/abstract-input.foundation.scss" as *;
+@use "../../scss-core/foundations/category-colors.foundation.scss" as *;
 
 :host {
   width: 100%;
@@ -6,71 +7,121 @@
   align-items: start;
   display: flex;
   position: relative;
+  flex-direction: column;
 
-  >div {
+  >.form {
     flex: 1 1 auto;
-  }
-
-  >section {
-    padding: 10px;
-  }
-
-  section.form {
-    width: 100%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
+
+    acl-input {
+      margin-bottom: 0;
+      margin-top: 0;
+
+      ::ng-deep {
+        section {
+
+
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0;
+        }
+
+      }
+
+      &:has(input:focus)+section>button {
+        border: $abstract-input-border-size solid $abstract-input-focus-border-color;
+        border-left: none;
+
+      }
+    }
+
+
+    >section {
+      button {
+        width: 100%;
+        height: 100%;
+        border-top-right-radius: $abstract-input-border-radius;
+        border-bottom-right-radius: $abstract-input-border-radius;
+        background: white;
+        border: $abstract-input-border-size solid $abstract-input-default-border-color;
+        border-left: none;
+      }
+
+    }
+
 
 
   }
-
- 
 
   footer {
-    width: 90%;
+    width: 95%;
+    margin: auto;
     max-height: 300px;
     overflow: auto;
     display: flex;
     flex-direction: column;
     position: relative;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom-left-radius: $abstract-input-border-radius;
+    border-bottom-right-radius: $abstract-input-border-radius;
 
 
     ul {
-      padding-left: 1rem;
       box-shadow: 0 0.2rem 5px 2px rgba(63, 63, 63, 0.176);
       border-radius: 0.2rem;
-  
+      margin: 0;
+      padding: 0;
+
       li {
         position: relative;
         list-style: none;
-        padding: 0.5rem 0;
         display: flex;
+        min-height: 2.5rem;
+        padding-left: 0.2rem;
         align-items: center;
         justify-content: space-between;
-  
+
         &.editing-indicator {
-  
-          border-left: 4px solid var(--primary-color);
+
+          border-left: 4px solid map-get(map-get($category-color-map, 'primary'), 'base');
+        }
+
+        span {
+          flex: 1 1 auto;
+        }
+
+        button {
+          $danger: map-get(map-get($category-color-map, 'danger' ), 'base');
+          $size: 1rem;
+
+          display: flex;
+          
+          font-size: $size;
+          height: 100%;
+          background-color: transparent;
+          border: none;
+          // background: linear-gradient(45deg, transparent 45%, white 45%, white 55%, transparent 55%),
+          //   linear-gradient(-45deg, $danger 45%, white 45%, white 55%, $danger 55%);
+          mat-icon{
+            font-size: $size;
+            height: $size;
+            margin: auto;
+            color: $danger;
+
+          }
         }
       }
     }
 
-    .close-button {
-      background-color: red;
-      padding: 2px;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
-      button {
-        width: 100%;
-        height: 100%;
-        border: none;
-        background: linear-gradient(45deg, transparent 45%, white 45%, white 55%, transparent 55%),
-          linear-gradient(-45deg, red 45%, white 45%, white 55%, red 55%);
-        border: none;
-      }
-    }
   }
+
+
+
+
+
+
+
+
 }

@@ -1,35 +1,24 @@
-<div>
-  <section *ngIf="!disabled" class="form">
-    <acl-input
-      [label]="label"
-      [disabled]="formControl?.disabled || disabled"
-      [formControl]="innerFormControl"
-    ></acl-input>
+<section class="form">
+  <acl-input [label]="label" [disabled]="formControl?.disabled || disabled"
+    [formControl]="innerFormControl"></acl-input>
+  <section *ngIf="!(formControl?.disabled || disabled)">
+    <button (click)="addData()">
+      <mat-icon>add</mat-icon></button>
   </section>
-
-  <header *ngIf="disabled">
-    <h6>
-      {{ label }}
-    </h6>
-  </header>
-
-  <footer *ngIf="value && value.length > 0">
-    <ul class="ps-2">
-      <li
-        [ngClass]="{ 'editing-indicator': currentEditingData?.index == i }"
-        (click)="setForm(item, i)"
-        *ngFor="let item of value; index as i"
-      >
-        {{ item }}
-        <div class="close-button" *ngIf="!(formControl?.disabled || disabled)">
-          <button (click)="delteItem(i)"></button>
-        </div>
-      </li>
-    </ul>
-  </footer>
-</div>
-<section *ngIf="!(formControl?.disabled || disabled)" >
-  <acl-button kind="outline" (click)="addData()" size="xsmall">
-    <mat-icon>add</mat-icon></acl-button
-  >
 </section>
+<footer *ngIf="value && value.length > 0">
+  <ul >
+    <li [ngClass]="{ 'editing-indicator': currentEditingData?.index == i }" (click)="setForm(item, i)"
+      *ngFor="let item of value; index as i">
+      <span>
+
+        {{ item }}
+      </span>
+      <button *ngIf="!(formControl?.disabled || disabled)" (click)="delteItem(i)">
+
+        <mat-icon>close</mat-icon>
+      </button>
+
+    </li>
+  </ul>
+</footer>
